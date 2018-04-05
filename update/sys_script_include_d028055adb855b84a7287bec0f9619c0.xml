@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_wcs_ctrx_auto_sv.AuthToken</api_name>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>AuthToken</name>
+        <script><![CDATA[var AuthToken = Class.create();
+AuthToken.prototype = {
+    initialize: function() {
+	
+		this.TOKEN_HEADERS = {"Accept":"application/json","Content-Type":"application/json","Connection":"keep-alive","Host":"trust-us.citrixworkspacesapi.net"};
+		this.TOKEN_ENDPOINT = 'https://trust-us.citrixworkspacesapi.net/{0}/tokens/clients';
+		this.TOKEN_TIMEOUT = 10000;
+		this.TOKEN_LIFETIME = 3300000;
+		this.TOKEN_GET_COUNT = 6;
+		
+    },
+	
+	testCredentials:function(clientId,clientSecret){
+		var logger = new Logger();
+		var customer_id = gs.getProperty('x_wcs_ctrx_auto_sv.customer_id');
+		
+		var rest = new RESTRequest();
+		
+        var body = {
+			"ClientId":clientId,
+			"ClientSecret":clientSecret
+		};
+        var endpoint = gs.getMessage(this.TOKEN_ENDPOINT,customer_id);
+        logger.log(endpoint,"endpoint");
+    
+		var tokenResponse = rest.post(endpoint,this.TOKEN_HEADERS,body); 
+		var tokenObj;
+		try{
+			tokenObj = JSON.parse(tokenResponse);
+		}catch(error){
+			logger.logError(tokenResponse);
+			return "failure";
+		}
+		 
+		if(tokenObj.token != null){
+			logger.log("TOKEN",tokenObj.token);
+			return "success";
+		}else{
+			logger.logError("Unable to get token");
+			return "failure";
+		}
+		
+	},
+	getToken:function(){
+		var logger = new Logger();
+		var tokenRec = this._getCurrentToken();
+		this._checkToken(tokenRec);
+		
+		
+		this._getNewToken();
+	},
+	_checkToken:function(tokenRec){
+		var logger = new Logger();
+		
+		
+		
+		
+	},
+	_getNewToken:function(){
+		var logger = new Logger();
+		
+		var customer_id = gs.getProperty('x_wcs_ctrx_auto_sv.customer_id');
+		var clientId = gs.getProperty('x_wcs_ctrx_auto_sv.client_id');
+		var clientSecret = gs.getProperty('x_wcs_ctrx_auto_sv.client_secret');
+		
+		var rest = new RESTRequest();
+		
+        var body = {
+			"ClientId":clientId,
+			"ClientSecret":clientSecret
+		};
+        var endpoint = gs.getMessage(this.TOKEN_ENDPOINT,customer_id);
+        logger.log(endpoint,"endpoint");
+    
+		var tokenResponse = rest.post(endpoint,this.TOKEN_HEADERS,body); 
+      
+		var tokenObj = JSON.parse(tokenResponse);
+		var token = tokenObj.token;
+		logger.log(token);
+      
+	},
+	_getCurrentToken:function(){
+		var logger = new Logger();
+		var tokenRec = new GlideRecord('x_wcs_ctrx_auto_sv_security_token');
+		tokenRec.query();
+		if(tokenRec.next()){
+			return tokenRec;
+		}else{
+			tokenRec = new GlideRecord('x_wcs_ctrx_auto_sv_security_token');
+			tokenRec.insert();
+			return tokenRec;
+		}
+	},
+	
+	_updateToken:function(tokenString,state){
+		var logger = new Logger();
+		
+		var tokenRec = new GlideRecord('x_wcs_ctrx_auto_sv_security_token');
+		tokenRec.query();
+		
+		if(tokenRec.next()){
+			tokenRec.setValue('token',tokenString);
+			tokenRec.setValue('state',state);
+			tokenRec.update();
+		}else{
+			logger.logError("Unable to find token record while updating token");
+		}
+	},
+
+    type: 'AuthToken'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-03-26 20:38:32</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>d028055adb855b84a7287bec0f9619c0</sys_id>
+        <sys_mod_count>27</sys_mod_count>
+        <sys_name>AuthToken</sys_name>
+        <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
+        <sys_update_name>sys_script_include_d028055adb855b84a7287bec0f9619c0</sys_update_name>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-03-27 20:30:29</sys_updated_on>
+    </sys_script_include>
+</record_update>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sc_category">
+    <sc_category action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>XenApp and Xen Desktop</description>
+        <entitlement_script/>
+        <header_icon/>
+        <homepage_image/>
+        <homepage_renderer display_value="">Default</homepage_renderer>
+        <icon/>
+        <image/>
+        <location/>
+        <mobile_hide_description>false</mobile_hide_description>
+        <mobile_picture/>
+        <mobile_subcategory_render_type>list</mobile_subcategory_render_type>
+        <module/>
+        <order>0</order>
+        <parent/>
+        <roles/>
+        <sc_catalog display_value="Citrix Automation Catalog">c36d1f6cdb8513406d3c72fc0f9619c6</sc_catalog>
+        <show_in_cms>false</show_in_cms>
+        <sys_class_name>sc_category</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-03-21 20:54:13</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>7acd93acdb8513406d3c72fc0f961977</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>XenApp and Xen Desktop</sys_name>
+        <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
+        <sys_update_name>sc_category_7acd93acdb8513406d3c72fc0f961977</sys_update_name>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-03-21 20:54:13</sys_updated_on>
+        <title>XenApp and Xen Desktop</title>
+    </sc_category>
+    <sys_translated_text action="delete_multiple" query="documentkey=7acd93acdb8513406d3c72fc0f961977"/>
+</record_update>

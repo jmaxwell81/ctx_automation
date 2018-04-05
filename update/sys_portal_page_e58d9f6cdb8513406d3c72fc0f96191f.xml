@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update node_type="sys_portal_page" unload_date="2018-04-05 13:25:50">
+    <sys_portal_page action="INSERT_OR_UPDATE">
+        <layout display_value="layout_2_across">f6defafa0a0a0b12000d5016bd12ff06</layout>
+        <order/>
+        <read_roles/>
+        <roles/>
+        <selectable>false</selectable>
+        <sys_class_name>sys_portal_page</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-03-21 20:52:36</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>e58d9f6cdb8513406d3c72fc0f96191f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>catalog_citrix_automation_catalog</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
+        <sys_update_name>sys_portal_page_e58d9f6cdb8513406d3c72fc0f96191f</sys_update_name>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-03-21 20:52:36</sys_updated_on>
+        <title>catalog_citrix_automation_catalog</title>
+        <user/>
+        <view>catalog_citrix_automation_catalog</view>
+        <related_items_node>
+            <sys_portal action="INSERT_OR_UPDATE">
+                <dropzone>dropzone1</dropzone>
+                <offset>0</offset>
+                <page display_value="catalog_citrix_automation_catalog">e58d9f6cdb8513406d3c72fc0f96191f</page>
+                <summary/>
+                <sys_created_by>sebastiang</sys_created_by>
+                <sys_created_on>2018-03-22 21:13:51</sys_created_on>
+                <sys_id>22fb604ddb0d53406d3c72fc0f9619c6</sys_id>
+                <sys_mod_count>0</sys_mod_count>
+                <sys_updated_by>sebastiang</sys_updated_by>
+                <sys_updated_on>2018-03-22 21:13:51</sys_updated_on>
+                <related_items_node>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>current_page</name>
+                        <portal_section display_value="Created 2018-03-22 17:13:51">22fb604ddb0d53406d3c72fc0f9619c6</portal_section>
+                        <sys_created_by>sebastiang</sys_created_by>
+                        <sys_created_on>2018-03-22 21:13:51</sys_created_on>
+                        <sys_id>22fb244ddb0d53406d3c72fc0f961905</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>sebastiang</sys_updated_by>
+                        <sys_updated_on>2018-03-22 21:13:51</sys_updated_on>
+                        <value>e58d9f6cdb8513406d3c72fc0f96191f</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>render_title</name>
+                        <portal_section display_value="Created 2018-03-22 17:13:51">22fb604ddb0d53406d3c72fc0f9619c6</portal_section>
+                        <sys_created_by>sebastiang</sys_created_by>
+                        <sys_created_on>2018-03-22 21:13:51</sys_created_on>
+                        <sys_id>a2fb244ddb0d53406d3c72fc0f961903</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>sebastiang</sys_updated_by>
+                        <sys_updated_on>2018-03-22 21:13:51</sys_updated_on>
+                        <value>true</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>type</name>
+                        <portal_section display_value="Created 2018-03-22 17:13:51">22fb604ddb0d53406d3c72fc0f9619c6</portal_section>
+                        <sys_created_by>sebastiang</sys_created_by>
+                        <sys_created_on>2018-03-22 21:13:51</sys_created_on>
+                        <sys_id>a2fb244ddb0d53406d3c72fc0f961904</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>sebastiang</sys_updated_by>
+                        <sys_updated_on>2018-03-22 21:13:51</sys_updated_on>
+                        <value>category</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>sys_id</name>
+                        <portal_section display_value="Created 2018-03-22 17:13:51">22fb604ddb0d53406d3c72fc0f9619c6</portal_section>
+                        <sys_created_by>sebastiang</sys_created_by>
+                        <sys_created_on>2018-03-22 21:13:51</sys_created_on>
+                        <sys_id>a2fb604ddb0d53406d3c72fc0f9619c6</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>sebastiang</sys_updated_by>
+                        <sys_updated_on>2018-03-22 21:13:51</sys_updated_on>
+                        <value>7acd93acdb8513406d3c72fc0f961977</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>catalog</name>
+                        <portal_section display_value="Created 2018-03-22 17:13:51">22fb604ddb0d53406d3c72fc0f9619c6</portal_section>
+                        <sys_created_by>sebastiang</sys_created_by>
+                        <sys_created_on>2018-03-22 21:13:51</sys_created_on>
+                        <sys_id>a6fb244ddb0d53406d3c72fc0f961903</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>sebastiang</sys_updated_by>
+                        <sys_updated_on>2018-03-22 21:13:51</sys_updated_on>
+                        <value>c36d1f6cdb8513406d3c72fc0f9619c6</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>catalog_view</name>
+                        <portal_section display_value="Created 2018-03-22 17:13:51">22fb604ddb0d53406d3c72fc0f9619c6</portal_section>
+                        <sys_created_by>sebastiang</sys_created_by>
+                        <sys_created_on>2018-03-22 21:13:51</sys_created_on>
+                        <sys_id>a6fb244ddb0d53406d3c72fc0f961904</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>sebastiang</sys_updated_by>
+                        <sys_updated_on>2018-03-22 21:13:51</sys_updated_on>
+                        <value>catalog_citrix_automation_catalog</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>macro</name>
+                        <portal_section display_value="Created 2018-03-22 17:13:51">22fb604ddb0d53406d3c72fc0f9619c6</portal_section>
+                        <sys_created_by>sebastiang</sys_created_by>
+                        <sys_created_on>2018-03-22 21:13:51</sys_created_on>
+                        <sys_id>aafb244ddb0d53406d3c72fc0f961902</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>sebastiang</sys_updated_by>
+                        <sys_updated_on>2018-03-22 21:13:51</sys_updated_on>
+                        <value>sc_catalog_homepage_category_item</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>title_link_class</name>
+                        <portal_section display_value="Created 2018-03-22 17:13:51">22fb604ddb0d53406d3c72fc0f9619c6</portal_section>
+                        <sys_created_by>sebastiang</sys_created_by>
+                        <sys_created_on>2018-03-22 21:13:51</sys_created_on>
+                        <sys_id>aafb244ddb0d53406d3c72fc0f961903</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>sebastiang</sys_updated_by>
+                        <sys_updated_on>2018-03-22 21:13:51</sys_updated_on>
+                        <value>category_title_link</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>title</name>
+                        <portal_section display_value="Created 2018-03-22 17:13:51">22fb604ddb0d53406d3c72fc0f9619c6</portal_section>
+                        <sys_created_by>sebastiang</sys_created_by>
+                        <sys_created_on>2018-03-22 21:13:51</sys_created_on>
+                        <sys_id>aafb244ddb0d53406d3c72fc0f961904</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>sebastiang</sys_updated_by>
+                        <sys_updated_on>2018-03-22 21:13:51</sys_updated_on>
+                        <value>&amp;lt;a onmousedown='Event.stop(event); return false;' class='category_title_link' href='com.glideapp.servicecatalog_category_view.do?v=1&amp;amp;sysparm_parent=7acd93acdb8513406d3c72fc0f961977&amp;amp;sysparm_catalog=c36d1f6cdb8513406d3c72fc0f9619c6&amp;amp;sysparm_catalog_view=catalog_citrix_automation_catalog'&amp;gt;XenApp and Xen Desktop&amp;lt;/a&amp;gt;</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>renderer</name>
+                        <portal_section display_value="Created 2018-03-22 17:13:51">22fb604ddb0d53406d3c72fc0f9619c6</portal_section>
+                        <sys_created_by>sebastiang</sys_created_by>
+                        <sys_created_on>2018-03-22 21:13:51</sys_created_on>
+                        <sys_id>aefb244ddb0d53406d3c72fc0f961902</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>sebastiang</sys_updated_by>
+                        <sys_updated_on>2018-03-22 21:13:51</sys_updated_on>
+                        <value>com.glideapp.servicecatalog.RenderCategory</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>title_link</name>
+                        <portal_section display_value="Created 2018-03-22 17:13:51">22fb604ddb0d53406d3c72fc0f9619c6</portal_section>
+                        <sys_created_by>sebastiang</sys_created_by>
+                        <sys_created_on>2018-03-22 21:13:51</sys_created_on>
+                        <sys_id>aefb244ddb0d53406d3c72fc0f961903</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>sebastiang</sys_updated_by>
+                        <sys_updated_on>2018-03-22 21:13:51</sys_updated_on>
+                        <value>com.glideapp.servicecatalog_category_view.do?v=1&amp;amp;amp;amp;sysparm_parent=7acd93acdb8513406d3c72fc0f961977&amp;amp;amp;amp;sysparm_catalog=c36d1f6cdb8513406d3c72fc0f9619c6&amp;amp;amp;amp;sysparm_catalog_view=catalog_citrix_automation_catalog</value>
+                    </sys_portal_preferences>
+                </related_items_node>
+            </sys_portal>
+        </related_items_node>
+    </sys_portal_page>
+</record_update>
