@@ -3,12 +3,12 @@
     <sys_script_include action="INSERT_OR_UPDATE">
         <access>package_private</access>
         <active>true</active>
-        <api_name>x_wcs_ctrx_auto_sv.CTXAutoSrvcsAPI</api_name>
+        <api_name>x_wcs_ctrx_auto_sv.CTXSrvcsCreds</api_name>
         <client_callable>true</client_callable>
         <description/>
-        <name>CTXAutoSrvcsAPI</name>
-        <script><![CDATA[var CTXAutoSrvcsAPI = Class.create();
-CTXAutoSrvcsAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+        <name>CTXSrvcsCreds</name>
+        <script><![CDATA[var CTXSrvcsCreds = Class.create();
+CTXSrvcsCreds.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 	
 	CUSTOMERID_API_ENDPOINT:"https://core-us.citrixworkspacesapi.net/root/customers/current",
 	CUSTOMERID_ERROR:"Error Obtaining customer ID(s)",
@@ -163,21 +163,21 @@ CTXAutoSrvcsAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 	},
 	
 	
-    type: 'CTXAutoSrvcsAPI'
+    type: 'CTXSrvcsCreds'
 });]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>sebastiang</sys_created_by>
         <sys_created_on>2018-03-27 19:30:36</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>11c14a26db499b84a7287bec0f961990</sys_id>
-        <sys_mod_count>24</sys_mod_count>
-        <sys_name>CTXAutoSrvcsAPI</sys_name>
+        <sys_mod_count>25</sys_mod_count>
+        <sys_name>CTXSrvcsCreds</sys_name>
         <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy>read</sys_policy>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_script_include_11c14a26db499b84a7287bec0f961990</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-04-10 15:25:08</sys_updated_on>
+        <sys_updated_on>2018-04-11 02:01:44</sys_updated_on>
     </sys_script_include>
 </record_update>

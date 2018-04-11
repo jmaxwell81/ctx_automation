@@ -5,7 +5,7 @@
         <client_script><![CDATA[var app = angular.module('homeApp',[]);
 
 app.controller('homeAppCtrl',function($scope,$http,$q,interceptor){
-	$scope.loaded = false;
+	
 	interceptor.checkSetupComplete();
 	
 	$scope.client_id = "";
@@ -35,7 +35,7 @@ app.controller('homeAppCtrl',function($scope,$http,$q,interceptor){
 			}
 		};
 		
-		var authAjax = new GlideAjax('CTXAutoSrvcsAPI');
+		var authAjax = new GlideAjax('CTXSrvcsCreds');
 		authAjax.addParam('sysparm_name','testCredentials');
 		authAjax.addParam('sysparm_client_id',$scope.client_id);
 		authAjax.addParam('sysparm_client_secret',$scope.client_secret);
@@ -69,7 +69,7 @@ app.controller('homeAppCtrl',function($scope,$http,$q,interceptor){
 					
 		};
 		
-		var authAjax = new GlideAjax('CTXAutoSrvcsAPI');
+		var authAjax = new GlideAjax('CTXSrvcsCreds');
 		authAjax.addParam('sysparm_name','getCustomerID');
 		authAjax.getXML(addCustomerIds);
 	};
@@ -86,13 +86,14 @@ app.controller('homeAppCtrl',function($scope,$http,$q,interceptor){
 			if(answer){
 				console.log('Saved customer ID');
 				$scope.closeModel();
+				interceptor.checkSetupComplete();
 			}else{
 				console.log('Unable to save customer ID');
 			}			
 		};
 		console.log("Customer");
 		console.log(JSON.stringify($scope.customer));
-		var authAjax = new GlideAjax('CTXAutoSrvcsAPI');
+		var authAjax = new GlideAjax('CTXSrvcsCreds');
 		authAjax.addParam('sysparm_name','updateCustomerId');
 		authAjax.addParam('sysparm_customer_id',$scope.customer.customer_id);
 		authAjax.addParam('sysparm_display_name',$scope.customer.display_name);
@@ -116,7 +117,7 @@ app.controller('homeAppCtrl',function($scope,$http,$q,interceptor){
 			}
 			
 		};
-		var authAjax = new GlideAjax('CTXAutoSrvcsAPI');
+		var authAjax = new GlideAjax('CTXSrvcsCreds');
 		authAjax.addParam('sysparm_name','updateCredentials');
 		authAjax.addParam('sysparm_client_id',$scope.client_id);
 		authAjax.addParam('sysparm_client_secret',$scope.client_secret);
@@ -385,7 +386,7 @@ app.service('interceptor',function($http){
 			}
 		</style>
 	</head>
-	<body ng-app="homeApp" ng-controller="homeAppCtrl" >
+	<body ng-app="homeApp" ng-controller="homeAppCtrl" ng-cloak="">
 		<header>
 			
 			<div class="col-md-12 ">
@@ -596,7 +597,7 @@ app.service('interceptor',function($http){
         <sys_created_on>2018-03-23 02:00:18</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>f68de54ddbc91784a7287bec0f9619ce</sys_id>
-        <sys_mod_count>346</sys_mod_count>
+        <sys_mod_count>352</sys_mod_count>
         <sys_name>getting_started</sys_name>
         <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
@@ -604,6 +605,6 @@ app.service('interceptor',function($http){
         <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_ui_page_f68de54ddbc91784a7287bec0f9619ce</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-04-10 19:34:28</sys_updated_on>
+        <sys_updated_on>2018-04-11 02:22:08</sys_updated_on>
     </sys_ui_page>
 </record_update>
