@@ -8,6 +8,10 @@
 	var value = checkbox.val();
 	checkbox.prop( "checked",!checkbox.prop("checked"));
 	
+	if(!checkbox.hasClass('select-all') && !checkbox.prop("checked")){
+		jQuery("input.select-all").prop("checked",false);
+	}
+	
 });
 jQuery(".select-all").click(function() {
 	var selectall = jQuery(this).prev();
@@ -40,7 +44,7 @@ jQuery(".select-all").click(function() {
 					</th>
 					
 					<th class="table-column-header">
-						<i class="icon-menu col-menu list-header-context-menu context-menu-click" style="cursor: pointer;"></i>
+						<!--<i class="icon-menu col-menu list-header-context-menu context-menu-click" style="cursor: pointer;"></i>-->
 						<a class="sort-columns">Applications</a>
 					</th>					
 				</tr>
@@ -58,7 +62,20 @@ jQuery(".select-all").click(function() {
 						<span>Notepad</span>
 					</td>
 					
-				</tr>				
+				</tr>	
+				<tr class="data_row">
+					<td class="col-small col-center decoration_cell col-control">
+						<span class="input-group-checkbox">							
+							<input type="checkbox" class="checkbox"/>
+							<label class="checkbox-label"></label>
+						</span>
+					</td>
+					
+					<td class="vt grid-field">
+						<span>Calculator</span>
+					</td>
+					
+				</tr>
 			</tbody>
 		</table>
 	</body>
@@ -70,7 +87,7 @@ jQuery(".select-all").click(function() {
         <sys_created_on>2018-04-10 22:05:49</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>73fdae03db5d5700a7287bec0f9619ab</sys_id>
-        <sys_mod_count>37</sys_mod_count>
+        <sys_mod_count>41</sys_mod_count>
         <sys_name>application_modal</sys_name>
         <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
@@ -78,6 +95,6 @@ jQuery(".select-all").click(function() {
         <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_ui_page_73fdae03db5d5700a7287bec0f9619ab</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-04-10 23:32:26</sys_updated_on>
+        <sys_updated_on>2018-04-11 01:53:47</sys_updated_on>
     </sys_ui_page>
 </record_update>
