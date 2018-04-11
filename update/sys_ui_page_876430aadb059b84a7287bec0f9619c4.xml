@@ -2,190 +2,199 @@
 <record_update table="sys_ui_page">
     <sys_ui_page action="INSERT_OR_UPDATE">
         <category>general</category>
-        <client_script/>
+        <client_script><![CDATA[var app = angular.module('connection',[]);
+
+app.controller('connectionCtrl',function($scope,$http,$q,status){
+	
+	$scope.title = "Workspace Automation Service Connection Status";
+	
+	$scope.customers = [];
+	
+	$scope.updateStatusIcon = function(customer,status){
+		var customerId = customer.customer_id;
+		jQuery("#"+customerId).find("#loading_icon").addClass('hide');
+		jQuery("#"+customerId).find('#'+status+"_icon").removeClass('hide');
+		
+	};
+	
+	$scope.updateStatus = function(customer,status){
+		var customerId = customer.customer_id;
+		var statusObj = jQuery("#"+customerId).find('.status');
+		if(status == 'success'){
+			statusObj.addClass('status-success');
+			$scope.updateStatusIcon(customer,'success');
+		}else if(status == 'failure'||status == 'no_answer'){
+			statusObj.addClass('status-failure');
+			$scope.updateStatusIcon(customer,'failure');
+		}
+	};
+	
+	$http({
+		method:"GET",
+		url:"api/now/table/x_wcs_ctrx_auto_sv_authenticated_customer_id",
+		headers:{
+			"Accept":"application/json",
+			"X-UserToken":window.g_ck
+		}
+	}).then(function(response){
+		var records = response.data.result;
+		console.log(records);
+		$scope.customers = records;
+		status.getStatus($scope.customers[0],$scope.updateStatus);
+	});	
+});
+
+app.service('status',function($q){
+
+	this.getStatus = function(customer,updateStatus){
+		var deferred;
+		var status;
+		var returnStatus = function(response){
+			var answer = response.responseXML.documentElement.getAttribute('answer');
+			if(answer == "TOKEN_SUCCESS"){				
+				status = "success";
+			}else if(answer == "TOKEN_FAILURE"){				
+				status = "failure";
+			}else{
+				status = "no_answer";
+			}
+			deferred.resolve();
+		};
+		
+		var sendAjax = function(){
+			deferred = $q.defer();
+			var authAjax = new GlideAjax('CTXAutoSrvcsAPI');
+			authAjax.addParam('sysparm_name','testCustomerID');
+			authAjax.addParam('sysparm_customer_id',customer.customer_id);
+			authAjax.getXML(returnStatus);
+			return deferred.promise;
+		};
+		
+		var runCallback = function(){
+			updateStatus(customer,status);
+		};
+		
+		sendAjax().then(runCallback);
+		
+	};
+	
+});]]></client_script>
         <description/>
         <direct>false</direct>
-        <endpoint>x_wcs_ctrx_auto_sv_temp_page.do</endpoint>
+        <endpoint>x_wcs_ctrx_auto_sv_connection_status.do</endpoint>
         <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
 <j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
 	<head>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 		<style>
-			header{
-				padding-left:40px;
-				padding-right:40px;
+			
+			.content{
+				padding:20px 40px 0 40px; 
 			}
-			h2{
+			#title{
 				font-weight:bold;
 			}
-			
-			.separator{
-				border:none;
-				border-bottom: solid #E6E6E6 2px;
+			.header{
+				margin:10px 20px 40px 20px;
 			}
-			.steps{
-				padding-top:20px;
+			.customer-obj{
+				border: solid #E6E6E6 2px;		
+				margin-left:20px;				
+				min-height:150px;
+				padding:0;
 			}
-			
-			.box{
-				border: solid #E6E6E6 2px;
-				width:15%;
-				padding:15px;
-				min-height: 100px;
-				height: 130px;
-			}
-			.started{
-				border-radius:5px;
-				padding-left:25px;
-				padding-right:25px;
+			.status{
+				border-right:solid #E6E6E6 1px;	
+				min-height:150px;
+				background-color:#E6E6E6;
+				padding:0;
+				max-width:60px;
 			}
 			
-			.arrow{
-				padding-top:2%;
+			.status-success{
+				background-color:#79C6B5;
 			}
-			span {
-				padding-left:40%;
-				content: "\203A";
-				font-size:50px;
-			    color:#E6E6E6;
+			.status-failure{
+				background-color:#F05050;
 			}
-
+			.status-no-answer{
+				background-color:#F7DC6F;
+			}
+			
+			.info-text{
+				margin-top:50px;
+			}
+			.cloud_button{
+				margin-top:50px;
+			}
+			.goto-cloud-btn{
+				float:right;
+				border: none;
+				border-radius: 5px;
+				padding-left: 35px;
+				padding-right: 35px;				
+				font-size: 13px;
+			}
+			.status_icon{
+				margin-top:60px;
+				margin-left:15px;;
+			}
 		</style>
 	</head>
-	<body>
-		<header>
-			<h2>Citrix Automation Guided Setup</h2>
-			<h2>Getting Started</h2>
-			<div class="col-md-8">
-				<h4>Welcome to Citrix Automation Service setup. You don't have any Citrix Cloud Workspace Automation Service <br/>
-					linked to Service Now, follow the instructions below to get the workspace automation service up and running. 
-				</h4>
+	<body ng-app="connection" ng-controller='connectionCtrl'>
+		<div class="col-sm-12 content">
+			<div class="col-sm-12 header">
+				<h2 id="title">Citrix IT Service Management Connector Connection Status</h2>
 			</div>
-			<div class="col-md-4">
-				<div class="col-md-6">
-				</div>
-				<div class="col-md-6">
-					<button class="btn btn-lg btn-info started">
-						Getting Started
-					</button>
-				</div>
-				
-			</div>
-			
-			<div class="col-md-12 separator">
-			</div>
-			
-			<div class="col-md-12 steps">
-				<div class="col-md-2 col-sm-12 box">
-					<b>Subscribe</b> <br/>
-					Go to $[SP]<a href="#">Citrix Cloud</a>$[SP]and
-					Subscribe to Workspace
-					Automation Service (WAS) 
-				</div>
-				<div class="col-md-1 col-sm-0 arrow">
-					<span>&#8250;</span>
-				</div>
-				<div class="col-md-2 col-sm-12 box">
-					<b>Authenticate</b> <br/>
-					<a id="auth_link" href="#">Authenticate the citrix cloud</a> $[SP]
-					account by providing client
-					id and secret.
 
-				</div>
-				<div class="col-md-1 col-sm-0 arrow">
-					<span>&#8250;</span>
-				</div>
-				<div class="col-md-2 col-sm-12 box">
-					<b>Configure</b><br/>
-					Configure WAS service
-					and provide the link to
-					this instance.
 
-				</div>
-				<div class="col-md-1 col-sm-0 arrow">
-					<span>&#8250;</span>
-				</div>
-				<div class="col-md-2 col-sm-12 box">
-					<b>Verify</b><br/>
-					Verify that connection is
-					established from Service Now.
-					You can then start using it.
-				</div>
-			</div>
-		</header>
-		<div class="modal-example">
-	<div class="modal">
-		<div class="modal-dialog small-modal">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button data-dismiss="modal" class="btn-icon close icon-cross">
-					 <span class="sr-only">Close</span>
-					</button>
-					<h4 class="modal-title">Dialog/Modal Header</h4>
-				</div>
-				<div class="modal-body">
-					<div class="row">
-						<div class="col-sm-12">
-							<p>An SMS verification code was sent to your device. Please enter the code to verify and enroll your device.</p>
+			<div class="col-sm-12">
+				<div id="{{cust.customer_id}}" class="col-sm-11 customer-obj" ng-repeat="cust in customers" ng-cloak="" >
+					<div class="col-sm-1 status">
+						<!--<img id="loading_icon" src="loading_status.gif" width="26" height="26" class="status_icon"/>-->
+						<img id="loading_icon" src="loading_status_icon.gif" width="26" height="26" class="status_icon"/>
+						<img id="failure_icon" src="no_connection_icon.png" width="26" height="26" class="status_icon hide"/>
+						<img id="success_icon" src="verify_white_icon.png" width="26" height="26" class="status_icon hide"/>
+					</div>
+					<div class="col-sm-8 info">
+						<div class="col-sm-3 info-text">
+							<b>Name</b>
+							<p>{{cust.display_name}}</p>
+						</div>
+						<div class="col-sm-3 info-text">
+							<b>Customer ID</b>
+							<p>{{cust.customer_id}}</p>
+						</div>
+						<div class="col-sm-3 info-text">
+							<b>Organization ID</b>
+							<p>{{cust.organization_id}}</p>
 						</div>
 					</div>
-					<div class="row">
-						<div class="form-horizontal">
-							<div class="form-group">
-								<label for="theInput" class="col-sm-3 col-sm-offset-1 control-label">Device Name</label>
-								<div class="col-sm-6">
-									<input type="text" class="form-control" id="theInput" value="Danny's Cell" disabled="true"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="thePhone" class="col-sm-3 col-sm-offset-1 control-label">Phone Number</label>
-								<div class="col-sm-6">
-									<input type="text" class="form-control" id="theInput" value="+1234567890" disabled="true"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="theVerify" class="col-sm-3 col-sm-offset-1 control-label">Device Name</label>
-								<div class="col-sm-6">
-									<input type="text" class="form-control" id="theVerify" value="" placeholder="Enter Verification Code"/>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<div class="row">
-						<div class="col-sm-6">
-							<button class="btn btn-default pull-left">Resend Verification Code</button>
-						</div>
-						<div class="col-sm-6">
-							<button class="btn btn-default">Cancel</button>
-							<button class="btn btn-primary">Verify Device</button>
-						</div>
+					<div class="col-sm-3 cloud_button">
+						<button class="btn btn-md btn-primary goto-cloud-btn">Go To Citrix Cloud</button>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
 	</body>
 		
 
 </j:jelly>]]></html>
-        <name>temp_page</name>
+        <name>connection_status</name>
         <processing_script/>
         <sys_class_name>sys_ui_page</sys_class_name>
         <sys_created_by>sebastiang</sys_created_by>
         <sys_created_on>2018-03-27 13:41:49</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>876430aadb059b84a7287bec0f9619c4</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_name>temp_page</sys_name>
+        <sys_mod_count>79</sys_mod_count>
+        <sys_name>connection_status</sys_name>
         <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_ui_page_876430aadb059b84a7287bec0f9619c4</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-03-27 13:41:49</sys_updated_on>
+        <sys_updated_on>2018-04-10 20:09:15</sys_updated_on>
     </sys_ui_page>
 </record_update>

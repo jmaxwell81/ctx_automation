@@ -9,6 +9,6 @@
             </choice>
         </element>
         <element label="Timestamp" max_length="40" name="timestamp" type="glide_date_time"/>
-        <element label="Token" max_length="255" name="token" type="password2"/>
+        <element attributes="edge_encryption_enabled=true" label="Token" max_length="4000" name="token" type="string"/>
     </element>
 </database>

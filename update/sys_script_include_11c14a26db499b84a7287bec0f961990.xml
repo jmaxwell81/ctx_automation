@@ -9,7 +9,10 @@
         <name>CTXAutoSrvcsAPI</name>
         <script><![CDATA[var CTXAutoSrvcsAPI = Class.create();
 CTXAutoSrvcsAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
-
+	
+	CUSTOMERID_API_ENDPOINT:"https://core-us.citrixworkspacesapi.net/root/customers/current",
+	CUSTOMERID_ERROR:"Error Obtaining customer ID(s)",
+	
 	testCredentials:function(){
 		var logger = new Logger();
 		var client_id = this.getParameter('sysparm_client_id');
@@ -18,6 +21,14 @@ CTXAutoSrvcsAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 		var test = authToken.testCredentials(client_id,client_secret);
 		return test;
 	},
+	
+	testCustomerID:function(){
+		var customerId = this.getParameter('sysparm_customer_id');
+		var authToken = new AuthToken();
+		var test = authToken.testCustomerId(customerId);
+		return test;
+	},
+	
 	
 	updateCredentials:function(){
 		var logger = new Logger();
@@ -51,6 +62,107 @@ CTXAutoSrvcsAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 		return true;
 	},
 	
+	_addAuthenticationCustomerRecord:function(customerId,displayName,organizationId){
+		var logger = new Logger();
+		var authCustRec = new GlideRecord('x_wcs_ctrx_auto_sv_authenticated_customer_id');
+		authCustRec.setValue('display_name',displayName);
+		authCustRec.setValue('customer_id',customerId);
+		authCustRec.setValue('organization_id',organizationId);
+		authCustRec.insert();
+	},
+	
+	_checkCustomerAuthentication:function(customerId,displayName,organizationId){
+		var authCustRec = new GlideRecord('x_wcs_ctrx_auto_sv_authenticated_customer_id');
+		authCustRec.addQuery('display_name',displayName);
+		authCustRec.addQuery('customer_id',customerId);
+		authCustRec.addQuery('organization_id',organizationId);
+		authCustRec.query();
+		
+		if(authCustRec.next()){
+			return true;
+		}else{
+			return false;
+		}
+	},
+	
+	_handleCustomerAuthenticationRecord:function(customerId,displayName,organizationId){
+		if(!this._checkCustomerAuthentication(customerId,displayName,organizationId)){
+			this._addAuthenticationCustomerRecord(customerId,displayName,organizationId);
+		}
+	},
+	
+	updateCustomerId:function(){
+		var logger = new Logger();
+		var scope = gs.getCurrentScopeName();
+		
+		var customer_id = this.getParameter('sysparm_customer_id');	
+		var display_name = this.getParameter('sysparm_display_name');	
+		var organization_id = this.getParameter('sysparm_organization_id');	
+		
+		this._handleCustomerAuthenticationRecord(customer_id,display_name,organization_id);
+		
+		var customerIDProp = new GlideRecord('sys_properties');
+		customerIDProp.addQuery('name',scope+".customer_id");
+		customerIDProp.query();
+		
+		if(customerIDProp.next()){
+			
+			customerIDProp.setValue('value',customer_id);
+			customerIDProp.update();
+						
+			return true;
+		}else{
+			logger.logError("Missing property",scope+".customer_id");
+			return false;
+		}
+	},
+	
+	getCustomerID:function(){
+		var logger = new Logger();
+
+		var auth = new AuthToken();
+		var token = auth.getToken();
+	
+		if(!gs.nil(token)){
+			var rest = new RESTRequest();
+			
+			var headers = {
+				"Authorization":"CWSAuth bearer="+token
+			};
+
+			var endpoint = this.CUSTOMERID_API_ENDPOINT;
+			var customerIDResponse = rest.get(endpoint,headers); 
+
+			try{
+				
+				var customersObj = JSON.parse(customerIDResponse);
+				var customerList = customersObj.items;
+				var customers = [];
+				var customer;
+				
+				for(var i = 0;i < customerList.length; i++){
+					if(!gs.nil(customerList[i].name)&&!gs.nil(customerList[i].displayName)&&!gs.nil(customerList[i].orgId)){
+						customer = {
+							customer_id:customerList[i].name,
+							display_name: customerList[i].displayName,
+							organization_id: customerList[i].orgId
+						};
+						customers.push(customer);
+						logger.log("Pushing",JSON.stringify(customer));
+					}
+				}
+		
+				return JSON.stringify(customers);
+			}catch(error){
+				logger.logError(customerIDResponse);
+				return this.CUSTOMERID_ERROR;
+			}
+		}
+		
+		
+	},
+	
+	
     type: 'CTXAutoSrvcsAPI'
 });]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
@@ -58,7 +170,7 @@ CTXAutoSrvcsAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
         <sys_created_on>2018-03-27 19:30:36</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>11c14a26db499b84a7287bec0f961990</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>24</sys_mod_count>
         <sys_name>CTXAutoSrvcsAPI</sys_name>
         <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy>read</sys_policy>
@@ -66,6 +178,6 @@ CTXAutoSrvcsAPI.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
         <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_script_include_11c14a26db499b84a7287bec0f961990</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-04-05 15:37:10</sys_updated_on>
+        <sys_updated_on>2018-04-10 15:25:08</sys_updated_on>
     </sys_script_include>
 </record_update>

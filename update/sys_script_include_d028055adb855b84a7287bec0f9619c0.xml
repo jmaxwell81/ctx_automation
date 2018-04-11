@@ -13,15 +13,18 @@ AuthToken.prototype = {
 	
 		this.TOKEN_HEADERS = {"Accept":"application/json","Content-Type":"application/json","Connection":"keep-alive","Host":"trust-us.citrixworkspacesapi.net"};
 		this.TOKEN_ENDPOINT = 'https://trust-us.citrixworkspacesapi.net/{0}/tokens/clients';
-		this.TOKEN_TIMEOUT = 10000;
 		this.TOKEN_LIFETIME = 3300000;
 		this.TOKEN_RETRY_MAX = 6;
-		
-    },
+		this.TOKEN_SUCCESS = "TOKEN_SUCCESS";
+		this.TOKEN_FAILURE = "TOKEN_FAILURE";
+				
+    },	
 	
-	testCredentials:function(clientId,clientSecret){
+	testCredentials:function(clientId,clientSecret,customer_id){
 		var logger = new Logger();
-		var customer_id = gs.getProperty('x_wcs_ctrx_auto_sv.customer_id');
+		if(gs.nil(customer_id)){
+			customer_id = gs.getProperty('x_wcs_ctrx_auto_sv.customer_id');
+		}		
 		
 		var rest = new RESTRequest();
 		
@@ -38,29 +41,33 @@ AuthToken.prototype = {
 			tokenObj = JSON.parse(tokenResponse);
 		}catch(error){
 			logger.logError(tokenResponse);
-			return "failure";
+			return this.TOKEN_FAILURE;
 		}
 		 
 		if(tokenObj.token != null){
 			logger.log("TOKEN",tokenObj.token);
-			return "success";
+			return this.TOKEN_SUCCESS;
 		}else{
 			logger.logError("Unable to get token");
-			return "failure";
+			return this.TOKEN_FAILURE;
 		}
+		
+	},
+	
+	testCustomerId:function(customerId){
+		
+		var clientId = gs.getProperty('x_wcs_ctrx_auto_sv.client_id');
+		var clientSecret = gs.getProperty('x_wcs_ctrx_auto_sv.client_secret');		
+		return this.testCredentials(clientId,clientSecret,customerId);		
 		
 	},
 	getToken:function(){
 		var logger = new Logger();
 		var tokenRec = this._getCurrentToken();
-		this._checkToken(tokenRec);
-		
-		
-		//this._getNewToken();
+		return this._getValidToken(tokenRec);		
 	},
-	
-	
-	_checkToken:function(tokenRec){
+		
+	_getValidToken:function(tokenRec){
 		var logger = new Logger();
 		var newToken;
 		
@@ -76,6 +83,7 @@ AuthToken.prototype = {
 				return this._newTokenDriver();
 
 			}else{
+				
 				logger.log('returning token ' + tokenRec.getValue('token'));
 				return tokenRec.getValue('token');
 			}
@@ -228,7 +236,7 @@ AuthToken.prototype = {
         <sys_created_on>2018-03-26 20:38:32</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>d028055adb855b84a7287bec0f9619c0</sys_id>
-        <sys_mod_count>56</sys_mod_count>
+        <sys_mod_count>69</sys_mod_count>
         <sys_name>AuthToken</sys_name>
         <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy>read</sys_policy>
@@ -236,6 +244,6 @@ AuthToken.prototype = {
         <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_script_include_d028055adb855b84a7287bec0f9619c0</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-04-05 20:08:24</sys_updated_on>
+        <sys_updated_on>2018-04-10 18:16:15</sys_updated_on>
     </sys_script_include>
 </record_update>

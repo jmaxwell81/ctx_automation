@@ -50,7 +50,7 @@
         <sys_created_on>2018-03-22 21:10:57</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>a41be40ddb0d53406d3c72fc0f9619a5</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>Application Provisioning</sys_name>
         <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
@@ -58,7 +58,7 @@
         <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sc_cat_item_a41be40ddb0d53406d3c72fc0f9619a5</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-03-22 21:20:16</sys_updated_on>
+        <sys_updated_on>2018-04-10 21:28:26</sys_updated_on>
         <template/>
         <type>item</type>
         <u_business_service/>
@@ -71,7 +71,6 @@
         <visible_guide>true</visible_guide>
         <visible_standalone>true</visible_standalone>
         <workflow/>
-        <x_186226_wsa_list_of_apps/>
     </sc_cat_item>
     <sys_translated_text action="delete_multiple" query="documentkey=a41be40ddb0d53406d3c72fc0f9619a5"/>
     <fx_price action="delete_multiple" query="id=a41be40ddb0d53406d3c72fc0f9619a5"/>
@@ -109,4 +108,40 @@
         <table>sc_cat_item</table>
         <type>calculated</type>
     </fx_price>
+    <sys_attachment action="INSERT_OR_UPDATE">
+        <average_image_color>#0</average_image_color>
+        <compressed>true</compressed>
+        <content_type>image/png</content_type>
+        <file_name>icon</file_name>
+        <image_height>27</image_height>
+        <image_width>35</image_width>
+        <size_bytes>576</size_bytes>
+        <size_compressed>599</size_compressed>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-10 21:34:17</sys_created_on>
+        <sys_id>cbd6260fdb1d5700a7287bec0f9619f7</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-10 21:34:17</sys_updated_on>
+        <table_name>ZZ_YYsc_cat_item</table_name>
+        <table_sys_id>a41be40ddb0d53406d3c72fc0f9619a5</table_sys_id>
+    </sys_attachment>
+    <sys_attachment_doc action="INSERT_OR_UPDATE">
+        <data>H4sIAAAAAAAAAA==</data>
+        <length>16</length>
+        <position>0</position>
+        <sys_attachment display_value="icon" sys_id="cbd6260fdb1d5700a7287bec0f9619f7">cbd6260fdb1d5700a7287bec0f9619f7</sys_attachment>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-10 21:34:17</sys_created_on>
+        <sys_id>0fd6260fdb1d5700a7287bec0f9619f7</sys_id>
+    </sys_attachment_doc>
+    <sys_attachment_doc action="INSERT_OR_UPDATE">
+        <data>AUACv/2JUE5HDQoaCgAAAA1JSERSAAAAIwAAABsIBgAAAPbwNpkAAAABc1JHQgCuzhzpAAAB+klEQVRIDe1XMWsUURCeebuX4wga4UAIAf+AQsQmhejdpcomQTHHJZ1gEwQ9xNJuW7WxsrSwCSeXJiG5VJc9sElAm5hGEAuLVBYmRy7qvvc5u0mWqKzgrl6anebNzu438/HNPJjlslObA5nbdJoG7uYLhboNwjyBKkz8HgzTd06gIhHOfzv4umATIDx4y2s1R/tORAqOT85e10Z3lPCwjwjok0QqTq0krbulbPtle7nx1nVd5W1u1xkonsmdfbq09GJvfLo2YjQeippvOquLCyfxf+MDFNU+JhPhHaee72FnBUSD+rs/Iy8ueBvbNcA8kxjt+l9ycjzSPp6LvDekxVSemtvyVhrvoiQJHfUrrjdW1NK4/TDOvBecjMPzJ5/RDZ+JfGWoF/hp7Tcynuv6KsfXlKIH+QF7IiiwvvZqVVnqJit1B2OXngSxodzQXUV8j9kqt1uND0EsrXFpotqWAT7XaTWvpE2WBF9xZq8a6NcWqZnDmQEul53qQZJkaTEGJupOSIaZP8sgNtImTogfFlxwUSgkIxfiU2eteT9hslSwozaFZCKJUmX8R+CMTJyQmTKZMnEKxMWzmcmUiVMgLp7NzB+VYdBA3Af/O86E/HENW3YZA+Biyanuyq7b9/8mTSgEZKBgbIv5sQZ9DLb80zDpimz83LUG2fsBvwaqXYZMLQIAAAAASUVORK5CYILuHJ5qQAIAAA==</data>
+        <length>788</length>
+        <position>1</position>
+        <sys_attachment display_value="icon" sys_id="cbd6260fdb1d5700a7287bec0f9619f7">cbd6260fdb1d5700a7287bec0f9619f7</sys_attachment>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-10 21:34:17</sys_created_on>
+        <sys_id>8fd6260fdb1d5700a7287bec0f9619f7</sys_id>
+    </sys_attachment_doc>
 </record_update>

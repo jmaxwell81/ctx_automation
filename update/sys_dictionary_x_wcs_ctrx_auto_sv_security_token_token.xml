@@ -4,15 +4,10 @@
         <active>true</active>
         <array>false</array>
         <array_denormalized>false</array_denormalized>
-        <attributes/>
+        <attributes>edge_encryption_enabled=true</attributes>
         <audit>false</audit>
-        <calculation><![CDATA[(function calculatedFieldValue(current) {
-
-	// Add your code here
-	return '';  // return the calculated value
-
-})(current);]]></calculation>
-        <choice/>
+        <calculation/>
+        <choice>0</choice>
         <choice_field/>
         <choice_table/>
         <column_label>Token</column_label>
@@ -31,9 +26,9 @@
         <element>token</element>
         <element_reference>false</element_reference>
         <foreign_database/>
-        <internal_type display_value="">password2</internal_type>
+        <internal_type display_value="String">string</internal_type>
         <mandatory>false</mandatory>
-        <max_length>255</max_length>
+        <max_length>4000</max_length>
         <name>x_wcs_ctrx_auto_sv_security_token</name>
         <next_element/>
         <primary>false</primary>
@@ -51,9 +46,9 @@
         <staged>false</staged>
         <sys_class_name>sys_dictionary</sys_class_name>
         <sys_created_by>sebastiang</sys_created_by>
-        <sys_created_on>2018-03-26 20:19:05</sys_created_on>
+        <sys_created_on>2018-04-09 18:13:12</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
-        <sys_id>d5958516db855b84a7287bec0f96190e</sys_id>
+        <sys_id>fb3f24f6db9d1700a7287bec0f96198f</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Token</sys_name>
         <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
@@ -62,7 +57,7 @@
         <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_dictionary_x_wcs_ctrx_auto_sv_security_token_token</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-03-26 20:19:05</sys_updated_on>
+        <sys_updated_on>2018-04-09 18:13:12</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>

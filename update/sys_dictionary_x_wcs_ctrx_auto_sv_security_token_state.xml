@@ -53,7 +53,7 @@
         <sys_created_by>sebastiang</sys_created_by>
         <sys_created_on>2018-03-26 20:59:42</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
-        <sys_id>614d0d92dbc55b84a7287bec0f9619ae</sys_id>
+        <sys_id>9a8b175edb1993006d3c72fc0f96199a</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>State</sys_name>
         <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
@@ -61,8 +61,8 @@
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_dictionary_x_wcs_ctrx_auto_sv_security_token_state</sys_update_name>
-        <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-03-26 20:59:42</sys_updated_on>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2018-04-08 17:28:59</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>
