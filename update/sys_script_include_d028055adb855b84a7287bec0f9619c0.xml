@@ -109,7 +109,7 @@ AuthToken.prototype = {
 		var logger = new Logger();
 		
 		var dt = new GlideDateTime();
-		var newTimestamp = dt.getLocalDate() + " " + dt.getTime().toString().split(' ')[1];
+		var newTimestamp = dt.getDate() + " " + dt.getTime().toString().split(' ')[1];
 		this._updateToken('','retrieving',newTimestamp);						
 		var newToken = this._getNewToken();						
 		return this._handleNewToken(newToken);
@@ -123,8 +123,7 @@ AuthToken.prototype = {
 		var tokents = new GlideDateTime(timestamp);
 
 		var diff = dt.getNumericValue() - tokents.getNumericValue();
-		if(diff >= this.TOKEN_LIFETIME){
-			logger.log('THIS TOKEN IS EXPIRED');
+		if(diff >= this.TOKEN_LIFETIME){						
 			return true;
 		}else{
 			return false;
@@ -136,12 +135,11 @@ AuthToken.prototype = {
 			logger.logError("Received null token");
 		}
 		var dt = new GlideDateTime();
-		var newTimestamp = dt.getLocalDate() + " " + dt.getTime().toString().split(' ')[1];
+		var newTimestamp = dt.getDate() + " " + dt.getTime().toString().split(' ')[1];
 		
 		if(newToken == null){
 			this._updateToken('','failed',newTimestamp);
-		}else{
-			logger.log("token timestamp " + newTimestamp);				
+		}else{	
 			this._updateToken(newToken,'successful',newTimestamp);
 		}	
 		return newToken;
@@ -161,7 +159,6 @@ AuthToken.prototype = {
 			"ClientSecret":clientSecret
 		};
         var endpoint = gs.getMessage(this.TOKEN_ENDPOINT,customer_id);
-        logger.log(endpoint,"endpoint");
     		
 		var retrys = 0;
 		
@@ -171,7 +168,6 @@ AuthToken.prototype = {
 				var tokenObj;
 				tokenObj = JSON.parse(tokenResponse);
 				var token = tokenObj.token;
-				logger.log(token);
 				return token;	
 			}catch(error){
 				logger.logError("Token Error");
@@ -205,7 +201,7 @@ AuthToken.prototype = {
 		var tokenRec = new GlideRecord('x_wcs_ctrx_auto_sv_security_token');
 		tokenRec.query();
 		
-		if(tokenRec.next()){
+		if(tokenRec.next()){			
 			tokenRec.setValue('token',tokenString);
 			tokenRec.setValue('state',state);
 			tokenRec.setValue('timestamp',timestamp);
@@ -236,7 +232,7 @@ AuthToken.prototype = {
         <sys_created_on>2018-03-26 20:38:32</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>d028055adb855b84a7287bec0f9619c0</sys_id>
-        <sys_mod_count>69</sys_mod_count>
+        <sys_mod_count>80</sys_mod_count>
         <sys_name>AuthToken</sys_name>
         <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy>read</sys_policy>
@@ -244,6 +240,6 @@ AuthToken.prototype = {
         <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_script_include_d028055adb855b84a7287bec0f9619c0</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-04-10 18:16:15</sys_updated_on>
+        <sys_updated_on>2018-04-11 03:21:28</sys_updated_on>
     </sys_script_include>
 </record_update>

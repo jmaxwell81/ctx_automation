@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_wcs_ctrx_auto_sv.CTXAppProvision</api_name>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>CTXAppProvision</name>
+        <script><![CDATA[var CTXAppProvision = Class.create();
+CTXAppProvision.prototype = {
+    initialize: function() {
+    },
+	
+	GET_APPS_ENDPOINT:"http://wasaplha5.centralus.cloudapp.azure.com:8080/api/XAXD/GetApplication",
+	GET_APPS_HEADERS:{
+		"Content-Type":"application/json",
+		"customerid":"",
+		"Authorization":"CWSAuth bearer="
+	},
+	_generateAppHeaders:function(){
+		var logger = new Logger();
+		var customer_id = gs.getProperty('x_wcs_ctrx_auto_sv.customer_id');
+	
+		var headers = this.GET_APPS_HEADERS;
+		
+		var auth = new AuthToken();
+		var token = auth.getToken();
+		var authString = headers["Authorization"];
+		authString += token;
+		
+		headers["customerid"] = customer_id;
+		headers["Authorization"] = authString;
+		return headers;
+		
+	},
+	
+	getApplications:function(){
+		var logger = new Logger();
+		logger.log("Getting applications");
+		var headers = this._generateAppHeaders();		
+		var rest = new RESTRequest();
+		var appResponse = rest.get(this.GET_APPS_ENDPOINT,headers);
+		logger.log(JSON.stringify(headers));
+		
+		try{
+			var apps = JSON.parse(appResponse);
+			return apps;
+		}catch(error){
+			logger.logError("Unable to get applications");
+			logger.logError(error);
+			return null;
+		}
+		
+	},
+
+    type: 'CTXAppProvision'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-11 02:38:47</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>c559e387dbdd5700a7287bec0f961979</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>CTXAppProvision</sys_name>
+        <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
+        <sys_update_name>sys_script_include_c559e387dbdd5700a7287bec0f961979</sys_update_name>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-11 03:21:39</sys_updated_on>
+    </sys_script_include>
+</record_update>
