@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script><![CDATA[var app = angular.module('ctxReqs',[]);
+app.controller('ctxReqsCtrl',function($scope,$http,htmlLoader,ajaxCall,$q){
+	
+	$scope.record = {};
+	$scope.deliveryGroups = {};
+	$scope.adGroups = {};
+	$scope.chosen_apps = "";
+	
+	$scope.getParameterValue = function(name) {
+		
+		var url = document.URL.parseQuery();
+		
+		if (url[name]) {			
+			return decodeURI(url[name]);			
+		}else{			
+			return;			
+		}
+		
+	};	
+	
+	$scope.selectTab = function($event){
+		var tab = $event.currentTarget;
+	
+		var tabClicked = jQuery(tab);
+			
+		var href = tabClicked.find("a").attr("goto");
+		var div = jQuery(href);
+
+		jQuery('.tab-pane').each(function(){
+
+			if(href == this.id){
+				jQuery(this).addClass('active');
+			}else{
+				jQuery(this).removeClass('active');
+			}
+
+
+		});
+	};
+	
+	$scope.getChosenGroups = function(chosen_apps,all_apps){
+		var deliveryGroups = {};
+		var adGroups = {};
+		var chosenDeliGrp;
+		var chosenAdGrp;
+		
+		for(var i = 0; i < all_apps.length; i++){
+			if(chosen_apps.includes(all_apps[i].Name)){
+				chosenDeliGrp = all_apps[i].DesktopGroup;
+				chosenAdGrp =  all_apps[i].ADGroups;
+				for(var j = 0; j < chosenDeliGrp.length;j++){
+					deliveryGroups[chosenDeliGrp[j]] = chosenDeliGrp[j];
+				}
+				for(var t = 0; t < chosenAdGrp.length;t++){
+					adGroups[chosenAdGrp[t]] = chosenAdGrp[t];
+				}
+			}
+		}
+		
+		$scope.deliveryGroups = deliveryGroups;
+		$scope.adGroups = adGroups;
+	};	
+	
+	$scope.requestApplicationHandler = function(answer){
+		try{			
+			//$scope.all_apps = JSON.parse(answer);	
+			$scope.all_apps = JSON.parse("[{\"Name\":\"Calculator\",\"DesktopGroup\":[\"RDSHosted_Desktop\"],\"ADGroups\":[\"group1\"]},{\"Name\":\"Citrix Receiver\",\"DesktopGroup\":[\"RDSHosted_Desktop\"],\"ADGroups\":[\"group1\"]},{\"Name\":\"Command Prompt\",\"DesktopGroup\":[\"RDSHosted_Desktop\"],\"ADGroups\":[\"group1\"]}]");
+			
+			$scope.getChosenGroups($scope.chosen_apps,$scope.all_apps);
+		}catch(error){
+			console.log('Unable to load Applications',error);
+		}
+	};
+	
+	$scope.getAllApplications = function(callback){
+		var appAjax = new GlideAjax('CTXClientRequest');
+		appAjax.addParam('sysparm_name','getApplications');
+		appAjax.getXML(callback);	
+	};
+	
+	$scope.addContentToPage = function(answer){		
+		var ritm;
+		try{			
+			$scope.record  = JSON.parse(answer);		
+			$scope.chosen_apps = $scope.record.variables["select_applications"].value;
+			ajaxCall.run($scope.getAllApplications).then($scope.requestApplicationHandler);			
+		}catch(error){
+			console.log('Unable to load RITM',error);
+		}
+	};
+	
+	$scope.loadRITMAndVariables = function(ctx_req_sys_id,callback){				
+		var appAjax = new GlideAjax('CTXClientRequest');
+		appAjax.addParam('sysparm_name','getRITMAndVariables');
+		appAjax.addParam('sysparm_ctx_request_sys_id',ctx_req_sys_id);
+		appAjax.getXML(callback);				
+	};
+	
+	$scope.submitUpdate = function(){
+		
+		var groupsToSubmit = [];
+		var groupObj;
+		jQuery('group-object').each(function(){
+			
+			var group = jQuery(this).attr('group');
+			var groupType = jQuery(this).attr('type');
+			var chosen_user_span = jQuery(this).find('#'+group+'_chosen_users');
+			var users = jQuery(chosen_user_span).attr('members');
+			groupObj = {
+				group:group,
+				group_type:groupType,
+				users: users
+			};
+			
+			groupsToSubmit.push(groupObj);
+		});
+		
+		console.log(groupsToSubmit);
+		console.log($scope.record);
+	};
+	
+	
+	
+	(function loadRequest(){
+		var ctx_req_sys_id = $scope.getParameterValue('sys_id');
+		
+		ajaxCall.run($scope.loadRITMAndVariables,ctx_req_sys_id).then($scope.addContentToPage);
+	})();
+	
+	
+});
+
+app.service('htmlLoader',function($http,$q){
+	
+	this.getHTML = function(macro_name){
+		var deferred = $q.defer();
+		var query = "sysparm_query=name="+macro_name;
+		var fields = "&sysparm_fields=xml";
+		$http({
+		
+			method:"GET",
+			url:"api/now/table/sys_ui_macro?"+query+fields,
+			headers:{
+				"Accept":"application/json",
+				"X-UserToken":window.g_ck
+			}
+
+		}).then(function(response){
+			if(response.data && response.data.result && response.data.result.length > 0){
+				deferred.resolve(response.data.result[0]);				
+				
+			}
+		});
+		
+		return deferred.promise;
+	};
+		
+});
+
+app.service('ajaxCall',function($q){
+		
+	this.run = function(ajaxFunc,input){
+		var deferred = $q.defer();
+		var callback = function(response){
+			var answer = response.responseXML.documentElement.getAttribute('answer');
+			deferred.resolve(answer);
+		};
+		if(input){
+			ajaxFunc(input,callback);
+		}else{
+			ajaxFunc(callback);
+		}
+		
+		return deferred.promise;
+	};
+});
+
+app.service('summaryParser',function(){
+	
+	this.parseUsers = function(users){
+	
+		var max = (users.length > 8)? 8:users.length;
+		
+		var userNames = "";
+		for(var i = 0; i < max; i++){			
+			userNames = (i < (max-1))?userNames+users[i].name+', ':userNames+users[i].name;
+		}
+		return userNames;
+	};
+	
+	this.parseApps = function(apps){
+		var max = (apps.length > 8)? 8:apps.length;
+		
+		var appNames = "";
+		for(var i = 0; i < max; i++){			
+			appNames = (i < (max-1))?appNames+apps[i]+', ':appNames+apps[i];
+		}
+		return appNames;
+	};
+});
+
+app.directive('groupObject',function(summaryParser,htmlLoader,$compile){
+	var xml;
+	
+	return {
+		template:"",
+		scope: {			
+			group: '@',
+			type:'@',
+			grpindex:'@',
+			allapps:'@'
+		},
+		
+		link: function($scope, $element, $attr) {
+			
+			$scope.directiveXML = "";			
+		
+			htmlLoader.getHTML('group_template').then(function(html){						
+				$scope.directiveXML = html.xml;
+			});
+			
+			var updateTemplate = function(value){
+				$element.html(value);
+				$compile($element.contents())($scope);			
+								
+			};
+			
+			$scope.$watch('directiveXML',updateTemplate);
+			
+			$scope.openApplicationModal = function(group){
+				var modalDialog = new GlideModal("x_wcs_ctrx_auto_sv_application_modal");
+				modalDialog.setTitle("Applications");
+				modalDialog.setPreference("group_type",$attr.type);
+				modalDialog.setPreference("group_num",$attr.grpindex);
+				modalDialog.setPreference('group',group);
+				modalDialog.setPreference("apps",$attr.allapps);				
+				modalDialog.setSize(700, 800);
+				modalDialog.render();
+			};
+			
+			$scope.openUserSelectModal = function(group){
+				
+				var users;
+				try{
+					users = JSON.parse($attr.users);
+				}catch(error){
+					console.log('Unable to parse input');				
+					return;
+				}
+				var modalDialog = new GlideModal("x_wcs_ctrx_auto_sv_group_user_select");
+				modalDialog.setTitle("User selection");
+				modalDialog.setPreference("group_type",$attr.type);
+				modalDialog.setPreference("group_name",group);
+				modalDialog.setPreference("users",users);
+				modalDialog.setSize(700, 800);
+				modalDialog.render();
+			};
+			
+			 
+		},
+	};
+});
+
+app.directive('summaryList',function(htmlLoader,summaryParser,$compile){
+	var xml;
+	
+	return {
+		template:"",
+		scope: {			
+			content:'@',
+			title:'@',
+			max:'@'
+		},
+		
+		link: function($scope, $element, $attr) {
+			$scope.directiveXML = "";
+			
+			htmlLoader.getHTML('summary_list').then(function(html){						
+				$scope.directiveXML = html.xml;
+			});
+			
+			var updateTemplate = function(value){
+				$element.html(value);
+				$compile($element.contents())($scope);			
+			};
+			
+			$scope.$watch('directiveXML',updateTemplate);
+			
+			
+			$scope.parsed_content = '';
+			$scope.showMore = false;
+			$scope.more_num = '';
+			
+			var updateListContent = function(content){
+				
+				if(content != null && content != ''){
+					if($attr.title == 'Users'){
+						var users = JSON.parse($attr.content);
+						$scope.parsed_content = summaryParser.parseUsers(users);
+						$scope.showMore = (users.length > $attr.max)? true:false;
+						$scope.more_num = (users.length > $attr.max)? users.length - $attr.max:'';
+					}else if($attr.title == "Applications"){
+						var apps = $attr.content.split(',');
+						$scope.parsed_content = summaryParser.parseApps(apps);
+						$scope.showMore = (apps.length > $attr.max)? true:false;
+						$scope.more_num = (apps.length > $attr.max)? apps.length - $attr.max:'';
+					}
+				}
+			};
+			
+			$scope.$watch('content',updateListContent);
+			
+			$scope.moreLink = function(){
+				
+				var modalDialog = new GlideModal("x_wcs_ctrx_auto_sv_more_list_page");
+				modalDialog.setTitle($attr.title);
+				modalDialog.setPreference("list",$scope.content);
+				modalDialog.setPreference("title",$attr.title);
+				modalDialog.setSize(500, 800);
+				modalDialog.render();
+			};					
+		},
+	};
+});
+
+		]]></client_script>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_wcs_ctrx_auto_sv_citrix_requests.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+		<style>
+			.column{
+				width:50%;
+			}
+			html[data-doctype="true"] body[data-formname="ui_page_render"] {
+				padding:0;				
+			}
+			html[data-doctype="true"] body[data-formname="ui_page_render"] .navbar {
+				margin:0;
+			}
+			#title_bar{
+				height: 46px;	
+				font-size:13px;
+				color: #343D47;<!-- ($color-darkest)-->
+				padding:5px;
+				margin:0;
+				margin-bottom:20px;
+			}
+			
+			#ritm_title_label {
+				margin-bottom:0;
+			}
+			
+			.tab-title{
+				font-size: 12px;
+				font-weight: bold;
+			}
+			.tab-content{
+				background-color:white;			
+			}
+			#tab1,#tab2{
+				padding-top:20px;
+				padding-left:30px;
+			}
+			
+			#tablist{
+				padding:0;
+				margin-bottom:0;
+			}
+			
+			.form_update{
+				float:right;
+			}
+			
+			#form_body{
+				padding-left:50px;
+				padding-right:80px;
+			}
+			
+			#summary_lists,#fields_container{
+				margin-bottom:30px;
+			}
+			
+			.footer{
+				padding-top:20px;
+			}
+			
+			
+		</style>
+	</head>
+	
+	<body ng-app="ctxReqs" ng-controller="ctxReqsCtrl" ng-cloak="">
+		
+		<nav id="title_bar" class="title_bar navbar navbar-default ">
+			<div class="navbar-header col-xs-6">
+				<p id="ritm_title_label"><b>Requested Item</b></p>
+				<p>{{record.number}}</p>
+			</div>
+			<div class="navbar-right col-xs-6">
+				<button class='form_update form_action_button header action_context btn btn-default' ng-click="submitUpdate()">Update</button>
+			</div>
+		</nav>
+		
+		
+		
+		<div id="form_body" class='col-sm-12'>
+			<div id="fields_container" class='col-sm-12'>
+
+				<div class='col-sm-6 column'>				
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label class="col-xs-12 col-md-3 col-lg-4 control-label">
+								<span class="label-text">Number</span>
+							</label>
+							<div class="col-xs-10 col-sm-9 col-md-6 col-lg-5 form-field input_controls">
+								<input value="{{record.number}}" class="form-control" readonly=""/>
+							</div>
+						</div>
+						<div class="col-xs-2 col-sm-3 col-lg-2 form-field-addons"></div>
+					</form>			
+
+				</div>
+				<div class='col-sm-6 column'>				
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label class="col-xs-12 col-md-3 col-lg-4 control-label">
+								<span class="label-text">Due Date</span>
+							</label>
+							<div class="col-xs-10 col-sm-9 col-md-6 col-lg-5 form-field input_controls">
+								<input value="{{record.due_date}}" class="form-control" readonly=""/>
+							</div>
+						</div>
+						<div class="col-xs-2 col-sm-3 col-lg-2 form-field-addons"></div>
+					</form>		
+
+				</div>
+			</div>
+			<!-- LISTS -->
+			<div id="summary_lists" class="col-xs-12">
+				<p><b>Application Provisioning</b></p>
+				<div class="col-xs-12">
+					<div class="col-xs-12 col-sm-6">
+						<summary-list title="Users" content="{{record.variables.users.value}}" max="8"></summary-list>
+					</div>
+					<div class="col-xs-12 col-sm-6">
+						<summary-list title="Applications" content="{{chosen_apps}}" max="8"></summary-list>
+					</div>
+				</div>
+			</div>
+			
+			
+			<!-- TABS -->
+			<div id="tabs-macro" class="col-xs-12">
+			
+				<ul id="tablist" role="tablist" class="nav nav-tabs sn-tabs-basic">
+
+					<li role="presentation" class="active" data-toggle="tab" ng-click="selectTab($event)">
+						<a href="#" goto="tab1" class="tab-title active"><b>Add users to Delivery Group(s)</b></a>
+					</li>
+					<li role="presentation" data-toggle="tab" ng-click="selectTab($event)">
+						<a href="#" goto="tab2" class="tab-title"><b>Add users to Active Directory Group(s)</b></a>
+					</li>
+
+				</ul>
+				<div class="tab-content">
+					<div id="tab1" class="tab-pane active col-sm-12">						
+						
+						<group-object type="Delivery Group" group="{{dgrp}}" users="{{record.variables.users.value}}" allapps="{{all_apps}}" ng-repeat="dgrp in deliveryGroups track by $index" grpindex="{{$index +1}}"></group-object>
+											
+					</div>
+					<div id="tab2" class="tab-pane col-sm-12">			
+						<group-object type="AD Group" group="{{adgrp}}" users="{{record.variables.users.value}}" allapps="{{all_apps}}" ng-repeat="adgrp in adGroups track by $index" grpindex="{{$index +1}}"></group-object>
+					</div>
+				</div>
+
+			</div>				
+			
+			<div class="col-xs-12 footer">
+				<button class="form_action_button action_context btn btn-default" ng-click="submitUpdate()">Update</button>
+			</div>
+			
+		</div>		
+		
+	</body>
+	
+</j:jelly>]]></html>
+        <name>citrix_requests</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-17 01:14:52</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>da809645db259b00a7287bec0f96195a</sys_id>
+        <sys_mod_count>300</sys_mod_count>
+        <sys_name>citrix_requests</sys_name>
+        <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
+        <sys_update_name>sys_ui_page_da809645db259b00a7287bec0f96195a</sys_update_name>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-20 17:29:57</sys_updated_on>
+    </sys_ui_page>
+</record_update>

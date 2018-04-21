@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="ctx_applications" max_length="40" name="x_wcs_ctrx_auto_sv_ctx_applications" type="collection">
+        <element label="Show" max_length="40" name="show" type="boolean"/>
+    </element>
+</database>

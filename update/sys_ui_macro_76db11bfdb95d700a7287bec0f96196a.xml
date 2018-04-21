@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_macro">
+    <sys_ui_macro action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>general</category>
+        <description/>
+        <media_type/>
+        <name>group_template</name>
+        <scoped_name>x_wcs_ctrx_auto_sv_group_template</scoped_name>
+        <sys_class_name>sys_ui_macro</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-13 00:29:50</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>76db11bfdb95d700a7287bec0f96196a</sys_id>
+        <sys_mod_count>101</sys_mod_count>
+        <sys_name>group_template</sys_name>
+        <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
+        <sys_update_name>sys_ui_macro_76db11bfdb95d700a7287bec0f96196a</sys_update_name>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-20 15:25:10</sys_updated_on>
+        <xml><![CDATA[<style>
+	.del-group-pane{
+		margin-bottom:30px;
+	}
+	
+	.grp-title{
+		font-weight:bold;
+	}
+	.chosen_users{		
+		font-size:11px;
+	}
+	.no-pad-left{
+		padding-left:0;
+	}
+	.icon-info{
+		margin-right:5px;
+	}
+	
+</style>
+<div class="del-group-pane no-pad-left col-sm-12">
+	<div class="no-pad-left col-xs-12">
+		<div class="no-pad-left col-xs-12">	
+			<p class="grp-title"><a href="#" class="icon-info" ng-click="openApplicationModal(group)"></a>{{type}} {{grpindex}}, {{group}}</p>
+			<div class="col-xs-12">
+				<a id="{{group}}" href="#" class="btn btn-default btn-ref" ng-click="openUserSelectModal(grp)" ng-init="grp=group">
+					<span class="icon icon-locked" aria-hidden='true'></span>
+				</a>
+			</div>
+		</div>
+		<div class="col-xs-12">
+			<p class="chosen_users">
+				<span id="{{group}}_chosen_users" type="text" members=""></span>
+				<a id="{{group}}_more_users" href='#' ng-click='openUserSelectModal(group)'></a>
+			</p>
+		</div>
+	</div>
+</div>]]></xml>
+    </sys_ui_macro>
+</record_update>

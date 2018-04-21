@@ -50,7 +50,7 @@
         <sys_created_on>2018-03-22 21:10:57</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>a41be40ddb0d53406d3c72fc0f9619a5</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>11</sys_mod_count>
         <sys_name>Application Provisioning</sys_name>
         <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
@@ -58,11 +58,11 @@
         <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sc_cat_item_a41be40ddb0d53406d3c72fc0f9619a5</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-04-11 15:02:22</sys_updated_on>
+        <sys_updated_on>2018-04-19 13:29:11</sys_updated_on>
         <template/>
         <type>item</type>
         <u_business_service/>
-        <u_instructions/>
+        <u_instructions>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</u_instructions>
         <u_knowledge/>
         <u_no_submit>false</u_no_submit>
         <use_sc_layout>true</use_sc_layout>

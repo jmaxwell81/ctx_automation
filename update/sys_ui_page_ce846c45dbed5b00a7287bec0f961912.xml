@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script><![CDATA[var app = angular.module('app_provision',[]);
+app.controller('app_provision_ctrl',function($scope,$http,userLoader){
+	
+	jQuery('#sb_user_right').html('');
+	jQuery('#sb_app_right').html('');
+	
+	$scope.user_list = [];
+	$scope.userSearchText = "";
+	
+	$scope.applications = [];
+	$scope.appSearchText = "";
+	
+	$scope.addUsersToList = function(users){
+		$scope.user_list = users;
+	};
+	
+	$scope.loadUserSearch = function(){
+		userLoader.load($scope.userSearchText,$scope.addUsersToList);		
+	};
+			
+	(function loadInitialUsers(){		
+		userLoader.load('',$scope.addUsersToList);				
+	})();
+	
+	(function loadApplications(){
+		
+		var addApplications = function(response){
+			var answer = response.responseXML.documentElement.getAttribute('answer');
+		
+			try{
+			
+				$scope.$apply(function(){ 
+					$scope.applications = JSON.parse(answer);
+				});
+			}catch(error){
+				console.log(error);
+				return;
+			}			
+		};
+		
+		var appAjax = new GlideAjax('CTXClientRequest');
+		appAjax.addParam('sysparm_name','getApplications');
+		appAjax.getXML(addApplications);
+		
+	})();
+});
+
+
+
+app.service('userLoader',function($http,$q){
+	
+	this.load = function(searchTerm,addUsers){
+	
+		var search_query = "";
+		if(searchTerm != '' && searchTerm != null){
+			search_query = "^nameSTARTSWITH"+searchTerm;			
+		}
+		search_query += "^ORDERBYname";
+		
+		var searchFields = "&sysparm_fields=sys_id,name";
+		var searchLimit = "&sysparm_limit=100";
+		var searchOrder = "&sysparm_order=name";
+		
+		$http({
+			method:"GET",
+			url:"api/now/table/sys_user?sysparm_query=active" + search_query + searchFields+searchLimit +searchOrder,
+			headers:{
+				"Accept":"application/json",
+				"X-UserToken":window.g_ck
+			}
+		}).then(function(response){
+			
+			if(response.data && response.data.result){
+				addUsers(response.data.result);			
+			}
+		});	
+
+	};
+	
+});
+window.onerror = function(message, url, lineNumber) {  
+    return true; 
+};
+]]></client_script>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_wcs_ctrx_auto_sv_ctx_auto_tools.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+		
+		<style>
+			#body{
+				padding:15px;
+			}
+			#sb_user_right,#sb_user_left,#sb_app_right,#sb_app_left{
+				max-width:100%;
+			}
+		</style>
+	</head>
+	
+	<div id="body" ng-app="app_provision" ng-controller="app_provision_ctrl" ng-cloack="">
+
+		<div class="col-sm-12">
+			<h4><b>Application Provisioning</b></h4>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
+		</div>
+		<div class="col-sm-12">
+			<div class="col-sm-12 container">
+				<h5><b>Select Users</b></h5>
+				<div class="col-sm-6">
+					<div class="input-group-transparent col-sm-12">
+						<span class="input-group-addon-transparent icon-search" style="left:20px;"></span>
+						<input id="user_filter" class="form-control form-control-search" type="search" name="user_filter" autocomplete="off" aria-label="Search Available List" ng-model="userSearchText" ng-change="loadUserSearch()"/>
+					</div>
+				</div>
+				<div class="col-sm-12">				
+					<g:ui_slushbucket name="sb_user" left_header="Available Users" right_header="Selected User(s)">
+						<option ng-repeat="user in user_list">{{user.name}}</option>
+					</g:ui_slushbucket>
+				</div>
+			</div>
+		</div>
+	
+		<div class="col-sm-12">
+			
+			<div class="col-sm-12 container">
+				<h5><b>Select Applications</b></h5>
+				<div class="col-sm-6">
+					<div class="input-group-transparent col-sm-12">
+						<span class="input-group-addon-transparent icon-search" style="left:20px;"></span>
+						<input id="app_filter" class="form-control form-control-search" type="search" name="app_filter" autocomplete="off" aria-label="Search Available List" ng-model="appSearchText"/>
+					</div>
+				</div>
+				<div class="col-sm-12">		
+					<g:ui_slushbucket name="sb_app" left_header="Available Applications" right_header="Selected Application(s)">				
+						<option ng-repeat="app in applications|filter:appSearchText ">{{app.Name}}</option>
+					</g:ui_slushbucket>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
+
+	
+</j:jelly>]]></html>
+        <name>ctx_auto_tools</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-16 17:13:03</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>ce846c45dbed5b00a7287bec0f961912</sys_id>
+        <sys_mod_count>81</sys_mod_count>
+        <sys_name>ctx_auto_tools</sys_name>
+        <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
+        <sys_update_name>sys_ui_page_ce846c45dbed5b00a7287bec0f961912</sys_update_name>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-16 22:00:50</sys_updated_on>
+    </sys_ui_page>
+</record_update>

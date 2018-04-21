@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script><![CDATA[window.onerror = function(message, url, lineNumber) { 
+	if(message == "Uncaught TypeError: Cannot read property 'fire' of undefined"){
+		return true;
+	}
+};
+
+(function(){
+	jQuery("#slush_right").html('');
+	jQuery("#slush_right").attr('ng-model','chosen_users');
+	
+	var groupType = GlideModal.get().getPreference('group_type');
+	var groupName = GlideModal.get().getPreference('group_name');
+	var groupTitle = groupType + ": " + groupName;
+	jQuery("#group_title").text(groupTitle);
+	
+	
+	var curr_members = [];
+	
+	//Load current members
+	var membersStr = jQuery("#"+groupName+"_chosen_users").attr('members');
+	
+	if(membersStr != '' && membersStr != null){
+		curr_members = JSON.parse(membersStr);
+	}
+	
+	
+	
+	var isChosen = function(user_sys_id){
+		for(var i = 0; i < curr_members.length; i++){
+			if(curr_members[i].sys_id == user_sys_id){
+				return true;
+			}
+		}		
+		return false;
+	};
+					
+	var users = GlideModal.get().getPreference('users');							
+	var leftBucket = gel('slush_left');
+	var rightBucket = gel('slush_right');
+	var option;
+	
+	for(var j = 0; j < users.length; j++){
+		option = document.createElement('option');
+		jQuery(option).text(users[j].name);
+		jQuery(option).attr('value',users[j].sys_id);
+		
+		if(isChosen(users[j].sys_id)){
+			jQuery('#slush_right').append(option);
+		}else{
+			jQuery('#slush_left').append(option);
+		}
+		
+	}		
+	
+	var getChosenMembers = function(){
+		var rightBucket = gel('slush_right');
+		var chosenUsers = rightBucket.options;
+		
+		var user;
+		
+		var members = [];
+		for(var i= 0; i < chosenUsers.length; i++){
+			user = {
+				name:chosenUsers[i].innerHTML,
+				sys_id:chosenUsers[i].value
+			};
+			
+			members.push(user);
+		}
+		
+		return members;
+	};
+	var createMoreLink = function(members){
+			
+		var link = (members.length > 4)?("+" + (members.length-4)+" more"):'';
+		return link;
+	};
+	var getMemberNames = function(members){
+		var names = "";
+		var max = (members.length > 4)? 4:members.length;
+		
+		for(var i = 0; i < max;i++){
+			names += (i < (max-1))? members[i].name+", ":members[i].name;
+		}
+		return names;
+	};
+	
+	var closeModal = function(){		
+		GlideModal.get().destroy();
+	};
+	
+	jQuery("#save_apps").on('click',function(){				
+		var members = getChosenMembers();
+		var membersNames = getMemberNames(members);
+		var moreLink = createMoreLink(members);
+		
+		jQuery("#"+groupName+"_chosen_users").attr('members',JSON.stringify(members));
+		jQuery("#"+groupName+"_chosen_users").html(membersNames);
+		jQuery("#"+groupName+"_more_users").html(moreLink);
+		
+		closeModal();
+	});
+
+	jQuery("#cancel_apps").on('click',function(){
+		closeModal();
+	});
+	
+})();]]></client_script>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_wcs_ctrx_auto_sv_group_user_select.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+		<style>
+			.modal-btn{
+				min-width:60px;
+				margin-right:10px;
+			}
+			
+			#group_title{
+				font-weight:bold;
+			}
+			
+			#slush_left,#slush_right{
+				max-width:100%;
+			}
+			
+		</style>
+	
+	<div class="col-xs-12">
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt,quis nostrud exercitation
+	ullamco laboris nisi ut aliquip ex </p>
+
+		<p id="group_title"></p>
+	</div>
+	<g:ui_slushbucket />
+	<div class="col-xs-12">
+		<button id="cancel_apps" class="btn btn-md btn-default modal-btn">Cancel</button>
+		<button id="save_apps" class="btn btn-md btn-primary modal-btn">OK</button>
+	</div>
+</j:jelly>]]></html>
+        <name>group_user_select</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-13 19:22:54</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>1a752d80db211b00a7287bec0f961986</sys_id>
+        <sys_mod_count>75</sys_mod_count>
+        <sys_name>group_user_select</sys_name>
+        <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
+        <sys_update_name>sys_ui_page_1a752d80db211b00a7287bec0f961986</sys_update_name>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-19 17:44:50</sys_updated_on>
+    </sys_ui_page>
+</record_update>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script><![CDATA[(function(){
+	 
+	var groupType = GlideModal.get().getPreference('group_type');
+	var groupNum = GlideModal.get().getPreference('group_num');
+	var group = GlideModal.get().getPreference('group');
+	var appsString = GlideModal.get().getPreference('apps');
+	console.log(appsString);
+	var apps = JSON.parse(appsString);
+	
+	jQuery("#group_type_name").text(" "+groupType + " " + groupNum +" " + group);
+	
+	var grpArrName = "";
+	if(groupType == "Delivery Group"){
+		grpArrName = "DesktopGroup";
+	}else if(groupType == "AD Group"){
+		grpArrName = "ADGroups";
+	}
+	
+	var grpArr;
+	
+	var tr;
+	var td;
+	
+	
+	
+	for(var i = 0; i < apps.length; i++){
+		grpArr = apps[i][grpArrName];
+		for(var j = 0; j < grpArr.length; j++){
+			if(grpArr[j] == group){
+				tr = document.createElement('tr');
+				jQuery(tr).addClass('data_row');
+				
+				td = document.createElement('td');
+				jQuery(td).addClass('vt');
+				jQuery(td).addClass('grid-field');				
+				jQuery(td).html(apps[i].Name);
+				
+				jQuery("#apps_table").append(tr);
+				jQuery(tr).append(td);
+			}
+		}		
+	} 
+	
+ 
+})();]]></client_script>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_wcs_ctrx_auto_sv_application_modal.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	
+	<p>Following are the applications that are part of <span id="group_type_name"></span></p>
+	<table class="table table-hover original-table list-grid table-striped" style="cursor: default; user-select: text;">
+		<thead class="table-body-headers">
+			<tr class="table-header">
+				<th class="table-column-header">
+					<a class="sort-columns">Name</a>
+				</th>
+			</tr>
+		</thead>
+		<tbody id="apps_table" class="list_table_tbody">
+			<tr class="data_row">
+				<td class="vt grid-field">
+					<span>Application Name</span>
+				</td>				
+			</tr>	
+		</tbody>
+	</table>
+</j:jelly>]]></html>
+        <name>application_modal</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-19 20:41:15</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>262f604edbe51f00a7287bec0f961916</sys_id>
+        <sys_mod_count>12</sys_mod_count>
+        <sys_name>application_modal</sys_name>
+        <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
+        <sys_update_name>sys_ui_page_262f604edbe51f00a7287bec0f961916</sys_update_name>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-20 15:03:39</sys_updated_on>
+    </sys_ui_page>
+</record_update>

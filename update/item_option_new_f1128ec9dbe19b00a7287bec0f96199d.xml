@@ -32,16 +32,16 @@
         <lookup_table/>
         <lookup_unique>false</lookup_unique>
         <lookup_value/>
-        <macro display_value="provision_applications">03b9668fdb1d5700a7287bec0f96198e</macro>
+        <macro display_value="load_applications">7721c6c9dbe19b00a7287bec0f96192a</macro>
         <mandatory>false</mandatory>
         <map_to_field>false</map_to_field>
         <mask_use_confirmation>false</mask_use_confirmation>
         <mask_use_encryption>false</mask_use_encryption>
-        <name>applications</name>
-        <order>20</order>
+        <name>application_loader</name>
+        <order>200</order>
         <price_if_checked>0</price_if_checked>
         <pricing_implications>false</pricing_implications>
-        <question_text>Applications</question_text>
+        <question_text>application_loader</question_text>
         <read_roles/>
         <rec_lookup_price/>
         <rec_price_if_checked>0</rec_price_if_checked>
@@ -58,21 +58,21 @@
         <summary_macro/>
         <sys_class_name>item_option_new</sys_class_name>
         <sys_created_by>sebastiang</sys_created_by>
-        <sys_created_on>2018-04-10 21:47:14</sys_created_on>
+        <sys_created_on>2018-04-17 00:01:56</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
-        <sys_id>d299268fdb1d5700a7287bec0f961946</sys_id>
-        <sys_mod_count>6</sys_mod_count>
-        <sys_name>Applications</sys_name>
+        <sys_id>f1128ec9dbe19b00a7287bec0f96199d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>application_loader</sys_name>
         <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
-        <sys_update_name>item_option_new_d299268fdb1d5700a7287bec0f961946</sys_update_name>
+        <sys_update_name>item_option_new_f1128ec9dbe19b00a7287bec0f96199d</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-04-11 17:45:11</sys_updated_on>
+        <sys_updated_on>2018-04-17 00:01:56</sys_updated_on>
         <table/>
         <tooltip/>
-        <type>17</type>
+        <type>14</type>
         <ui_page/>
         <use_dynamic_default>false</use_dynamic_default>
         <use_reference_qualifier>simple</use_reference_qualifier>
@@ -86,22 +86,22 @@
         <visible_summary>true</visible_summary>
         <write_roles/>
     </item_option_new>
-    <sys_translated_text action="delete_multiple" query="documentkey=d299268fdb1d5700a7287bec0f961946"/>
-    <fx_price action="delete_multiple" query="id=d299268fdb1d5700a7287bec0f961946"/>
+    <sys_translated_text action="delete_multiple" query="documentkey=f1128ec9dbe19b00a7287bec0f96199d"/>
+    <fx_price action="delete_multiple" query="id=f1128ec9dbe19b00a7287bec0f96199d"/>
     <fx_price action="INSERT_OR_UPDATE">
         <amount>0</amount>
         <currency display_value="USD">USD</currency>
         <field>price_if_checked</field>
-        <id>d299268fdb1d5700a7287bec0f961946</id>
+        <id>f1128ec9dbe19b00a7287bec0f96199d</id>
         <parent/>
         <reference_amount>0</reference_amount>
         <reference_currency display_value="USD">USD</reference_currency>
         <sys_created_by>sebastiang</sys_created_by>
-        <sys_created_on>2018-04-10 21:47:14</sys_created_on>
-        <sys_id>30d9a68fdb1d5700a7287bec0f961974</sys_id>
+        <sys_created_on>2018-04-17 00:01:56</sys_created_on>
+        <sys_id>9032ce89dbe19b00a7287bec0f9619b5</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-04-10 21:47:14</sys_updated_on>
+        <sys_updated_on>2018-04-17 00:01:56</sys_updated_on>
         <table>item_option_new</table>
         <type>calculated</type>
     </fx_price>
@@ -109,16 +109,16 @@
         <amount>0</amount>
         <currency display_value="USD">USD</currency>
         <field>rec_price_if_checked</field>
-        <id>d299268fdb1d5700a7287bec0f961946</id>
+        <id>f1128ec9dbe19b00a7287bec0f96199d</id>
         <parent/>
         <reference_amount>0</reference_amount>
         <reference_currency display_value="USD">USD</reference_currency>
         <sys_created_by>sebastiang</sys_created_by>
-        <sys_created_on>2018-04-10 21:47:14</sys_created_on>
-        <sys_id>f8d9a68fdb1d5700a7287bec0f961972</sys_id>
+        <sys_created_on>2018-04-17 00:01:56</sys_created_on>
+        <sys_id>dc32ce89dbe19b00a7287bec0f9619b3</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-04-10 21:47:14</sys_updated_on>
+        <sys_updated_on>2018-04-17 00:01:56</sys_updated_on>
         <table>item_option_new</table>
         <type>calculated</type>
     </fx_price>

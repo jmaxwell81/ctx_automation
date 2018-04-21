@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_macro">
+    <sys_ui_macro action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>general</category>
+        <description/>
+        <media_type/>
+        <name>load_applications</name>
+        <scoped_name>x_wcs_ctrx_auto_sv_load_applications</scoped_name>
+        <sys_class_name>sys_ui_macro</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-17 00:01:19</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>7721c6c9dbe19b00a7287bec0f96192a</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name>load_applications</sys_name>
+        <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
+        <sys_update_name>sys_ui_macro_7721c6c9dbe19b00a7287bec0f96192a</sys_update_name>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-20 13:45:52</sys_updated_on>
+        <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<script>
+		(function(){
+		
+			var varName = 'select_applications';
+			var leftBucket = gel(varName + '_select_0');
+			var rightBucket = gel(varName + '_select_1');
+			var selectedOptions = rightBucket.options;
+		
+			var addApplications = function(response){
+				var answer = response.responseXML.documentElement.getAttribute('answer');
+				var apps;
+				
+				try{
+					
+					//apps = JSON.parse(answer);	
+					apps = JSON.parse("[{\"Name\":\"Calculator\",\"DesktopGroup\":[\"RDSHosted_Desktop\"],\"ADGroups\":[\"group1\"]},{\"Name\":\"Citrix Receiver\",\"DesktopGroup\":[\"RDSHosted_Desktop\"],\"ADGroups\":[\"group1\"]},{\"Name\":\"Command Prompt\",\"DesktopGroup\":[\"RDSHosted_Desktop\"],\"ADGroups\":[\"group1\"]}]");
+					jQuery(leftBucket).html("");
+		
+					var option;
+					for(var i = 0; i &lt; apps.length; i++){
+						option = document.createElement('option');
+						jQuery(option).text(apps[i].Name);
+						jQuery(leftBucket).append(option);
+		
+						console.log(apps[i].Name);
+					}
+				}catch(error){
+					g_form.addErrorMessage('Failed to load applications');
+					g_form.addErrorMessage(error);
+				}
+			};
+		
+			jQuery(leftBucket).html("Loading");
+			var appAjax = new GlideAjax('CTXClientRequest');
+			appAjax.addParam('sysparm_name','getApplications');
+			appAjax.getXML(addApplications);
+		})();
+		
+		
+	</script>
+</j:jelly>]]></xml>
+    </sys_ui_macro>
+</record_update>

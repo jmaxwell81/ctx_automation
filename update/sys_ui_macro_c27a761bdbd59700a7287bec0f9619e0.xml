@@ -5,27 +5,29 @@
         <category>general</category>
         <description/>
         <media_type/>
-        <name>hide_user_filter</name>
-        <scoped_name>x_wcs_ctrx_auto_sv_hide_user_filter</scoped_name>
+        <name>hide_slush_bucket_filters</name>
+        <scoped_name>x_wcs_ctrx_auto_sv_hide_slush_bucket_filters</scoped_name>
         <sys_class_name>sys_ui_macro</sys_class_name>
         <sys_created_by>sebastiang</sys_created_by>
         <sys_created_on>2018-04-11 17:39:21</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>c27a761bdbd59700a7287bec0f9619e0</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_name>hide_user_filter</sys_name>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>hide_slush_bucket_filters</sys_name>
         <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_ui_macro_c27a761bdbd59700a7287bec0f9619e0</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-04-11 17:39:21</sys_updated_on>
+        <sys_updated_on>2018-04-16 23:32:32</sys_updated_on>
         <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
 <j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
 	<script>
 		(function removeUserFilter(){		
 			jQuery("#users_select_0_ep").find('.m2m_filter_container').addClass('hide');
+			jQuery("#select_applications_select_0_ep").find('.m2m_filter_container').addClass('hide');
+		
 		})();
 	</script>
 </j:jelly>]]></xml>

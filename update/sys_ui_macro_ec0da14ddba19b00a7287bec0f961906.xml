@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_macro">
+    <sys_ui_macro action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>general</category>
+        <description/>
+        <media_type/>
+        <name>application_select</name>
+        <scoped_name>x_wcs_ctrx_auto_sv_application_select</scoped_name>
+        <sys_class_name>sys_ui_macro</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-16 22:29:47</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>ec0da14ddba19b00a7287bec0f961906</sys_id>
+        <sys_mod_count>29</sys_mod_count>
+        <sys_name>application_select</sys_name>
+        <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
+        <sys_update_name>sys_ui_macro_ec0da14ddba19b00a7287bec0f961906</sys_update_name>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-16 23:24:04</sys_updated_on>
+        <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<style>
+		#sb_app_right,#sb_app_left{
+			max-width:100%;
+			padding:0;
+		}
+		#macro_container, #macro_container > div,#macro_container > div > div{
+			max-width:100%;
+			padding:0;
+		}
+		
+		.my_container{
+			padding:0;
+		}
+		#sb_app{
+			padding:0;
+		}
+		
+		
+	</style>
+	<g:evaluate>
+		var appProvision = new CTXAppProvision();
+		var apps = appProvision.getApplications();
+	</g:evaluate>
+	<div class="col-sm-12 my_container">
+		<div class="col-sm-12 my_container">
+			<h5><b>Select Applications</b></h5>
+			<div class="col-sm-5 my_container">
+				<div class="input-group-transparent col-sm-12 my_container">
+					<span class="input-group-addon-transparent icon-search"></span>
+					<input id="app_filter" class="form-control form-control-search" type="search" name="app_filter" autocomplete="off" aria-label="Search Available List"/>
+				</div>
+			</div>
+			<div class="col-sm-12 my_container">		
+				<g:ui_slushbucket name="sb_app" left_header="Available Applications" right_header="Selected Application(s)">				
+					<j:forEach items="${apps}" var="jvar_app">
+
+						<g:evaluate jelly="true">
+						
+							var name = jelly.jvar_app.Name;
+							var no_space_name = name.replace(/ /g,"_");
+							var deliGrps = jelly.jvar_app.DesktopGroup.toString();
+							var adGrps = jelly.jvar_app.ADGroups.toString();
+						
+						</g:evaluate>
+						
+									
+						<option id="${no_space_name}" name="${no_space_name}" type="checkbox" class="checkbox" delgrps="${deliGrps}" adgrps="${adGrps}">${name}</option>
+							
+					</j:forEach>	
+				</g:ui_slushbucket>
+			</div>
+		</div>
+	</div>
+	
+	<script>
+	jQuery( document ).ready(function() {
+		jQuery('#upDownButtons').remove();
+		jQuery("#sb_app_right").html('');
+		
+		
+		jQuery('#sb_app_right').change(function(){
+			console.log("SUBMIOT");
+			var rightBucket = gel('sb_app_right');
+			console.log("BUCEKET");
+			var chosen_apps = rightBucket.options;
+			console.log("APPS");
+			
+		});
+		
+	});
+	window.onerror = function(message, url, lineNumber) {  
+		return true; 
+	};
+	</script>
+</j:jelly>]]></xml>
+    </sys_ui_macro>
+</record_update>

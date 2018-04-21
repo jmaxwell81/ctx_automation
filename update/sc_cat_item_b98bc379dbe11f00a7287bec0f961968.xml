@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sc_cat_item">
+    <sc_cat_item action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <availability>on_desktop</availability>
+        <billable>false</billable>
+        <category display_value="XenApp and Xen Desktop">7acd93acdb8513406d3c72fc0f961977</category>
+        <cost>0</cost>
+        <custom_cart/>
+        <delivery_plan display_value="DEFAULT">523da512c611228900811a37c97c2014</delivery_plan>
+        <delivery_plan_script/>
+        <delivery_time>1970-01-03 00:00:00</delivery_time>
+        <description/>
+        <entitlement_script/>
+        <group/>
+        <icon/>
+        <ignore_price>true</ignore_price>
+        <image/>
+        <list_price>0</list_price>
+        <location/>
+        <meta/>
+        <mobile_hide_price>false</mobile_hide_price>
+        <mobile_picture/>
+        <mobile_picture_type>use_desktop_picture</mobile_picture_type>
+        <model/>
+        <name>Reset a session</name>
+        <no_cart>false</no_cart>
+        <no_order>false</no_order>
+        <no_order_now>false</no_order_now>
+        <no_proceed_checkout>false</no_proceed_checkout>
+        <no_quantity>false</no_quantity>
+        <no_search>false</no_search>
+        <omit_price>false</omit_price>
+        <order>0</order>
+        <ordered_item_link/>
+        <picture/>
+        <preview>JavaScript: popupOpenStandard("com.glideapp.servicecatalog_cat_item_view.do?v=1&amp;sysparm_id=b98bc379dbe11f00a7287bec0f961968&amp;sysparm_preview=true", "summary");</preview>
+        <price>0</price>
+        <recurring_frequency/>
+        <recurring_price>0</recurring_price>
+        <roles/>
+        <sc_catalogs>c36d1f6cdb8513406d3c72fc0f9619c6</sc_catalogs>
+        <sc_ic_item_staging/>
+        <sc_ic_version/>
+        <short_description>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea XenApp and XenDesktop Lorem ipsum dolor sit am</short_description>
+        <show_variable_help_on_load>false</show_variable_help_on_load>
+        <start_closed>false</start_closed>
+        <sys_class_name>sc_cat_item</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-19 13:18:30</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>b98bc379dbe11f00a7287bec0f961968</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Reset a session</sys_name>
+        <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
+        <sys_update_name>sc_cat_item_b98bc379dbe11f00a7287bec0f961968</sys_update_name>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-19 13:19:51</sys_updated_on>
+        <template/>
+        <type>item</type>
+        <u_business_service/>
+        <u_instructions/>
+        <u_knowledge/>
+        <u_no_submit>false</u_no_submit>
+        <use_sc_layout>true</use_sc_layout>
+        <vendor/>
+        <visible_bundle>true</visible_bundle>
+        <visible_guide>true</visible_guide>
+        <visible_standalone>true</visible_standalone>
+        <workflow/>
+    </sc_cat_item>
+    <sys_translated_text action="delete_multiple" query="documentkey=b98bc379dbe11f00a7287bec0f961968"/>
+    <fx_price action="delete_multiple" query="id=b98bc379dbe11f00a7287bec0f961968"/>
+    <fx_price action="INSERT_OR_UPDATE">
+        <amount>0</amount>
+        <currency display_value="USD">USD</currency>
+        <field>price</field>
+        <id>b98bc379dbe11f00a7287bec0f961968</id>
+        <parent/>
+        <reference_amount>0</reference_amount>
+        <reference_currency display_value="USD">USD</reference_currency>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-19 13:18:30</sys_created_on>
+        <sys_id>64bb0779dbe11f00a7287bec0f961990</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-19 13:18:30</sys_updated_on>
+        <table>sc_cat_item</table>
+        <type>calculated</type>
+    </fx_price>
+    <fx_price action="INSERT_OR_UPDATE">
+        <amount>0</amount>
+        <currency display_value="USD">USD</currency>
+        <field>recurring_price</field>
+        <id>b98bc379dbe11f00a7287bec0f961968</id>
+        <parent/>
+        <reference_amount>0</reference_amount>
+        <reference_currency display_value="USD">USD</reference_currency>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-19 13:18:30</sys_created_on>
+        <sys_id>ecbb8779dbe11f00a7287bec0f961944</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-19 13:18:30</sys_updated_on>
+        <table>sc_cat_item</table>
+        <type>calculated</type>
+    </fx_price>
+    <sys_attachment action="INSERT_OR_UPDATE">
+        <average_image_color>#0</average_image_color>
+        <compressed>true</compressed>
+        <content_type>image/png</content_type>
+        <file_name>icon</file_name>
+        <image_height>39</image_height>
+        <image_width>38</image_width>
+        <size_bytes>1660</size_bytes>
+        <size_compressed>1683</size_compressed>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-19 13:20:58</sys_created_on>
+        <sys_id>2c4ccf39dbe11f00a7287bec0f9619f4</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-19 13:20:58</sys_updated_on>
+        <table_name>ZZ_YYsc_cat_item</table_name>
+        <table_sys_id>b98bc379dbe11f00a7287bec0f961968</table_sys_id>
+    </sys_attachment>
+    <sys_attachment_doc action="INSERT_OR_UPDATE">
+        <data>H4sIAAAAAAAAAA==</data>
+        <length>16</length>
+        <position>0</position>
+        <sys_attachment display_value="icon" sys_id="2c4ccf39dbe11f00a7287bec0f9619f4">2c4ccf39dbe11f00a7287bec0f9619f4</sys_attachment>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-19 13:20:58</sys_created_on>
+        <sys_id>6c4ccf39dbe11f00a7287bec0f9619f4</sys_id>
+    </sys_attachment_doc>
+    <sys_attachment_doc action="INSERT_OR_UPDATE">
+        <data>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</data>
+        <length>2232</length>
+        <position>1</position>
+        <sys_attachment display_value="icon" sys_id="2c4ccf39dbe11f00a7287bec0f9619f4">2c4ccf39dbe11f00a7287bec0f9619f4</sys_attachment>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-19 13:20:58</sys_created_on>
+        <sys_id>ec4ccf39dbe11f00a7287bec0f9619f4</sys_id>
+    </sys_attachment_doc>
+</record_update>
