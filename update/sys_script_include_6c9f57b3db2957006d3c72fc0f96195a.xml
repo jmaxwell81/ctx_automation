@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_wcs_ctrx_auto_sv.CTXUserTools</api_name>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>CTXUserTools</name>
+        <script><![CDATA[var CTXUserTools = Class.create();
+CTXUserTools.prototype = {
+    initialize: function() {
+    },
+
+	getUserRecord: function(user_sys_id){
+		var user = new GlideRecord('sys_user');
+		user.get(user_sys_id);
+		return (user == null)?null:user;
+	},
+	getUserName:function(user_sys_id){
+		var user = this.getUserRecord(user_sys_id);
+		return user.getValue('user_name');
+	},
+	getUserDomain:function(){
+		//MAY BE ABLE TO PARSE OUT INFO
+		//FROM ldap_server FIELD ON USER RECORD
+		
+		return "KKPFG";
+	},
+	
+	getUserLDAPServer:function(user_sys_id){
+		var user = this.getUserRecord(user_sys_id);
+		var ldapServerUrl = user.ldap_server.server_url.toString();
+		if(ldapServerUrl.indexOf('ldap://') == 0){
+			ldapServerUrl = ldapServerUrl.substring(7);
+		}
+		if(ldapServerUrl.indexOf(":") > 0){
+			ldapServerUrl = ldapServerUrl.substring(0,ldapServerUrl.indexOf(":") );
+		}
+		
+		return ldapServerUrl;
+	},
+	
+	isValidUser:function(user_sys_id){
+		var user = this.getUserRecord(user_sys_id);
+		return !gs.nil(user);
+	},
+    type: 'CTXUserTools'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-25 20:10:58</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>6c9f57b3db2957006d3c72fc0f96195a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>CTXUserTools</sys_name>
+        <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
+        <sys_update_name>sys_script_include_6c9f57b3db2957006d3c72fc0f96195a</sys_update_name>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-25 20:10:58</sys_updated_on>
+    </sys_script_include>
+</record_update>

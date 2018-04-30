@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="wf_element_activity">
+    <wf_element_activity action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <attributes/>
+        <base_provider display_value="Run Script">d0c7fe11eb013100fc5e8a7af106fee0</base_provider>
+        <category/>
+        <checked_out_by/>
+        <default_height/>
+        <default_width/>
+        <description>Adds user or list of users to Delivery Groups.&#13;
+Inputs:&#13;
+users: comma-separated list of user sys_id's&#13;
+delivery_group: name of delivery group to add users to&#13;
+site_id: id of the site related to the delivery group&#13;
+application: (Optional) application within delivery group</description>
+        <image>images/heisenberg_icons/workflow_ie8/provider_runscript.png</image>
+        <input_meta>{"name":"Input","type":"DATA_OBJECT","properties":[{"name":"users","type":"STRING","mandatory":false},{"name":"delivery_group","type":"STRING","mandatory":false},{"name":"site_id","type":"STRING","mandatory":false},{"name":"application","type":"STRING","mandatory":false}]}</input_meta>
+        <input_process_script/>
+        <input_transform/>
+        <local_variables/>
+        <name>Add Users to Delivery Group</name>
+        <output_meta>{"name":"Output","type":"DATA_OBJECT","properties":[{"name":"result","type":"STRING"}]}</output_meta>
+        <output_process_script/>
+        <output_transform/>
+        <processing_script><![CDATA[(function(){
+	var logger = new Logger();
+	
+	var users = activityInput.users.split(',');
+	var deliveryGroup = activityInput.delivery_group;
+	var siteId = activityInput.site_id; 
+	var application = activityInput.application;
+	
+	var ctxApp = new CTXAppProvision();
+	var response = ctxApp.addUserToDeliveryGroup(users,application,deliveryGroup,siteId);
+	
+	logger.log("AppProv Response",response);
+	
+	
+})();]]></processing_script>
+        <sample_payloads>{}</sample_payloads>
+        <short_description>Adds user or list of users to Delivery Groups</short_description>
+        <style/>
+        <sys_class_name>wf_element_activity</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 18:55:08</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>0fdadc10dbb9d300a7287bec0f9619a5</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>Add Users to Delivery Group</sys_name>
+        <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
+        <sys_update_name>wf_element_activity_0fdadc10dbb9d300a7287bec0f9619a5</sys_update_name>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:43:12</sys_updated_on>
+        <version_container_id>b3dbd0dcdb79d300a7287bec0f96198e</version_container_id>
+    </wf_element_activity>
+    <sys_translated_text action="delete_multiple" query="documentkey=0fdadc10dbb9d300a7287bec0f9619a5"/>
+    <wf_versionable action="INSERT_OR_UPDATE">
+        <checked_out/>
+        <checked_out_by/>
+        <published>true</published>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 18:55:08</sys_created_on>
+        <sys_id>ffdb1850dbb9d300a7287bec0f9619de</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:43:12</sys_updated_on>
+        <valid_from>2018-04-27 01:43:12</valid_from>
+        <valid_to/>
+        <version>1</version>
+        <version_container_id>b3dbd0dcdb79d300a7287bec0f96198e</version_container_id>
+        <wf_element_definition display_value="Add Users to Delivery Group">0fdadc10dbb9d300a7287bec0f9619a5</wf_element_definition>
+    </wf_versionable>
+    <wf_condition_default action="INSERT_OR_UPDATE">
+        <activity_definition display_value="Add Users to Delivery Group">0fdadc10dbb9d300a7287bec0f9619a5</activity_definition>
+        <condition/>
+        <derived_definition/>
+        <else_flag>false</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <name>Failure</name>
+        <order>10</order>
+        <short_description/>
+        <skip_during_generate>false</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 22:08:25</sys_created_on>
+        <sys_id>15188d54dbf9d300a7287bec0f96190c</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:17:21</sys_updated_on>
+    </wf_condition_default>
+    <wf_condition_default action="INSERT_OR_UPDATE">
+        <activity_definition display_value="Add Users to Delivery Group">0fdadc10dbb9d300a7287bec0f9619a5</activity_definition>
+        <condition/>
+        <derived_definition/>
+        <else_flag>false</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <name>Success</name>
+        <order>0</order>
+        <short_description/>
+        <skip_during_generate>false</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 22:08:25</sys_created_on>
+        <sys_id>15eb9c10dbb9d300a7287bec0f96194a</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:17:21</sys_updated_on>
+    </wf_condition_default>
+</record_update>

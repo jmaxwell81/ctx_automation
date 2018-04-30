@@ -9,7 +9,6 @@
         <name>CTXClientRequest</name>
         <script><![CDATA[var CTXClientRequest = Class.create();
 CTXClientRequest.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
-
 	
 	getApplications:function(){
 		
@@ -66,19 +65,24 @@ CTXClientRequest.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
 		
 		return variables;
 	},
+	
 	getRITMAndVariables:function(){
+		var ritm_sys_id = this.getParameter('sysparm_ritm_sys_id');
+		return this._getRITMAndVariables(ritm_sys_id);
+	},
+	
+	_getRITMAndVariables:function(ritm_sys_id){
 		var logger = new Logger();
-		
-		var ctx_request_sys_id = this.getParameter('sysparm_ctx_request_sys_id');
-		var ctx_request = new GlideRecord('x_wcs_ctrx_auto_sv_citrix_requests');
-		ctx_request.get(ctx_request_sys_id);
 				
+		var sc_req_item = new GlideRecord('sc_req_item');
+		sc_req_item.get(ritm_sys_id);
 		var ritm = {};
 		
-		if(!gs.nil(ctx_request)){
-			ritm.sys_id = ctx_request.getValue('requested_item');
-			ritm.number = ctx_request.requested_item.number.toString();
-			ritm.due_date = ctx_request.requested_item.due_date.toString();
+		if(!gs.nil(sc_req_item)){
+			ritm.sys_id = sc_req_item.getValue('sys_id');
+			ritm.number = sc_req_item.getValue('number');
+			ritm.due_date = sc_req_item.getValue('due_date');
+			ritm.state = sc_req_item.getElement('state').getDisplayValue();
 			ritm.variables = this._getVariables(ritm.sys_id);
 			return JSON.stringify(ritm);
 		}
@@ -86,11 +90,84 @@ CTXClientRequest.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
 		return "";
 	},
 	
+	getCitrixRequest:function(){
+		var logger = new Logger();
+		
+		var ctx_request_sys_id = this.getParameter('sysparm_ctx_request_sys_id');
+		var ctx_request = new GlideRecord('x_wcs_ctrx_auto_sv_citrix_requests');
+		ctx_request.get(ctx_request_sys_id);
+		
+		if(!gs.nil(ctx_request)){
+			return this._getRITMAndVariables(ctx_request.getValue('requested_item'));
+		}
+		
+		logger.logError("NO REQUEST",ctx_request_sys_id);
+		return null;
+	},
+	
+	_sortDeliveryAndADGroup:function(groupsUpdate){
+		var logger = new Logger();
+		var sortedGroups = {
+			deliveryGroups:[],
+			adGroups:[]
+		};
+		
+		for(var i = 0;i < groupsUpdate.length; i++){
+			if(groupsUpdate[i].group_type == 'Delivery Group'){
+				sortedGroups.deliveryGroups.push(groupsUpdate[i]);
+			}else if(groupsUpdate[i].group_type == 'AD Group'){
+				sortedGroups.adGroups.push(groupsUpdate[i]);
+			}
+		}
+		logger.log('sorted',JSON.stringify(sortedGroups));
+		return sortedGroups;
+	},
+	
+	_updateVariable:function(record,variableName,value){
+		
+		var varRecordSysId = record.variables[variableName].sys_id;
+		
+		var variableItem = new GlideRecord('sc_item_option');
+		variableItem.get(varRecordSysId);
+		
+		if(!gs.nil(variableItem)){
+			variableItem.setValue('value',value);
+			variableItem.update();
+		}
+		
+	},
 	updateRITMVariables:function(){
 		var logger = new Logger();
 		
-		var groupUpdate = this.getParameter('sysparm_group_updates');
-		var record = this.getParameter('sysparm_record');
+		var groupsUpdateString = this.getParameter('sysparm_group_updates');
+		var recordString = this.getParameter('sysparm_record');
+		
+		try{
+			var groupsUpdate = JSON.parse(groupsUpdateString);
+			var sortedGroups = this._sortDeliveryAndADGroup(groupsUpdate);
+			
+			var deliveryGroups = sortedGroups.deliveryGroups;
+			var adGroups = sortedGroups.adGroups;
+			
+			var record = JSON.parse(recordString);
+			
+			logger.log("delivery groups", deliveryGroups);
+			logger.log("ad groups", adGroups);
+			
+			if(deliveryGroups.length > 0){
+				this._updateVariable(record,'delivery_group_updates',JSON.stringify(deliveryGroups));
+			}
+			if(adGroups.length > 0){
+				this._updateVariable(record,'ad_group_updates',JSON.stringify(adGroups));
+			}
+			
+			
+			return 'success';
+		}catch(error){
+			logger.log('Unable to update RITM variables',error);
+			return 'failure';
+		}
+				
 		
 	},
 	
@@ -101,7 +178,7 @@ CTXClientRequest.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
         <sys_created_on>2018-04-11 02:39:35</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>aa9cefc7dbdd5700a7287bec0f961944</sys_id>
-        <sys_mod_count>22</sys_mod_count>
+        <sys_mod_count>41</sys_mod_count>
         <sys_name>CTXClientRequest</sys_name>
         <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy>read</sys_policy>
@@ -109,6 +186,6 @@ CTXClientRequest.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
         <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_script_include_aa9cefc7dbdd5700a7287bec0f961944</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-04-20 17:32:17</sys_updated_on>
+        <sys_updated_on>2018-04-26 14:53:19</sys_updated_on>
     </sys_script_include>
 </record_update>

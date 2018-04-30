@@ -12,12 +12,14 @@ CTXAppProvision.prototype = {
     initialize: function() {
     },
 	
-	GET_APPS_ENDPOINT:"https://itsm.cloud.com:8080/api/XAXD/GetApplication",
 	GET_APPS_HEADERS:{
 		"Content-Type":"application/json",
 		"customerid":"",
 		"Authorization":"CWSAuth bearer="
 	},
+	GET_APPS_ENDPOINT:"https://itsm.cloud.com:8080/api/XAXD/GetApplication",		
+	ASSIGN_APPS_ENDPOINT:"https://itsm.cloud.com:8080/api/XAXD/AssignApplication",
+	
 	_generateAppHeaders:function(){
 		var logger = new Logger();
 		var customer_id = gs.getProperty('x_wcs_ctrx_auto_sv.customer_id');
@@ -55,6 +57,50 @@ CTXAppProvision.prototype = {
 		}
 		
 	},
+	
+	_getAssignUsers:function(userArray){
+		var userTool = new CTXUserTools();
+		var users = [];
+	
+		for(var i = 0; i < userArray.length; i++){
+			
+			if(userTool.isValidUser(userArray[i])){
+				users.push({
+					"UserName":userTool.getUserName(userArray[i]),
+					"domain":userTool.getUserDomain(userArray[i])
+				});
+			}
+		}
+		return users;
+	},
+	_generateAssignAppRequestBody:function(users,application,deliveryGroup,siteId){
+		var customer_id = gs.getProperty('x_wcs_ctrx_auto_sv.customer_id');
+		
+		var requestUsers = this._getAssignUsers(users);
+		
+		var body = {
+			"CustomerId":customer_id,
+			"user":requestUsers,
+			"applications":[{"Name":application,"DesktopGroup":deliveryGroup}],
+			"siteId":siteId
+		};
+	
+		return body;
+	},
+	
+	addUserToDeliveryGroup:function(users,application,deliveryGroup,siteId){
+		var logger = new Logger();
+		logger.log("Adding User to Delivery Group");
+		
+		var headers = this._generateAppHeaders();		
+		var rest = new RESTRequest();
+		var body = this._generateAssignAppRequestBody(users,application,deliveryGroup,siteId);
+		
+		var response = rest.post(this.ASSIGN_APPS_ENDPOINT,headers,body);
+		
+		logger.log(response);
+		return response;
+	},
 
     type: 'CTXAppProvision'
 };]]></script>
@@ -63,7 +109,7 @@ CTXAppProvision.prototype = {
         <sys_created_on>2018-04-11 02:38:47</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>c559e387dbdd5700a7287bec0f961979</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>17</sys_mod_count>
         <sys_name>CTXAppProvision</sys_name>
         <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy>read</sys_policy>
@@ -71,6 +117,6 @@ CTXAppProvision.prototype = {
         <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_script_include_c559e387dbdd5700a7287bec0f961979</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-04-19 20:19:56</sys_updated_on>
+        <sys_updated_on>2018-04-27 00:25:49</sys_updated_on>
     </sys_script_include>
 </record_update>

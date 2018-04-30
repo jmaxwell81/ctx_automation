@@ -6,11 +6,11 @@
 app.controller('ctxReqsCtrl',function($scope,$http,htmlLoader,ajaxCall,$q){
 	
 	$scope.record = {};
-	$scope.deliveryGroups = {};
+	$scope.deliveryGroups = [];
 	$scope.adGroups = {};
-	$scope.chosen_apps = "";
+	$scope.chosenAppsNames = "";
 	
-	$scope.getParameterValue = function(name) {
+	var getParameterValue = function(name) {
 		
 		var url = document.URL.parseQuery();
 		
@@ -42,93 +42,174 @@ app.controller('ctxReqsCtrl',function($scope,$http,htmlLoader,ajaxCall,$q){
 		});
 	};
 	
-	$scope.getChosenGroups = function(chosen_apps,all_apps){
-		var deliveryGroups = {};
-		var adGroups = {};
-		var chosenDeliGrp;
-		var chosenAdGrp;
+	var createNewDeliveryGroup = function(app, deliveryGroupName){
+		var delGrp = {
+			Name:deliveryGroupName,
+			SiteName: app.SiteName,
+			SiteId: app.SiteId,
+			ADGroups:{},
+			Applications:{},
+			chosen:false
+		};
 		
-		for(var i = 0; i < all_apps.length; i++){
-			if(chosen_apps.includes(all_apps[i].Name)){
-				chosenDeliGrp = all_apps[i].DesktopGroup;
-				chosenAdGrp =  all_apps[i].ADGroups;
-				for(var j = 0; j < chosenDeliGrp.length;j++){
-					deliveryGroups[chosenDeliGrp[j]] = chosenDeliGrp[j];
+		return delGrp;
+	};
+	
+	var getChosenGroups = function(chosenAppsNames,all_apps){
+	
+		var deliveryGroups = {};		
+		var delGrp;
+		var delGrpName;
+		var app;
+		var adGrps;
+		
+		for(var i = 0; i < all_apps.length; i++){		
+			app = all_apps[i];			
+						
+			for(var d = 0;d < app.DesktopGroup.length; d++){
+				delGrpName = app.DesktopGroup[d].Name;
+				adGrps = app.DesktopGroup[d].ADGroups;
+				
+				if(deliveryGroups[delGrpName]){
+				
+					for(var j = 0; j < adGrps.length; j++){
+						deliveryGroups[delGrpName].ADGroups[adGrps[j]] = adGrps[j];
+					}
+
+					deliveryGroups[delGrpName].Applications[app.Name] = app.Name;
+				}else{
+					delGrp = createNewDeliveryGroup(app,delGrpName);
+					
+					for(var l = 0; l < adGrps.length; l++){
+						delGrp.ADGroups[adGrps[l]] = adGrps[l];
+					}
+
+					delGrp.Applications[app.Name] = app.Name;
+					deliveryGroups[delGrpName] = delGrp;
 				}
-				for(var t = 0; t < chosenAdGrp.length;t++){
-					adGroups[chosenAdGrp[t]] = chosenAdGrp[t];
-				}
-			}
+
+				if(chosenAppsNames.includes(all_apps[i].Name)){							
+					deliveryGroups[delGrpName].chosen = true;
+				}				
+			}						
 		}
 		
-		$scope.deliveryGroups = deliveryGroups;
-		$scope.adGroups = adGroups;
+		for(var grp in deliveryGroups){
+			$scope.deliveryGroups.push(deliveryGroups[grp]);
+		}
+	
 	};	
 	
-	$scope.requestApplicationHandler = function(answer){
+	var requestApplicationHandler = function(answer){
 		try{			
-			//$scope.all_apps = JSON.parse(answer);	
-			$scope.all_apps = JSON.parse("[{\"Name\":\"Calculator\",\"DesktopGroup\":[\"RDSHosted_Desktop\"],\"ADGroups\":[\"group1\"]},{\"Name\":\"Citrix Receiver\",\"DesktopGroup\":[\"RDSHosted_Desktop\"],\"ADGroups\":[\"group1\"]},{\"Name\":\"Command Prompt\",\"DesktopGroup\":[\"RDSHosted_Desktop\"],\"ADGroups\":[\"group1\"]}]");
+			$scope.all_apps = JSON.parse(answer);	
 			
-			$scope.getChosenGroups($scope.chosen_apps,$scope.all_apps);
+			getChosenGroups($scope.chosenAppsNames,$scope.all_apps);
 		}catch(error){
 			console.log('Unable to load Applications',error);
 		}
 	};
 	
-	$scope.getAllApplications = function(callback){
+	var getAllApplications = function(callback){
 		var appAjax = new GlideAjax('CTXClientRequest');
 		appAjax.addParam('sysparm_name','getApplications');
 		appAjax.getXML(callback);	
 	};
 	
-	$scope.addContentToPage = function(answer){		
+	var addContentToPage = function(answer){		
 		var ritm;
 		try{			
 			$scope.record  = JSON.parse(answer);		
-			$scope.chosen_apps = $scope.record.variables["select_applications"].value;
-			ajaxCall.run($scope.getAllApplications).then($scope.requestApplicationHandler);			
+			$scope.chosenAppsNames = $scope.record.variables["chosen_apps"].value;
+			ajaxCall.run(getAllApplications).then(requestApplicationHandler);			
 		}catch(error){
 			console.log('Unable to load RITM',error);
 		}
 	};
 	
-	$scope.loadRITMAndVariables = function(ctx_req_sys_id,callback){				
+	var loadRITMAndVariables = function(ctx_req_sys_id,callback){				
 		var appAjax = new GlideAjax('CTXClientRequest');
-		appAjax.addParam('sysparm_name','getRITMAndVariables');
+		appAjax.addParam('sysparm_name','getCitrixRequest');
 		appAjax.addParam('sysparm_ctx_request_sys_id',ctx_req_sys_id);
 		appAjax.getXML(callback);				
 	};
 	
-	$scope.submitUpdate = function(){
+	var createGroupObject = function(groupElement,groupType){
 		
+		var groupElementId = groupElement.id;
+				
+		var groupName = jQuery(groupElement).attr('group-name');
+		var siteId = jQuery(groupElement).attr('site-id');		
+		var chosen_user_span = jQuery(groupElement).find('[id="'+groupElementId+'_chosen_users"]');
+		var users = jQuery(chosen_user_span).attr('members');
+		var applications = jQuery(groupElement).attr('applications');
+				
+		try{
+			users = JSON.parse(users);
+			applications = JSON.parse(applications);
+		}catch(error){
+			users = null;
+			applications = null;
+		}
+		
+		if(users != null && users != '' && applications != '' && applications != null){
+			return {
+				group:groupName,
+				group_type:groupType,
+				applications:applications,
+				site_id:siteId,
+				users: users
+			};			
+		}
+		return null;
+		
+	};
+	
+	var getGroupUpdates = function(){
 		var groupsToSubmit = [];
 		var groupObj;
 		jQuery('group-object').each(function(){
 			
-			var group = jQuery(this).attr('group');
-			var groupType = jQuery(this).attr('type');
-			var chosen_user_span = jQuery(this).find('#'+group+'_chosen_users');
-			var users = jQuery(chosen_user_span).attr('members');
-			groupObj = {
-				group:group,
-				group_type:groupType,
-				users: users
-			};
+			var groupType = jQuery(this).attr('type');			
 			
-			groupsToSubmit.push(groupObj);
+			jQuery(this).find('.group-id-container').each(function(){
+				groupObj = createGroupObject(this,groupType);
+				if(groupObj != null){
+					groupsToSubmit.push(groupObj);							
+				}						
+			});						
+			
 		});
+		return groupsToSubmit;
+	};
+	
+	$scope.submitUpdate = function(){
 		
-		console.log(groupsToSubmit);
-		console.log($scope.record);
+		var groupsToSubmit = getGroupUpdates();
+		
+		
+		var callback = function(response){
+			var answer = response.responseXML.documentElement.getAttribute('answer');
+			console.log(answer);
+		};
+		
+		console.log(JSON.stringify(groupsToSubmit));
+		console.log(JSON.stringify($scope.record));
+		
+		var appAjax = new GlideAjax('CTXClientRequest');
+		appAjax.addParam('sysparm_name','updateRITMVariables');
+		appAjax.addParam('sysparm_group_updates',JSON.stringify(groupsToSubmit));
+		appAjax.addParam('sysparm_record',JSON.stringify($scope.record));
+		appAjax.getXML(callback);
+		
 	};
 	
 	
 	
 	(function loadRequest(){
-		var ctx_req_sys_id = $scope.getParameterValue('sys_id');
+		var ctx_req_sys_id = getParameterValue('sys_id');
 		
-		ajaxCall.run($scope.loadRITMAndVariables,ctx_req_sys_id).then($scope.addContentToPage);
+		ajaxCall.run(loadRITMAndVariables,ctx_req_sys_id).then(addContentToPage);
 	})();
 	
 	
@@ -208,15 +289,13 @@ app.directive('groupObject',function(summaryParser,htmlLoader,$compile){
 	
 	return {
 		template:"",
-		scope: {			
-			group: '@',
-			type:'@',
-			grpindex:'@',
+		scope: {						
 			allapps:'@'
 		},
 		
 		link: function($scope, $element, $attr) {
-			
+			$scope.group = JSON.parse($attr.group);
+			$scope.type = $attr.type;		
 			$scope.directiveXML = "";			
 		
 			htmlLoader.getHTML('group_template').then(function(html){						
@@ -233,11 +312,8 @@ app.directive('groupObject',function(summaryParser,htmlLoader,$compile){
 			
 			$scope.openApplicationModal = function(group){
 				var modalDialog = new GlideModal("x_wcs_ctrx_auto_sv_application_modal");
-				modalDialog.setTitle("Applications");
-				modalDialog.setPreference("group_type",$attr.type);
-				modalDialog.setPreference("group_num",$attr.grpindex);
-				modalDialog.setPreference('group',group);
-				modalDialog.setPreference("apps",$attr.allapps);				
+				modalDialog.setTitle("Applications");				
+				modalDialog.setPreference('group',group);			
 				modalDialog.setSize(700, 800);
 				modalDialog.render();
 			};
@@ -349,7 +425,7 @@ app.directive('summaryList',function(htmlLoader,summaryParser,$compile){
 			#title_bar{
 				height: 46px;	
 				font-size:13px;
-				color: #343D47;<!-- ($color-darkest)-->
+				color: #343D47;
 				padding:5px;
 				margin:0;
 				margin-bottom:20px;
@@ -392,7 +468,9 @@ app.directive('summaryList',function(htmlLoader,summaryParser,$compile){
 			.footer{
 				padding-top:20px;
 			}
-			
+			#fields_container,#left_column,#right_column{
+				padding-left:0;
+			}
 			
 		</style>
 	</head>
@@ -414,7 +492,7 @@ app.directive('summaryList',function(htmlLoader,summaryParser,$compile){
 		<div id="form_body" class='col-sm-12'>
 			<div id="fields_container" class='col-sm-12'>
 
-				<div class='col-sm-6 column'>				
+				<div id="left_column" class='col-sm-6 column'>				
 					<form class="form-horizontal">
 						<div class="form-group">
 							<label class="col-xs-12 col-md-3 col-lg-4 control-label">
@@ -423,13 +501,11 @@ app.directive('summaryList',function(htmlLoader,summaryParser,$compile){
 							<div class="col-xs-10 col-sm-9 col-md-6 col-lg-5 form-field input_controls">
 								<input value="{{record.number}}" class="form-control" readonly=""/>
 							</div>
+							
+							<div class="col-xs-2 col-sm-3 col-lg-2 form-field-addons"></div>
 						</div>
-						<div class="col-xs-2 col-sm-3 col-lg-2 form-field-addons"></div>
-					</form>			
-
-				</div>
-				<div class='col-sm-6 column'>				
-					<form class="form-horizontal">
+						
+						
 						<div class="form-group">
 							<label class="col-xs-12 col-md-3 col-lg-4 control-label">
 								<span class="label-text">Due Date</span>
@@ -439,6 +515,21 @@ app.directive('summaryList',function(htmlLoader,summaryParser,$compile){
 							</div>
 						</div>
 						<div class="col-xs-2 col-sm-3 col-lg-2 form-field-addons"></div>
+					</form>			
+
+				</div>
+				<div id="right_column" class='col-sm-6 column'>				
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label class="col-xs-12 col-md-3 col-lg-4 control-label">
+								<span class="label-text">State</span>
+							</label>
+							<div class="col-xs-10 col-sm-9 col-md-6 col-lg-5 form-field input_controls">
+								<input value="{{record.state}}" class="form-control" readonly=""/>
+							</div>
+							<div class="col-xs-2 col-sm-3 col-lg-2 form-field-addons"></div>
+						</div>
+						
 					</form>		
 
 				</div>
@@ -451,7 +542,7 @@ app.directive('summaryList',function(htmlLoader,summaryParser,$compile){
 						<summary-list title="Users" content="{{record.variables.users.value}}" max="8"></summary-list>
 					</div>
 					<div class="col-xs-12 col-sm-6">
-						<summary-list title="Applications" content="{{chosen_apps}}" max="8"></summary-list>
+						<summary-list title="Applications" content="{{chosenAppsNames}}" max="8"></summary-list>
 					</div>
 				</div>
 			</div>
@@ -473,11 +564,11 @@ app.directive('summaryList',function(htmlLoader,summaryParser,$compile){
 				<div class="tab-content">
 					<div id="tab1" class="tab-pane active col-sm-12">						
 						
-						<group-object type="Delivery Group" group="{{dgrp}}" users="{{record.variables.users.value}}" allapps="{{all_apps}}" ng-repeat="dgrp in deliveryGroups track by $index" grpindex="{{$index +1}}"></group-object>
+						<group-object type="Delivery Group" group="{{dgrp}}" users="{{record.variables.users.value}}" allapps="{{all_apps}}" ng-repeat="dgrp in deliveryGroups" ng-if="dgrp.chosen == true"></group-object>
 											
 					</div>
 					<div id="tab2" class="tab-pane col-sm-12">			
-						<group-object type="AD Group" group="{{adgrp}}" users="{{record.variables.users.value}}" allapps="{{all_apps}}" ng-repeat="adgrp in adGroups track by $index" grpindex="{{$index +1}}"></group-object>
+						<group-object type="AD Group" group="{{dgrp}}" users="{{record.variables.users.value}}" allapps="{{all_apps}}" ng-repeat="dgrp in deliveryGroups" ng-if="dgrp.chosen == true"></group-object>
 					</div>
 				</div>
 
@@ -499,7 +590,7 @@ app.directive('summaryList',function(htmlLoader,summaryParser,$compile){
         <sys_created_on>2018-04-17 01:14:52</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>da809645db259b00a7287bec0f96195a</sys_id>
-        <sys_mod_count>300</sys_mod_count>
+        <sys_mod_count>376</sys_mod_count>
         <sys_name>citrix_requests</sys_name>
         <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
@@ -507,6 +598,6 @@ app.directive('summaryList',function(htmlLoader,summaryParser,$compile){
         <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_ui_page_da809645db259b00a7287bec0f96195a</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-04-20 17:29:57</sys_updated_on>
+        <sys_updated_on>2018-04-27 14:39:10</sys_updated_on>
     </sys_ui_page>
 </record_update>

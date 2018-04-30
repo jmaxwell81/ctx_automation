@@ -12,7 +12,7 @@
         <sys_created_on>2018-04-13 00:29:50</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>76db11bfdb95d700a7287bec0f96196a</sys_id>
-        <sys_mod_count>101</sys_mod_count>
+        <sys_mod_count>121</sys_mod_count>
         <sys_name>group_template</sys_name>
         <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
@@ -20,7 +20,7 @@
         <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_ui_macro_76db11bfdb95d700a7287bec0f96196a</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-04-20 15:25:10</sys_updated_on>
+        <sys_updated_on>2018-04-26 19:20:16</sys_updated_on>
         <xml><![CDATA[<style>
 	.del-group-pane{
 		margin-bottom:30px;
@@ -41,21 +41,44 @@
 	
 </style>
 <div class="del-group-pane no-pad-left col-sm-12">
-	<div class="no-pad-left col-xs-12">
+	<!-- DELIVERY GROUPS -->
+	<div class="no-pad-left col-xs-12" ng-if="type == 'Delivery Group'">
 		<div class="no-pad-left col-xs-12">	
-			<p class="grp-title"><a href="#" class="icon-info" ng-click="openApplicationModal(group)"></a>{{type}} {{grpindex}}, {{group}}</p>
-			<div class="col-xs-12">
-				<a id="{{group}}" href="#" class="btn btn-default btn-ref" ng-click="openUserSelectModal(grp)" ng-init="grp=group">
+			<p class="grp-title"><a href="#" class="icon-info" ng-click="openApplicationModal(group)"></a>{{group.Name}}, {{group.SiteName}}</p>
+			<div id="{{group.Name}}" group-name="{{group.Name}}" site-id="{{group.SiteId}}" applications="{{group.Applications}}" class="group-id-container col-xs-12">
+				<a id="{{group.Name}}_lock" href="#" class="btn btn-default btn-ref" ng-click="openUserSelectModal(group.Name)" >
 					<span class="icon icon-locked" aria-hidden='true'></span>
 				</a>
+				<div class="col-xs-12">
+					<p class="chosen_users">
+						<span id="{{group.Name}}_chosen_users" type="text" members=""></span>
+						<a id="{{group.Name}}_more_users" href='#' ng-click='openUserSelectModal(group.Name)'></a>
+					</p>
+				</div>
+			</div>			
+		</div>
+		
+	</div>
+	
+	<!-- AD GROUPS -->
+	<div class="no-pad-left col-xs-12" ng-if="type == 'AD Group'">
+		<div class="no-pad-left col-xs-12">	
+			<p class="grp-title"><a href="#" class="icon-info" ng-click="openApplicationModal(group)"></a>{{group.Name}}, {{group.SiteName}}</p>
+			<div id="{{id}}" group-name="{{adGrp}}" class="group-id-container col-xs-12" ng-repeat="adGrp in group.ADGroups" ng-init="id = group.Name+'_'+adGrp">				
+				<div class="col-xs-12">
+					<p class="grp-title">{{adGrp}}</p>
+					<a id="{{id}}_lock" href="#" class="btn btn-default btn-ref" ng-click="openUserSelectModal(id)">
+						<span class="icon icon-locked" aria-hidden='true'></span>
+					</a>
+				</div>
+				<div class="col-xs-12">
+					<p class="chosen_users">
+						<span id="{{id}}_chosen_users" type="text" members=""></span>
+						<a id="{{id}}_more_users" href='#' ng-click='openUserSelectModal(id)'></a>
+					</p>
+				</div>
 			</div>
-		</div>
-		<div class="col-xs-12">
-			<p class="chosen_users">
-				<span id="{{group}}_chosen_users" type="text" members=""></span>
-				<a id="{{group}}_more_users" href='#' ng-click='openUserSelectModal(group)'></a>
-			</p>
-		</div>
+		</div>		
 	</div>
 </div>]]></xml>
     </sys_ui_macro>

@@ -56,6 +56,9 @@ RESTRequest.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 			if(response.haveError()){				
 				return response.getErrorMessage();
 			}
+			if(gs.nil(response.getBody()) || response.getBody() == ''){
+				return response.getStatusCode();
+			}
 			return response.getBody();		
 		}catch(error){
 			return error;
@@ -69,7 +72,7 @@ RESTRequest.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
         <sys_created_on>2018-03-26 20:16:54</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>1db30ddedb455b84a7287bec0f9619fd</sys_id>
-        <sys_mod_count>16</sys_mod_count>
+        <sys_mod_count>17</sys_mod_count>
         <sys_name>RESTRequest</sys_name>
         <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy>read</sys_policy>
@@ -77,6 +80,6 @@ RESTRequest.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
         <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_script_include_1db30ddedb455b84a7287bec0f9619fd</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-04-10 18:07:28</sys_updated_on>
+        <sys_updated_on>2018-04-27 00:48:43</sys_updated_on>
     </sys_script_include>
 </record_update>

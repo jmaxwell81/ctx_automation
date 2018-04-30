@@ -1,0 +1,2448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="wf_workflow_version">
+    <wf_workflow_version action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <activity_stages>{"ends":["ed6e63c4db39d300a7287bec0f9619f0"],"activities":{"296e63c4db39d300a7287bec0f9619ed":"216e6b84db39d300a7287bec0f9619fa"},"subflows":[],"stages":{"216e6b84db39d300a7287bec0f9619fa":{"order":120,"duration":"1 Day","stageId":"216e6b84db39d300a7287bec0f9619fa","name":"Fulfillment","value":"fulfillment"}}}</activity_stages>
+        <after_business_rules>false</after_business_rules>
+        <checked_out/>
+        <checked_out_by/>
+        <column_renderer display_value="Workflow-driven">a56213111b030100adca1e094f0713ac</column_renderer>
+        <condition/>
+        <condition_type/>
+        <description/>
+        <expected_sequences>e96e63c4db39d300a7287bec0f9619eb,296e63c4db39d300a7287bec0f9619ed,e96e63c4db39d300a7287bec0f9619f5,a96e63c4db39d300a7287bec0f9619f1,656e63c4db39d300a7287bec0f9619f4,ed6e63c4db39d300a7287bec0f9619e5,a96e63c4db39d300a7287bec0f9619ea,a96e63c4db39d300a7287bec0f9619ec,a96e63c4db39d300a7287bec0f9619ee,3f1f655cdb3dd300a7287bec0f961937,0b30b19cdb3dd300a7287bec0f96195f,256e63c4db39d300a7287bec0f9619e9,e423f110db7dd300a7287bec0f961993,616e63c4db39d300a7287bec0f9619e8</expected_sequences>
+        <expected_time>1970-01-01 14:00:00</expected_time>
+        <expected_time_type/>
+        <full_sequences>e96e63c4db39d300a7287bec0f9619eb,296e63c4db39d300a7287bec0f9619ed,e96e63c4db39d300a7287bec0f9619f5,a96e63c4db39d300a7287bec0f9619f1,656e63c4db39d300a7287bec0f9619f4,ed6e63c4db39d300a7287bec0f9619e5,a96e63c4db39d300a7287bec0f9619ea,ed6e63c4db39d300a7287bec0f9619ef,a96e63c4db39d300a7287bec0f9619ec,a96e63c4db39d300a7287bec0f9619ee,696e63c4db39d300a7287bec0f9619f2,3f1f655cdb3dd300a7287bec0f961937,0b30b19cdb3dd300a7287bec0f96195f,ed6e63c4db39d300a7287bec0f9619f0,256e63c4db39d300a7287bec0f9619e9,e423f110db7dd300a7287bec0f961993,616e63c4db39d300a7287bec0f9619e8</full_sequences>
+        <journal/>
+        <max_activity_count>100</max_activity_count>
+        <name>CTX Application Provisioning</name>
+        <not_cacheable>false</not_cacheable>
+        <on_cancel><![CDATA[// This script executes if the workflow is cancelled.// The global variable context_sys_id contains the sys_id of the cancelled workflow context.]]></on_cancel>
+        <order>100</order>
+        <pin_type>set_by_activity</pin_type>
+        <published>true</published>
+        <relative_duration/>
+        <requires_ert>true</requires_ert>
+        <run_multiple>false</run_multiple>
+        <schedule/>
+        <stage_field>stage</stage_field>
+        <stage_order>computed</stage_order>
+        <start display_value="Begin">e96e63c4db39d300a7287bec0f9619eb</start>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>216e6b84db39d300a7287bec0f9619f8</sys_id>
+        <sys_mod_count>20</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 13:35:56</sys_updated_on>
+        <table>sc_req_item</table>
+        <timezone/>
+        <validated>true</validated>
+        <workflow display_value="CTX Application Provisioning">bdc2bee7dba917006d3c72fc0f961961</workflow>
+    </wf_workflow_version>
+    <wf_workflow action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <description/>
+        <name>CTX Application Provisioning</name>
+        <preview/>
+        <sys_class_name>wf_workflow</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-24 21:59:00</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>bdc2bee7dba917006d3c72fc0f961961</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>CTX Application Provisioning</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
+        <sys_update_name>wf_workflow_bdc2bee7dba917006d3c72fc0f961961</sys_update_name>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-24 21:59:00</sys_updated_on>
+        <table>sc_req_item</table>
+        <template>false</template>
+        <vars/>
+    </wf_workflow>
+    <wf_stage action="INSERT_OR_UPDATE">
+        <name>Completed</name>
+        <ola>1970-01-01 00:00:00</ola>
+        <order>1100</order>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>ad6e6b84db39d300a7287bec0f9619f9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>complete</value>
+        <workflow_version display_value="CTX Application Provisioning">216e6b84db39d300a7287bec0f9619f8</workflow_version>
+    </wf_stage>
+    <wf_stage action="INSERT_OR_UPDATE">
+        <name>Delivery</name>
+        <ola>1970-01-03 00:00:00</ola>
+        <order>140</order>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>2d6e6b84db39d300a7287bec0f9619f9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>delivery</value>
+        <workflow_version display_value="CTX Application Provisioning">216e6b84db39d300a7287bec0f9619f8</workflow_version>
+    </wf_stage>
+    <wf_stage action="INSERT_OR_UPDATE">
+        <name>Fulfillment</name>
+        <ola>1970-01-02 00:00:00</ola>
+        <order>120</order>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>216e6b84db39d300a7287bec0f9619fa</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>fulfillment</value>
+        <workflow_version display_value="CTX Application Provisioning">216e6b84db39d300a7287bec0f9619f8</workflow_version>
+    </wf_stage>
+    <wf_stage action="INSERT_OR_UPDATE">
+        <name>Request Cancelled</name>
+        <ola>1970-01-01 00:00:00</ola>
+        <order>1000</order>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>a96e6b84db39d300a7287bec0f9619f9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>Request Cancelled</value>
+        <workflow_version display_value="CTX Application Provisioning">216e6b84db39d300a7287bec0f9619f8</workflow_version>
+    </wf_stage>
+    <wf_stage action="INSERT_OR_UPDATE">
+        <name>Request Approved</name>
+        <ola>1970-01-01 00:00:00</ola>
+        <order>90</order>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>296e6b84db39d300a7287bec0f9619f9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>request_approved</value>
+        <workflow_version display_value="CTX Application Provisioning">216e6b84db39d300a7287bec0f9619f8</workflow_version>
+    </wf_stage>
+    <wf_stage action="INSERT_OR_UPDATE">
+        <name>Waiting for Approval</name>
+        <ola>1970-01-02 00:00:00</ola>
+        <order>100</order>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>a16e6b84db39d300a7287bec0f9619fa</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>waiting_for_approval</value>
+        <workflow_version display_value="CTX Application Provisioning">216e6b84db39d300a7287bec0f9619f8</workflow_version>
+    </wf_stage>
+    <wf_activity action="INSERT_OR_UPDATE">
+        <activity_definition display_value="Add Users to Delivery Group">0fdadc10dbb9d300a7287bec0f9619a5</activity_definition>
+        <activity_definition_updated>false</activity_definition_updated>
+        <databus_lookup_id>18</databus_lookup_id>
+        <height/>
+        <input>{"users":"${workflow.scratchpad.currentDeliveryGroup.users}","delivery_group":"${workflow.scratchpad.currentDeliveryGroup.name}","site_id":"${workflow.scratchpad.currentDeliveryGroup.site_id}","application":"${workflow.scratchpad.currentDeliveryGroup.application}"}</input>
+        <is_parent>false</is_parent>
+        <name>Add User to Delivery Group</name>
+        <new_activity_definition/>
+        <notes/>
+        <out_of_date>false</out_of_date>
+        <parent/>
+        <pinned>false</pinned>
+        <pinned_version/>
+        <stage/>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 01:16:40</sys_created_on>
+        <sys_id>e423f110db7dd300a7287bec0f961993</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:42:47</sys_updated_on>
+        <timeout>1970-01-01 00:00:00</timeout>
+        <vars/>
+        <width/>
+        <workflow_version display_value="CTX Application Provisioning">216e6b84db39d300a7287bec0f9619f8</workflow_version>
+        <x>1229</x>
+        <y>210</y>
+    </wf_activity>
+    <sys_variable_value action="delete_multiple" query="document_key=e423f110db7dd300a7287bec0f961993"/>
+    <wf_condition action="INSERT_OR_UPDATE">
+        <activity display_value="Add User to Delivery Group">e423f110db7dd300a7287bec0f961993</activity>
+        <condition/>
+        <condition_default display_value="Failure">15188d54dbf9d300a7287bec0f96190c</condition_default>
+        <condition_type>standard</condition_type>
+        <else_flag>false</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <is_positive>false</is_positive>
+        <name>Failure</name>
+        <order>10</order>
+        <short_description/>
+        <skip_during_generate>false</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 01:16:40</sys_created_on>
+        <sys_id>24333510db7dd300a7287bec0f9619b9</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:17:21</sys_updated_on>
+    </wf_condition>
+    <wf_condition action="INSERT_OR_UPDATE">
+        <activity display_value="Add User to Delivery Group">e423f110db7dd300a7287bec0f961993</activity>
+        <condition/>
+        <condition_default display_value="Success">15eb9c10dbb9d300a7287bec0f96194a</condition_default>
+        <condition_type>standard</condition_type>
+        <else_flag>false</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <is_positive>false</is_positive>
+        <name>Success</name>
+        <order>0</order>
+        <short_description/>
+        <skip_during_generate>false</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 01:16:40</sys_created_on>
+        <sys_id>a4333510db7dd300a7287bec0f9619b9</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:17:21</sys_updated_on>
+    </wf_condition>
+    <wf_activity action="INSERT_OR_UPDATE">
+        <activity_definition display_value="Add User to Group">0eef40557f110200b547b8038dfa9188</activity_definition>
+        <activity_definition_updated>false</activity_definition_updated>
+        <databus_lookup_id>11</databus_lookup_id>
+        <height/>
+        <input>{"DomainController":"${workflow.scratchpad.current_user.ldap_server}","UserName":"${workflow.scratchpad.current_user.user_name}","GroupName":"${workflow.scratchpad.current_group_name}"}</input>
+        <is_parent>false</is_parent>
+        <name>Add User to Group</name>
+        <new_activity_definition/>
+        <notes/>
+        <out_of_date>false</out_of_date>
+        <parent/>
+        <pinned>false</pinned>
+        <pinned_version/>
+        <stage/>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>616e63c4db39d300a7287bec0f9619e8</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:02:03</sys_updated_on>
+        <timeout>1970-01-01 00:00:00</timeout>
+        <vars/>
+        <width/>
+        <workflow_version display_value="CTX Application Provisioning">216e6b84db39d300a7287bec0f9619f8</workflow_version>
+        <x>991</x>
+        <y>174</y>
+    </wf_activity>
+    <sys_variable_value action="delete_multiple" query="document_key=616e63c4db39d300a7287bec0f9619e8"/>
+    <wf_condition action="INSERT_OR_UPDATE">
+        <activity display_value="Add User to Group">616e63c4db39d300a7287bec0f9619e8</activity>
+        <condition/>
+        <condition_default display_value="Failure">f055d8557f110200b547b8038dfa91f0</condition_default>
+        <condition_type>standard</condition_type>
+        <else_flag>true</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <is_positive>false</is_positive>
+        <name>Failure</name>
+        <order>200</order>
+        <short_description/>
+        <skip_during_generate>false</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>6d6e63c4db39d300a7287bec0f9619e8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+    </wf_condition>
+    <wf_condition action="INSERT_OR_UPDATE">
+        <activity display_value="Add User to Group">616e63c4db39d300a7287bec0f9619e8</activity>
+        <condition>activityOutput.result == "success"</condition>
+        <condition_default display_value="Success">ea151c557f110200b547b8038dfa9100</condition_default>
+        <condition_type>standard</condition_type>
+        <else_flag>false</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <is_positive>false</is_positive>
+        <name>Success</name>
+        <order>100</order>
+        <short_description/>
+        <skip_during_generate>false</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>e96e63c4db39d300a7287bec0f9619e8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+    </wf_condition>
+    <wf_activity action="INSERT_OR_UPDATE">
+        <activity_definition display_value="Begin">c7a5e32c0a0a0b3a002377c24ed8ea76</activity_definition>
+        <activity_definition_updated>false</activity_definition_updated>
+        <databus_lookup_id>1</databus_lookup_id>
+        <height/>
+        <input/>
+        <is_parent>false</is_parent>
+        <name>Begin</name>
+        <new_activity_definition/>
+        <notes/>
+        <out_of_date>false</out_of_date>
+        <parent/>
+        <pinned>false</pinned>
+        <pinned_version/>
+        <stage/>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>e96e63c4db39d300a7287bec0f9619eb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <timeout>1970-01-01 00:00:00</timeout>
+        <vars/>
+        <width>80</width>
+        <workflow_version display_value="CTX Application Provisioning">216e6b84db39d300a7287bec0f9619f8</workflow_version>
+        <x>20</x>
+        <y>20</y>
+    </wf_activity>
+    <sys_variable_value action="delete_multiple" query="document_key=e96e63c4db39d300a7287bec0f9619eb"/>
+    <wf_condition action="INSERT_OR_UPDATE">
+        <activity display_value="Begin">e96e63c4db39d300a7287bec0f9619eb</activity>
+        <condition>true</condition>
+        <condition_default/>
+        <condition_type>standard</condition_type>
+        <else_flag>false</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <is_positive>true</is_positive>
+        <name>Always</name>
+        <order>0</order>
+        <short_description/>
+        <skip_during_generate>false</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>e16e63c4db39d300a7287bec0f9619ec</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+    </wf_condition>
+    <wf_activity action="INSERT_OR_UPDATE">
+        <activity_definition display_value="Branch">a246173ac0a8016400a47421cd41e42c</activity_definition>
+        <activity_definition_updated>false</activity_definition_updated>
+        <databus_lookup_id>12</databus_lookup_id>
+        <height/>
+        <input>{}</input>
+        <is_parent>false</is_parent>
+        <name>Branch</name>
+        <new_activity_definition/>
+        <notes/>
+        <out_of_date>false</out_of_date>
+        <parent/>
+        <pinned>false</pinned>
+        <pinned_version/>
+        <stage/>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>a96e63c4db39d300a7287bec0f9619f1</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 22:11:03</sys_updated_on>
+        <timeout>1970-01-01 00:00:00</timeout>
+        <vars/>
+        <width/>
+        <workflow_version display_value="CTX Application Provisioning">216e6b84db39d300a7287bec0f9619f8</workflow_version>
+        <x>291</x>
+        <y>0</y>
+    </wf_activity>
+    <sys_variable_value action="delete_multiple" query="document_key=a96e63c4db39d300a7287bec0f9619f1"/>
+    <wf_condition action="INSERT_OR_UPDATE">
+        <activity display_value="Branch">a96e63c4db39d300a7287bec0f9619f1</activity>
+        <condition>true</condition>
+        <condition_default/>
+        <condition_type>standard</condition_type>
+        <else_flag>false</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <is_positive>true</is_positive>
+        <name>Always</name>
+        <order>0</order>
+        <short_description/>
+        <skip_during_generate>false</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>a16e63c4db39d300a7287bec0f9619f2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+    </wf_condition>
+    <wf_activity action="INSERT_OR_UPDATE">
+        <activity_definition display_value="If">98f621ca0a0a0b5900f7c291f5e45a0e</activity_definition>
+        <activity_definition_updated>false</activity_definition_updated>
+        <databus_lookup_id>16</databus_lookup_id>
+        <height/>
+        <input>{}</input>
+        <is_parent>false</is_parent>
+        <name>Check For Parse Error</name>
+        <new_activity_definition/>
+        <notes/>
+        <out_of_date>false</out_of_date>
+        <parent/>
+        <pinned>false</pinned>
+        <pinned_version/>
+        <stage/>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 00:58:51</sys_created_on>
+        <sys_id>3f1f655cdb3dd300a7287bec0f961937</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:19:28</sys_updated_on>
+        <timeout>1970-01-01 00:00:00</timeout>
+        <vars/>
+        <width/>
+        <workflow_version display_value="CTX Application Provisioning">216e6b84db39d300a7287bec0f9619f8</workflow_version>
+        <x>523</x>
+        <y>147</y>
+    </wf_activity>
+    <sys_variable_value action="delete_multiple" query="document_key=3f1f655cdb3dd300a7287bec0f961937"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>3f1f655cdb3dd300a7287bec0f961937</document_key>
+        <order>300</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 00:58:51</sys_created_on>
+        <sys_id>3f1f655cdb3dd300a7287bec0f961938</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 00:59:33</sys_updated_on>
+        <value>answer = ifScript();&#13;
+&#13;
+function ifScript() {&#13;
+	if (gs.nil(workflow.scratchpad.adGroupParseError)) {&#13;
+		return 'no';&#13;
+	}&#13;
+	return 'yes';&#13;
+}&#13;
+</value>
+        <variable display_value="">c35e50810a0a0ba96248a709b450fc32</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>3f1f655cdb3dd300a7287bec0f961937</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 00:58:51</sys_created_on>
+        <sys_id>7b1f655cdb3dd300a7287bec0f961938</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 00:58:51</sys_updated_on>
+        <value>1</value>
+        <variable display_value="">493d2c1d0a6a803f3217a75738ea3289</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>3f1f655cdb3dd300a7287bec0f961937</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 00:58:51</sys_created_on>
+        <sys_id>b31f655cdb3dd300a7287bec0f961938</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 00:58:51</sys_updated_on>
+        <value/>
+        <variable display_value="">493cba6a0a6a803f07df24b118473551</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>3f1f655cdb3dd300a7287bec0f961937</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 00:58:51</sys_created_on>
+        <sys_id>b31f655cdb3dd300a7287bec0f961938</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 00:58:51</sys_updated_on>
+        <value/>
+        <variable display_value="">493cba6a0a6a803f07df24b118473551</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>3f1f655cdb3dd300a7287bec0f961937</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 00:58:51</sys_created_on>
+        <sys_id>7b1f655cdb3dd300a7287bec0f961938</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 00:58:51</sys_updated_on>
+        <value>1</value>
+        <variable display_value="">493d2c1d0a6a803f3217a75738ea3289</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>3f1f655cdb3dd300a7287bec0f961937</document_key>
+        <order>300</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 00:58:51</sys_created_on>
+        <sys_id>3f1f655cdb3dd300a7287bec0f961938</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 00:59:33</sys_updated_on>
+        <value>answer = ifScript();&#13;
+&#13;
+function ifScript() {&#13;
+	if (gs.nil(workflow.scratchpad.adGroupParseError)) {&#13;
+		return 'no';&#13;
+	}&#13;
+	return 'yes';&#13;
+}&#13;
+</value>
+        <variable display_value="">c35e50810a0a0ba96248a709b450fc32</variable>
+    </sys_variable_value>
+    <wf_condition action="INSERT_OR_UPDATE">
+        <activity display_value="Check For Parse Error">3f1f655cdb3dd300a7287bec0f961937</activity>
+        <condition>activity.result == 'yes'</condition>
+        <condition_default display_value="Yes">c1ef63200a0a0b59005ef89bae78feb7</condition_default>
+        <condition_type>standard</condition_type>
+        <else_flag>false</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <is_positive>false</is_positive>
+        <name>Error</name>
+        <order>2</order>
+        <short_description/>
+        <skip_during_generate>false</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 00:58:51</sys_created_on>
+        <sys_id>bb1f655cdb3dd300a7287bec0f961939</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 00:58:51</sys_updated_on>
+    </wf_condition>
+    <wf_condition action="INSERT_OR_UPDATE">
+        <activity display_value="Check For Parse Error">3f1f655cdb3dd300a7287bec0f961937</activity>
+        <condition>activity.result == 'no'</condition>
+        <condition_default display_value="No">c1eff6430a0a0b59000f955abe842c94</condition_default>
+        <condition_type>standard</condition_type>
+        <else_flag>false</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <is_positive>false</is_positive>
+        <name>No Error</name>
+        <order>1</order>
+        <short_description/>
+        <skip_during_generate>true</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 00:58:51</sys_created_on>
+        <sys_id>371f655cdb3dd300a7287bec0f961939</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 00:58:51</sys_updated_on>
+    </wf_condition>
+    <wf_activity action="INSERT_OR_UPDATE">
+        <activity_definition display_value="If">98f621ca0a0a0b5900f7c291f5e45a0e</activity_definition>
+        <activity_definition_updated>false</activity_definition_updated>
+        <databus_lookup_id>10</databus_lookup_id>
+        <height/>
+        <input>{}</input>
+        <is_parent>false</is_parent>
+        <name>Check For Parse Error</name>
+        <new_activity_definition/>
+        <notes/>
+        <out_of_date>false</out_of_date>
+        <parent/>
+        <pinned>false</pinned>
+        <pinned_version/>
+        <stage/>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>a96e63c4db39d300a7287bec0f9619ee</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 22:13:35</sys_updated_on>
+        <timeout>1970-01-01 00:00:00</timeout>
+        <vars/>
+        <width/>
+        <workflow_version display_value="CTX Application Provisioning">216e6b84db39d300a7287bec0f9619f8</workflow_version>
+        <x>985</x>
+        <y>10</y>
+    </wf_activity>
+    <sys_variable_value action="delete_multiple" query="document_key=a96e63c4db39d300a7287bec0f9619ee"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>a96e63c4db39d300a7287bec0f9619ee</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>2d6e63c4db39d300a7287bec0f9619ee</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value/>
+        <variable display_value="">493cba6a0a6a803f07df24b118473551</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>a96e63c4db39d300a7287bec0f9619ee</document_key>
+        <order>300</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>a16e63c4db39d300a7287bec0f9619ef</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>&#13;
+answer = ifScript();&#13;
+&#13;
+function ifScript() {&#13;
+	if (gs.nil(workflow.scratchpad.parseError)) {&#13;
+		return 'no';&#13;
+	}&#13;
+	return 'yes';&#13;
+}&#13;
+</value>
+        <variable display_value="">c35e50810a0a0ba96248a709b450fc32</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>a96e63c4db39d300a7287bec0f9619ee</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>ed6e63c4db39d300a7287bec0f9619ee</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>1</value>
+        <variable display_value="">493d2c1d0a6a803f3217a75738ea3289</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>a96e63c4db39d300a7287bec0f9619ee</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>2d6e63c4db39d300a7287bec0f9619ee</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value/>
+        <variable display_value="">493cba6a0a6a803f07df24b118473551</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>a96e63c4db39d300a7287bec0f9619ee</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>ed6e63c4db39d300a7287bec0f9619ee</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>1</value>
+        <variable display_value="">493d2c1d0a6a803f3217a75738ea3289</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>a96e63c4db39d300a7287bec0f9619ee</document_key>
+        <order>300</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>a16e63c4db39d300a7287bec0f9619ef</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>&#13;
+answer = ifScript();&#13;
+&#13;
+function ifScript() {&#13;
+	if (gs.nil(workflow.scratchpad.parseError)) {&#13;
+		return 'no';&#13;
+	}&#13;
+	return 'yes';&#13;
+}&#13;
+</value>
+        <variable display_value="">c35e50810a0a0ba96248a709b450fc32</variable>
+    </sys_variable_value>
+    <wf_condition action="INSERT_OR_UPDATE">
+        <activity display_value="Check For Parse Error">a96e63c4db39d300a7287bec0f9619ee</activity>
+        <condition>activity.result == 'yes'</condition>
+        <condition_default display_value="Yes">c1ef63200a0a0b59005ef89bae78feb7</condition_default>
+        <condition_type>standard</condition_type>
+        <else_flag>false</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <is_positive>false</is_positive>
+        <name>Error</name>
+        <order>2</order>
+        <short_description/>
+        <skip_during_generate>false</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>e56e63c4db39d300a7287bec0f9619ef</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+    </wf_condition>
+    <wf_condition action="INSERT_OR_UPDATE">
+        <activity display_value="Check For Parse Error">a96e63c4db39d300a7287bec0f9619ee</activity>
+        <condition>activity.result == 'no'</condition>
+        <condition_default display_value="No">c1eff6430a0a0b59000f955abe842c94</condition_default>
+        <condition_type>standard</condition_type>
+        <else_flag>false</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <is_positive>false</is_positive>
+        <name>No Error</name>
+        <order>1</order>
+        <short_description/>
+        <skip_during_generate>true</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>696e63c4db39d300a7287bec0f9619ef</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+    </wf_condition>
+    <wf_activity action="INSERT_OR_UPDATE">
+        <activity_definition display_value="If">98f621ca0a0a0b5900f7c291f5e45a0e</activity_definition>
+        <activity_definition_updated>false</activity_definition_updated>
+        <databus_lookup_id>17</databus_lookup_id>
+        <height/>
+        <input>{}</input>
+        <is_parent>false</is_parent>
+        <name>Check If More Delivery Groups</name>
+        <new_activity_definition/>
+        <notes/>
+        <out_of_date>false</out_of_date>
+        <parent/>
+        <pinned>false</pinned>
+        <pinned_version/>
+        <stage/>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 01:06:03</sys_created_on>
+        <sys_id>0b30b19cdb3dd300a7287bec0f96195f</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:41:48</sys_updated_on>
+        <timeout>1970-01-01 00:00:00</timeout>
+        <vars/>
+        <width/>
+        <workflow_version display_value="CTX Application Provisioning">216e6b84db39d300a7287bec0f9619f8</workflow_version>
+        <x>1261</x>
+        <y>16</y>
+    </wf_activity>
+    <sys_variable_value action="delete_multiple" query="document_key=0b30b19cdb3dd300a7287bec0f96195f"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>0b30b19cdb3dd300a7287bec0f96195f</document_key>
+        <order>300</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 01:06:03</sys_created_on>
+        <sys_id>4dc0315cdb3dd300a7287bec0f96197c</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:41:48</sys_updated_on>
+        <value>answer = ifScript();&#13;
+&#13;
+function ifScript() {&#13;
+	var currGroup;&#13;
+	var grp;&#13;
+	var app;&#13;
+	var users="";&#13;
+	if(workflow.scratchpad.deliveryGroupUpdates.length &gt; 0){&#13;
+		grp = workflow.scratchpad.deliveryGroupUpdates.pop();&#13;
+		for(var appName in grp.applications){&#13;
+			app = appName;&#13;
+			break;&#13;
+		}&#13;
+		for(var i = 0; i &lt; grp.users.length; i++){&#13;
+			users += (i &lt; grp.users.length-1)?grp.users[i].sys_id+',':grp.users[i].sys_id;&#13;
+		}&#13;
+		currGroup = {&#13;
+			name: grp.group,&#13;
+			application: app,&#13;
+			site_id:grp.site_id,&#13;
+			users:users&#13;
+		};&#13;
+		workflow.scratchpad.currentDeliveryGroup = currGroup;&#13;
+		return 'yes';&#13;
+	}&#13;
+	return 'no';&#13;
+	&#13;
+	&#13;
+}&#13;
+</value>
+        <variable display_value="">c35e50810a0a0ba96248a709b450fc32</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>0b30b19cdb3dd300a7287bec0f96195f</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 01:06:03</sys_created_on>
+        <sys_id>89c0315cdb3dd300a7287bec0f96197c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:06:03</sys_updated_on>
+        <value>1</value>
+        <variable display_value="">493d2c1d0a6a803f3217a75738ea3289</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>0b30b19cdb3dd300a7287bec0f96195f</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 01:06:03</sys_created_on>
+        <sys_id>c1c0315cdb3dd300a7287bec0f96197c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:06:03</sys_updated_on>
+        <value/>
+        <variable display_value="">493cba6a0a6a803f07df24b118473551</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>0b30b19cdb3dd300a7287bec0f96195f</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 01:06:03</sys_created_on>
+        <sys_id>c1c0315cdb3dd300a7287bec0f96197c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:06:03</sys_updated_on>
+        <value/>
+        <variable display_value="">493cba6a0a6a803f07df24b118473551</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>0b30b19cdb3dd300a7287bec0f96195f</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 01:06:03</sys_created_on>
+        <sys_id>89c0315cdb3dd300a7287bec0f96197c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:06:03</sys_updated_on>
+        <value>1</value>
+        <variable display_value="">493d2c1d0a6a803f3217a75738ea3289</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>0b30b19cdb3dd300a7287bec0f96195f</document_key>
+        <order>300</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 01:06:03</sys_created_on>
+        <sys_id>4dc0315cdb3dd300a7287bec0f96197c</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:41:48</sys_updated_on>
+        <value>answer = ifScript();&#13;
+&#13;
+function ifScript() {&#13;
+	var currGroup;&#13;
+	var grp;&#13;
+	var app;&#13;
+	var users="";&#13;
+	if(workflow.scratchpad.deliveryGroupUpdates.length &gt; 0){&#13;
+		grp = workflow.scratchpad.deliveryGroupUpdates.pop();&#13;
+		for(var appName in grp.applications){&#13;
+			app = appName;&#13;
+			break;&#13;
+		}&#13;
+		for(var i = 0; i &lt; grp.users.length; i++){&#13;
+			users += (i &lt; grp.users.length-1)?grp.users[i].sys_id+',':grp.users[i].sys_id;&#13;
+		}&#13;
+		currGroup = {&#13;
+			name: grp.group,&#13;
+			application: app,&#13;
+			site_id:grp.site_id,&#13;
+			users:users&#13;
+		};&#13;
+		workflow.scratchpad.currentDeliveryGroup = currGroup;&#13;
+		return 'yes';&#13;
+	}&#13;
+	return 'no';&#13;
+	&#13;
+	&#13;
+}&#13;
+</value>
+        <variable display_value="">c35e50810a0a0ba96248a709b450fc32</variable>
+    </sys_variable_value>
+    <wf_condition action="INSERT_OR_UPDATE">
+        <activity display_value="Check If More Delivery Groups">0b30b19cdb3dd300a7287bec0f96195f</activity>
+        <condition>activity.result == 'no'</condition>
+        <condition_default display_value="No">c1eff6430a0a0b59000f955abe842c94</condition_default>
+        <condition_type>standard</condition_type>
+        <else_flag>false</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <is_positive>false</is_positive>
+        <name>No</name>
+        <order>200</order>
+        <short_description/>
+        <skip_during_generate>true</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 01:06:03</sys_created_on>
+        <sys_id>0dc0315cdb3dd300a7287bec0f96197d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:06:03</sys_updated_on>
+    </wf_condition>
+    <wf_condition action="INSERT_OR_UPDATE">
+        <activity display_value="Check If More Delivery Groups">0b30b19cdb3dd300a7287bec0f96195f</activity>
+        <condition>activity.result == 'yes'</condition>
+        <condition_default display_value="Yes">c1ef63200a0a0b59005ef89bae78feb7</condition_default>
+        <condition_type>standard</condition_type>
+        <else_flag>false</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <is_positive>true</is_positive>
+        <name>Yes</name>
+        <order>100</order>
+        <short_description/>
+        <skip_during_generate>false</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 01:06:03</sys_created_on>
+        <sys_id>85c0315cdb3dd300a7287bec0f96197d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:06:03</sys_updated_on>
+    </wf_condition>
+    <wf_activity action="INSERT_OR_UPDATE">
+        <activity_definition display_value="If">98f621ca0a0a0b5900f7c291f5e45a0e</activity_definition>
+        <activity_definition_updated>false</activity_definition_updated>
+        <databus_lookup_id>15</databus_lookup_id>
+        <height/>
+        <input>{}</input>
+        <is_parent>false</is_parent>
+        <name>Check If More Users</name>
+        <new_activity_definition/>
+        <notes/>
+        <out_of_date>false</out_of_date>
+        <parent/>
+        <pinned>false</pinned>
+        <pinned_version/>
+        <stage/>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>256e63c4db39d300a7287bec0f9619e9</sys_id>
+        <sys_mod_count>12</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:02:12</sys_updated_on>
+        <timeout>1970-01-01 00:00:00</timeout>
+        <vars/>
+        <width/>
+        <workflow_version display_value="CTX Application Provisioning">216e6b84db39d300a7287bec0f9619f8</workflow_version>
+        <x>756</x>
+        <y>247</y>
+    </wf_activity>
+    <sys_variable_value action="delete_multiple" query="document_key=256e63c4db39d300a7287bec0f9619e9"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>256e63c4db39d300a7287bec0f9619e9</document_key>
+        <order>300</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>2d6e63c4db39d300a7287bec0f9619e9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>answer = ifScript();&#13;
+&#13;
+&#13;
+function ifScript() {&#13;
+	&#13;
+	var checkForMoreUsers = function(){&#13;
+		if(workflow.scratchpad.userToADGroupPairs.length &gt; 0){&#13;
+			var groupUserPair = workflow.scratchpad.userToADGroupPairs.pop();&#13;
+			workflow.scratchpad.current_user = groupUserPair.user;&#13;
+			workflow.scratchpad.current_group_name = groupUserPair.group;&#13;
+			if(groupUserPair.group == "group1"){&#13;
+				workflow.scratchpad.current_group_name = "SNOW_SEC_GRP_TEST";&#13;
+			}&#13;
+			return true;&#13;
+		}&#13;
+		return false;&#13;
+	};&#13;
+&#13;
+	&#13;
+	if (checkForMoreUsers()) {&#13;
+		return 'yes';&#13;
+	}&#13;
+	return 'no';&#13;
+}&#13;
+</value>
+        <variable display_value="">c35e50810a0a0ba96248a709b450fc32</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>256e63c4db39d300a7287bec0f9619e9</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>696e63c4db39d300a7287bec0f9619e9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>1</value>
+        <variable display_value="">493d2c1d0a6a803f3217a75738ea3289</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>256e63c4db39d300a7287bec0f9619e9</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>a56e63c4db39d300a7287bec0f9619e9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value/>
+        <variable display_value="">493cba6a0a6a803f07df24b118473551</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>256e63c4db39d300a7287bec0f9619e9</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>a56e63c4db39d300a7287bec0f9619e9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value/>
+        <variable display_value="">493cba6a0a6a803f07df24b118473551</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>256e63c4db39d300a7287bec0f9619e9</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>696e63c4db39d300a7287bec0f9619e9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>1</value>
+        <variable display_value="">493d2c1d0a6a803f3217a75738ea3289</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>256e63c4db39d300a7287bec0f9619e9</document_key>
+        <order>300</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>2d6e63c4db39d300a7287bec0f9619e9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>answer = ifScript();&#13;
+&#13;
+&#13;
+function ifScript() {&#13;
+	&#13;
+	var checkForMoreUsers = function(){&#13;
+		if(workflow.scratchpad.userToADGroupPairs.length &gt; 0){&#13;
+			var groupUserPair = workflow.scratchpad.userToADGroupPairs.pop();&#13;
+			workflow.scratchpad.current_user = groupUserPair.user;&#13;
+			workflow.scratchpad.current_group_name = groupUserPair.group;&#13;
+			if(groupUserPair.group == "group1"){&#13;
+				workflow.scratchpad.current_group_name = "SNOW_SEC_GRP_TEST";&#13;
+			}&#13;
+			return true;&#13;
+		}&#13;
+		return false;&#13;
+	};&#13;
+&#13;
+	&#13;
+	if (checkForMoreUsers()) {&#13;
+		return 'yes';&#13;
+	}&#13;
+	return 'no';&#13;
+}&#13;
+</value>
+        <variable display_value="">c35e50810a0a0ba96248a709b450fc32</variable>
+    </sys_variable_value>
+    <wf_condition action="INSERT_OR_UPDATE">
+        <activity display_value="Check If More Users">256e63c4db39d300a7287bec0f9619e9</activity>
+        <condition>activity.result == 'no'</condition>
+        <condition_default display_value="No">c1eff6430a0a0b59000f955abe842c94</condition_default>
+        <condition_type>standard</condition_type>
+        <else_flag>false</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <is_positive>false</is_positive>
+        <name>No</name>
+        <order>200</order>
+        <short_description/>
+        <skip_during_generate>true</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>e16e63c4db39d300a7287bec0f9619ea</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+    </wf_condition>
+    <wf_condition action="INSERT_OR_UPDATE">
+        <activity display_value="Check If More Users">256e63c4db39d300a7287bec0f9619e9</activity>
+        <condition>activity.result == 'yes'</condition>
+        <condition_default display_value="Yes">c1ef63200a0a0b59005ef89bae78feb7</condition_default>
+        <condition_type>standard</condition_type>
+        <else_flag>false</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <is_positive>true</is_positive>
+        <name>Yes</name>
+        <order>100</order>
+        <short_description/>
+        <skip_during_generate>false</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>616e63c4db39d300a7287bec0f9619ea</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+    </wf_condition>
+    <wf_activity action="INSERT_OR_UPDATE">
+        <activity_definition display_value="End">c7a66f7d0a0a0b3a004544a6d2f14076</activity_definition>
+        <activity_definition_updated>false</activity_definition_updated>
+        <databus_lookup_id>2</databus_lookup_id>
+        <height/>
+        <input/>
+        <is_parent>false</is_parent>
+        <name>End</name>
+        <new_activity_definition/>
+        <notes/>
+        <out_of_date>false</out_of_date>
+        <parent/>
+        <pinned>false</pinned>
+        <pinned_version/>
+        <stage/>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>ed6e63c4db39d300a7287bec0f9619f0</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 00:52:46</sys_updated_on>
+        <timeout>1970-01-01 00:00:00</timeout>
+        <vars/>
+        <width>80</width>
+        <workflow_version display_value="CTX Application Provisioning">216e6b84db39d300a7287bec0f9619f8</workflow_version>
+        <x>1285</x>
+        <y>725</y>
+    </wf_activity>
+    <sys_variable_value action="delete_multiple" query="document_key=ed6e63c4db39d300a7287bec0f9619f0"/>
+    <wf_activity action="INSERT_OR_UPDATE">
+        <activity_definition display_value="Run Script">db8c65aec0a8016501d00259bc7203a4</activity_definition>
+        <activity_definition_updated>false</activity_definition_updated>
+        <databus_lookup_id>4</databus_lookup_id>
+        <height/>
+        <input>{}</input>
+        <is_parent>false</is_parent>
+        <name>Gather Delivery Group Updates</name>
+        <new_activity_definition/>
+        <notes/>
+        <out_of_date>false</out_of_date>
+        <parent/>
+        <pinned>false</pinned>
+        <pinned_version/>
+        <stage/>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>a96e63c4db39d300a7287bec0f9619ea</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:07:29</sys_updated_on>
+        <timeout>1970-01-01 00:00:00</timeout>
+        <vars/>
+        <width/>
+        <workflow_version display_value="CTX Application Provisioning">216e6b84db39d300a7287bec0f9619f8</workflow_version>
+        <x>753</x>
+        <y>1</y>
+    </wf_activity>
+    <sys_variable_value action="delete_multiple" query="document_key=a96e63c4db39d300a7287bec0f9619ea"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>a96e63c4db39d300a7287bec0f9619ea</document_key>
+        <order>1</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>ad6e63c4db39d300a7287bec0f9619ea</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:07:29</sys_updated_on>
+        <value>(function(){&#13;
+	var logger = new Logger();&#13;
+	&#13;
+	var deliveryGroupUpdatesString = current.variables.delivery_group_updates;&#13;
+	&#13;
+	workflow.scratchpad.deliveryGroupUpdates = '';&#13;
+	workflow.scratchpad.currentDeliveryGroup = '';&#13;
+	workflow.scratchpad.parseError = null;&#13;
+	try{&#13;
+		if(!gs.nil(deliveryGroupUpdatesString)){&#13;
+			workflow.scratchpad.deliveryGroupUpdates = JSON.parse(deliveryGroupUpdatesString);&#13;
+		}		&#13;
+		&#13;
+	}catch(error){&#13;
+		logger.logError('Error in Assign Application workflow',error);&#13;
+		workflow.scratchpad.parseError = error;&#13;
+	}&#13;
+	&#13;
+})();	</value>
+        <variable display_value="">c35ddef20a0a0ba96248a7090eccd518</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>a96e63c4db39d300a7287bec0f9619ea</document_key>
+        <order>1</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>ad6e63c4db39d300a7287bec0f9619ea</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:07:29</sys_updated_on>
+        <value>(function(){&#13;
+	var logger = new Logger();&#13;
+	&#13;
+	var deliveryGroupUpdatesString = current.variables.delivery_group_updates;&#13;
+	&#13;
+	workflow.scratchpad.deliveryGroupUpdates = '';&#13;
+	workflow.scratchpad.currentDeliveryGroup = '';&#13;
+	workflow.scratchpad.parseError = null;&#13;
+	try{&#13;
+		if(!gs.nil(deliveryGroupUpdatesString)){&#13;
+			workflow.scratchpad.deliveryGroupUpdates = JSON.parse(deliveryGroupUpdatesString);&#13;
+		}		&#13;
+		&#13;
+	}catch(error){&#13;
+		logger.logError('Error in Assign Application workflow',error);&#13;
+		workflow.scratchpad.parseError = error;&#13;
+	}&#13;
+	&#13;
+})();	</value>
+        <variable display_value="">c35ddef20a0a0ba96248a7090eccd518</variable>
+    </sys_variable_value>
+    <wf_condition action="INSERT_OR_UPDATE">
+        <activity display_value="Gather Delivery Group Updates">a96e63c4db39d300a7287bec0f9619ea</activity>
+        <condition>true</condition>
+        <condition_default/>
+        <condition_type>standard</condition_type>
+        <else_flag>false</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <is_positive>true</is_positive>
+        <name>Always</name>
+        <order>0</order>
+        <short_description/>
+        <skip_during_generate>false</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>656e63c4db39d300a7287bec0f9619eb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+    </wf_condition>
+    <wf_activity action="INSERT_OR_UPDATE">
+        <activity_definition display_value="Run Script">db8c65aec0a8016501d00259bc7203a4</activity_definition>
+        <activity_definition_updated>false</activity_definition_updated>
+        <databus_lookup_id>14</databus_lookup_id>
+        <height/>
+        <input>{}</input>
+        <is_parent>false</is_parent>
+        <name>Get User LDAP Information</name>
+        <new_activity_definition/>
+        <notes/>
+        <out_of_date>false</out_of_date>
+        <parent/>
+        <pinned>false</pinned>
+        <pinned_version/>
+        <stage/>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>a96e63c4db39d300a7287bec0f9619ec</sys_id>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:19:35</sys_updated_on>
+        <timeout>1970-01-01 00:00:00</timeout>
+        <vars/>
+        <width/>
+        <workflow_version display_value="CTX Application Provisioning">216e6b84db39d300a7287bec0f9619f8</workflow_version>
+        <x>522</x>
+        <y>263</y>
+    </wf_activity>
+    <sys_variable_value action="delete_multiple" query="document_key=a96e63c4db39d300a7287bec0f9619ec"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>a96e63c4db39d300a7287bec0f9619ec</document_key>
+        <order>1</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>2d6e63c4db39d300a7287bec0f9619ec</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>(function(){&#13;
+	var logger = new Logger();&#13;
+	&#13;
+	workflow.scratchpad.current_user = {};&#13;
+	workflow.scratchpad.current_group_name = '';&#13;
+	workflow.scratchpad.userToADGroupPairs = [];&#13;
+	workflow.scratchpad.adGroupParseError = null;&#13;
+	&#13;
+	var adGroupWithUsersString = current.variables.ad_group_updates;&#13;
+	var userToADGroupPairs = [];&#13;
+	&#13;
+	var userTool = new CTXUserTools();&#13;
+	&#13;
+	try{&#13;
+		var adGroupWithUsers = JSON.parse(adGroupWithUsersString);&#13;
+		var groupName;&#13;
+		var users;&#13;
+		var groupUserPair;&#13;
+		for(var i = 0; i &lt; adGroupWithUsers.length; i++){&#13;
+			groupName = adGroupWithUsers[i].group;&#13;
+			users = adGroupWithUsers[i].users;&#13;
+			&#13;
+			for(var u = 0;u &lt; users.length; u++){&#13;
+				groupUserPair = {&#13;
+					user:{&#13;
+						user_name:userTool.getUserName(users[u].sys_id),&#13;
+						ldap_server: userTool.getUserLDAPServer(users[u].sys_id)&#13;
+					},					&#13;
+					group: groupName&#13;
+				};&#13;
+				&#13;
+				userToADGroupPairs.push(groupUserPair);&#13;
+			}&#13;
+			&#13;
+		}&#13;
+		workflow.scratchpad.userToADGroupPairs = userToADGroupPairs;&#13;
+	}catch(error){&#13;
+		logger.log("Error in Application Provisioning workflow",error);&#13;
+		workflow.scratchpad.adGroupParseError = error;&#13;
+	}		&#13;
+	&#13;
+})();</value>
+        <variable display_value="">c35ddef20a0a0ba96248a7090eccd518</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>a96e63c4db39d300a7287bec0f9619ec</document_key>
+        <order>1</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>2d6e63c4db39d300a7287bec0f9619ec</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>(function(){&#13;
+	var logger = new Logger();&#13;
+	&#13;
+	workflow.scratchpad.current_user = {};&#13;
+	workflow.scratchpad.current_group_name = '';&#13;
+	workflow.scratchpad.userToADGroupPairs = [];&#13;
+	workflow.scratchpad.adGroupParseError = null;&#13;
+	&#13;
+	var adGroupWithUsersString = current.variables.ad_group_updates;&#13;
+	var userToADGroupPairs = [];&#13;
+	&#13;
+	var userTool = new CTXUserTools();&#13;
+	&#13;
+	try{&#13;
+		var adGroupWithUsers = JSON.parse(adGroupWithUsersString);&#13;
+		var groupName;&#13;
+		var users;&#13;
+		var groupUserPair;&#13;
+		for(var i = 0; i &lt; adGroupWithUsers.length; i++){&#13;
+			groupName = adGroupWithUsers[i].group;&#13;
+			users = adGroupWithUsers[i].users;&#13;
+			&#13;
+			for(var u = 0;u &lt; users.length; u++){&#13;
+				groupUserPair = {&#13;
+					user:{&#13;
+						user_name:userTool.getUserName(users[u].sys_id),&#13;
+						ldap_server: userTool.getUserLDAPServer(users[u].sys_id)&#13;
+					},					&#13;
+					group: groupName&#13;
+				};&#13;
+				&#13;
+				userToADGroupPairs.push(groupUserPair);&#13;
+			}&#13;
+			&#13;
+		}&#13;
+		workflow.scratchpad.userToADGroupPairs = userToADGroupPairs;&#13;
+	}catch(error){&#13;
+		logger.log("Error in Application Provisioning workflow",error);&#13;
+		workflow.scratchpad.adGroupParseError = error;&#13;
+	}		&#13;
+	&#13;
+})();</value>
+        <variable display_value="">c35ddef20a0a0ba96248a7090eccd518</variable>
+    </sys_variable_value>
+    <wf_condition action="INSERT_OR_UPDATE">
+        <activity display_value="Get User LDAP Information">a96e63c4db39d300a7287bec0f9619ec</activity>
+        <condition>true</condition>
+        <condition_default/>
+        <condition_type>standard</condition_type>
+        <else_flag>false</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <is_positive>true</is_positive>
+        <name>Always</name>
+        <order>0</order>
+        <short_description/>
+        <skip_during_generate>false</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>616e63c4db39d300a7287bec0f9619ed</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+    </wf_condition>
+    <wf_activity action="INSERT_OR_UPDATE">
+        <activity_definition display_value="If">98f621ca0a0a0b5900f7c291f5e45a0e</activity_definition>
+        <activity_definition_updated>false</activity_definition_updated>
+        <databus_lookup_id>7</databus_lookup_id>
+        <height/>
+        <input>{}</input>
+        <is_parent>false</is_parent>
+        <name>Has AD Group</name>
+        <new_activity_definition/>
+        <notes/>
+        <out_of_date>false</out_of_date>
+        <parent/>
+        <pinned>false</pinned>
+        <pinned_version/>
+        <stage/>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>ed6e63c4db39d300a7287bec0f9619e5</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:19:47</sys_updated_on>
+        <timeout>1970-01-01 00:00:00</timeout>
+        <vars/>
+        <width/>
+        <workflow_version display_value="CTX Application Provisioning">216e6b84db39d300a7287bec0f9619f8</workflow_version>
+        <x>259</x>
+        <y>296</y>
+    </wf_activity>
+    <sys_variable_value action="delete_multiple" query="document_key=ed6e63c4db39d300a7287bec0f9619e5"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>ed6e63c4db39d300a7287bec0f9619e5</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>2d6e63c4db39d300a7287bec0f9619e6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>0</value>
+        <variable display_value="">493d2c1d0a6a803f3217a75738ea3289</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>ed6e63c4db39d300a7287bec0f9619e5</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>656e63c4db39d300a7287bec0f9619e6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>variables.e6fc491edba15f00a7287bec0f961924ISNOTEMPTY^variables.e6fc491edba15f00a7287bec0f961924!=[]^EQ</value>
+        <variable display_value="">493cba6a0a6a803f07df24b118473551</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>ed6e63c4db39d300a7287bec0f9619e5</document_key>
+        <order>300</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>ed6e63c4db39d300a7287bec0f9619e6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>// This script needs to set answer to 'yes' or 'no' to indicate the state of the activity.&#13;
+//&#13;
+// For example,&#13;
+//&#13;
+//   answer = ifScript();&#13;
+//&#13;
+//   function ifScript() {&#13;
+//      if (condition is true) {&#13;
+//         return 'yes';&#13;
+//      }&#13;
+//      return 'no';&#13;
+//   }&#13;
+</value>
+        <variable display_value="">c35e50810a0a0ba96248a709b450fc32</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>ed6e63c4db39d300a7287bec0f9619e5</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>656e63c4db39d300a7287bec0f9619e6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>variables.e6fc491edba15f00a7287bec0f961924ISNOTEMPTY^variables.e6fc491edba15f00a7287bec0f961924!=[]^EQ</value>
+        <variable display_value="">493cba6a0a6a803f07df24b118473551</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>ed6e63c4db39d300a7287bec0f9619e5</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>2d6e63c4db39d300a7287bec0f9619e6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>0</value>
+        <variable display_value="">493d2c1d0a6a803f3217a75738ea3289</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>ed6e63c4db39d300a7287bec0f9619e5</document_key>
+        <order>300</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>ed6e63c4db39d300a7287bec0f9619e6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>// This script needs to set answer to 'yes' or 'no' to indicate the state of the activity.&#13;
+//&#13;
+// For example,&#13;
+//&#13;
+//   answer = ifScript();&#13;
+//&#13;
+//   function ifScript() {&#13;
+//      if (condition is true) {&#13;
+//         return 'yes';&#13;
+//      }&#13;
+//      return 'no';&#13;
+//   }&#13;
+</value>
+        <variable display_value="">c35e50810a0a0ba96248a709b450fc32</variable>
+    </sys_variable_value>
+    <wf_condition action="INSERT_OR_UPDATE">
+        <activity display_value="Has AD Group">ed6e63c4db39d300a7287bec0f9619e5</activity>
+        <condition>activity.result == 'no'</condition>
+        <condition_default display_value="No">c1eff6430a0a0b59000f955abe842c94</condition_default>
+        <condition_type>standard</condition_type>
+        <else_flag>false</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <is_positive>false</is_positive>
+        <name>No</name>
+        <order>200</order>
+        <short_description/>
+        <skip_during_generate>true</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>a56e63c4db39d300a7287bec0f9619e7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+    </wf_condition>
+    <wf_condition action="INSERT_OR_UPDATE">
+        <activity display_value="Has AD Group">ed6e63c4db39d300a7287bec0f9619e5</activity>
+        <condition>activity.result == 'yes'</condition>
+        <condition_default display_value="Yes">c1ef63200a0a0b59005ef89bae78feb7</condition_default>
+        <condition_type>standard</condition_type>
+        <else_flag>false</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <is_positive>true</is_positive>
+        <name>Yes</name>
+        <order>100</order>
+        <short_description/>
+        <skip_during_generate>false</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>296e63c4db39d300a7287bec0f9619e7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+    </wf_condition>
+    <wf_activity action="INSERT_OR_UPDATE">
+        <activity_definition display_value="If">98f621ca0a0a0b5900f7c291f5e45a0e</activity_definition>
+        <activity_definition_updated>false</activity_definition_updated>
+        <databus_lookup_id>6</databus_lookup_id>
+        <height/>
+        <input>{}</input>
+        <is_parent>false</is_parent>
+        <name>Has Delivery Groups</name>
+        <new_activity_definition/>
+        <notes/>
+        <out_of_date>false</out_of_date>
+        <parent/>
+        <pinned>false</pinned>
+        <pinned_version/>
+        <stage/>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>656e63c4db39d300a7287bec0f9619f4</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 22:13:26</sys_updated_on>
+        <timeout>1970-01-01 00:00:00</timeout>
+        <vars/>
+        <width/>
+        <workflow_version display_value="CTX Application Provisioning">216e6b84db39d300a7287bec0f9619f8</workflow_version>
+        <x>524</x>
+        <y>42</y>
+    </wf_activity>
+    <sys_variable_value action="delete_multiple" query="document_key=656e63c4db39d300a7287bec0f9619f4"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>656e63c4db39d300a7287bec0f9619f4</document_key>
+        <order>300</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>6d6e63c4db39d300a7287bec0f9619f4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>// This script needs to set answer to 'yes' or 'no' to indicate the state of the activity.&#13;
+//&#13;
+// For example,&#13;
+//&#13;
+//   answer = ifScript();&#13;
+//&#13;
+//   function ifScript() {&#13;
+//      if (condition is true) {&#13;
+//         return 'yes';&#13;
+//      }&#13;
+//      return 'no';&#13;
+//   }&#13;
+</value>
+        <variable display_value="">c35e50810a0a0ba96248a709b450fc32</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>656e63c4db39d300a7287bec0f9619f4</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>a96e63c4db39d300a7287bec0f9619f4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>0</value>
+        <variable display_value="">493d2c1d0a6a803f3217a75738ea3289</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>656e63c4db39d300a7287bec0f9619f4</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>e56e63c4db39d300a7287bec0f9619f4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>variables.f91d491edba15f00a7287bec0f961944ISNOTEMPTY^variables.f91d491edba15f00a7287bec0f961944!=[]^EQ</value>
+        <variable display_value="">493cba6a0a6a803f07df24b118473551</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>656e63c4db39d300a7287bec0f9619f4</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>e56e63c4db39d300a7287bec0f9619f4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>variables.f91d491edba15f00a7287bec0f961944ISNOTEMPTY^variables.f91d491edba15f00a7287bec0f961944!=[]^EQ</value>
+        <variable display_value="">493cba6a0a6a803f07df24b118473551</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>656e63c4db39d300a7287bec0f9619f4</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>a96e63c4db39d300a7287bec0f9619f4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>0</value>
+        <variable display_value="">493d2c1d0a6a803f3217a75738ea3289</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>656e63c4db39d300a7287bec0f9619f4</document_key>
+        <order>300</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>6d6e63c4db39d300a7287bec0f9619f4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>// This script needs to set answer to 'yes' or 'no' to indicate the state of the activity.&#13;
+//&#13;
+// For example,&#13;
+//&#13;
+//   answer = ifScript();&#13;
+//&#13;
+//   function ifScript() {&#13;
+//      if (condition is true) {&#13;
+//         return 'yes';&#13;
+//      }&#13;
+//      return 'no';&#13;
+//   }&#13;
+</value>
+        <variable display_value="">c35e50810a0a0ba96248a709b450fc32</variable>
+    </sys_variable_value>
+    <wf_condition action="INSERT_OR_UPDATE">
+        <activity display_value="Has Delivery Groups">656e63c4db39d300a7287bec0f9619f4</activity>
+        <condition>activity.result == 'no'</condition>
+        <condition_default display_value="No">c1eff6430a0a0b59000f955abe842c94</condition_default>
+        <condition_type>standard</condition_type>
+        <else_flag>false</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <is_positive>false</is_positive>
+        <name>No</name>
+        <order>200</order>
+        <short_description/>
+        <skip_during_generate>true</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>a16e63c4db39d300a7287bec0f9619f5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+    </wf_condition>
+    <wf_condition action="INSERT_OR_UPDATE">
+        <activity display_value="Has Delivery Groups">656e63c4db39d300a7287bec0f9619f4</activity>
+        <condition>activity.result == 'yes'</condition>
+        <condition_default display_value="Yes">c1ef63200a0a0b59005ef89bae78feb7</condition_default>
+        <condition_type>standard</condition_type>
+        <else_flag>false</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <is_positive>true</is_positive>
+        <name>Yes</name>
+        <order>100</order>
+        <short_description/>
+        <skip_during_generate>false</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>256e63c4db39d300a7287bec0f9619f5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+    </wf_condition>
+    <wf_activity action="INSERT_OR_UPDATE">
+        <activity_definition display_value="Join">7c9a2ba9c0a801650021ada408de0ebd</activity_definition>
+        <activity_definition_updated>false</activity_definition_updated>
+        <databus_lookup_id>13</databus_lookup_id>
+        <height/>
+        <input>{}</input>
+        <is_parent>false</is_parent>
+        <name>Join</name>
+        <new_activity_definition/>
+        <notes/>
+        <out_of_date>false</out_of_date>
+        <parent/>
+        <pinned>false</pinned>
+        <pinned_version/>
+        <stage/>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>ed6e63c4db39d300a7287bec0f9619ef</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:01:22</sys_updated_on>
+        <timeout>1970-01-01 00:00:00</timeout>
+        <vars/>
+        <width/>
+        <workflow_version display_value="CTX Application Provisioning">216e6b84db39d300a7287bec0f9619f8</workflow_version>
+        <x>1127</x>
+        <y>434</y>
+    </wf_activity>
+    <sys_variable_value action="delete_multiple" query="document_key=ed6e63c4db39d300a7287bec0f9619ef"/>
+    <wf_condition action="INSERT_OR_UPDATE">
+        <activity display_value="Join">ed6e63c4db39d300a7287bec0f9619ef</activity>
+        <condition>activity.result == 'complete'</condition>
+        <condition_default display_value="Complete">6dd6ac3e0a6a803f16b5e594347ea01c</condition_default>
+        <condition_type>standard</condition_type>
+        <else_flag>false</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <is_positive>true</is_positive>
+        <name>Complete</name>
+        <order>1</order>
+        <short_description>All predecessor activities have transitioned to this activity</short_description>
+        <skip_during_generate>false</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>696e63c4db39d300a7287bec0f9619f0</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+    </wf_condition>
+    <wf_condition action="INSERT_OR_UPDATE">
+        <activity display_value="Join">ed6e63c4db39d300a7287bec0f9619ef</activity>
+        <condition>activity.result == 'incomplete'</condition>
+        <condition_default display_value="Incomplete">6dd49ad30a6a803f03a5a18c4085b1c7</condition_default>
+        <condition_type>standard</condition_type>
+        <else_flag>false</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <is_positive>false</is_positive>
+        <name>Incomplete</name>
+        <order>2</order>
+        <short_description>At least one predecessor activities did not transition to this activity</short_description>
+        <skip_during_generate>true</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>e56e63c4db39d300a7287bec0f9619f0</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+    </wf_condition>
+    <wf_activity action="INSERT_OR_UPDATE">
+        <activity_definition display_value="Set Values">1ca8d7cf0a0a0b265e9a000c2c08248c</activity_definition>
+        <activity_definition_updated>false</activity_definition_updated>
+        <databus_lookup_id>9</databus_lookup_id>
+        <height/>
+        <input>{}</input>
+        <is_parent>false</is_parent>
+        <name>Set Complete</name>
+        <new_activity_definition/>
+        <notes/>
+        <out_of_date>false</out_of_date>
+        <parent/>
+        <pinned>false</pinned>
+        <pinned_version/>
+        <stage/>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>696e63c4db39d300a7287bec0f9619f2</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 00:53:50</sys_updated_on>
+        <timeout>1970-01-01 00:00:00</timeout>
+        <vars/>
+        <width/>
+        <workflow_version display_value="CTX Application Provisioning">216e6b84db39d300a7287bec0f9619f8</workflow_version>
+        <x>1133</x>
+        <y>547</y>
+    </wf_activity>
+    <sys_variable_value action="delete_multiple" query="document_key=696e63c4db39d300a7287bec0f9619f2"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>696e63c4db39d300a7287bec0f9619f2</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>e96e63c4db39d300a7287bec0f9619f2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>state=3^EQ</value>
+        <variable display_value="">1cb38c8f0a0a0b266fb48e08de35f507</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>696e63c4db39d300a7287bec0f9619f2</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>e96e63c4db39d300a7287bec0f9619f2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>state=3^EQ</value>
+        <variable display_value="">1cb38c8f0a0a0b266fb48e08de35f507</variable>
+    </sys_variable_value>
+    <wf_condition action="INSERT_OR_UPDATE">
+        <activity display_value="Set Complete">696e63c4db39d300a7287bec0f9619f2</activity>
+        <condition>true</condition>
+        <condition_default/>
+        <condition_type>standard</condition_type>
+        <else_flag>false</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <is_positive>true</is_positive>
+        <name>Always</name>
+        <order>0</order>
+        <short_description/>
+        <skip_during_generate>false</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>216e63c4db39d300a7287bec0f9619f3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+    </wf_condition>
+    <wf_activity action="INSERT_OR_UPDATE">
+        <activity_definition display_value="Set Values">1ca8d7cf0a0a0b265e9a000c2c08248c</activity_definition>
+        <activity_definition_updated>false</activity_definition_updated>
+        <databus_lookup_id>3</databus_lookup_id>
+        <height/>
+        <input>{}</input>
+        <is_parent>false</is_parent>
+        <name>Set In Progess</name>
+        <new_activity_definition/>
+        <notes/>
+        <out_of_date>false</out_of_date>
+        <parent/>
+        <pinned>false</pinned>
+        <pinned_version/>
+        <stage display_value="Fulfillment">216e6b84db39d300a7287bec0f9619fa</stage>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>296e63c4db39d300a7287bec0f9619ed</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <timeout>1970-01-01 00:00:00</timeout>
+        <vars/>
+        <width/>
+        <workflow_version display_value="CTX Application Provisioning">216e6b84db39d300a7287bec0f9619f8</workflow_version>
+        <x>18</x>
+        <y>172</y>
+    </wf_activity>
+    <sys_variable_value action="delete_multiple" query="document_key=296e63c4db39d300a7287bec0f9619ed"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>296e63c4db39d300a7287bec0f9619ed</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>2d6e63c4db39d300a7287bec0f9619ed</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>state=1^EQ</value>
+        <variable display_value="">1cb38c8f0a0a0b266fb48e08de35f507</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>296e63c4db39d300a7287bec0f9619ed</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>2d6e63c4db39d300a7287bec0f9619ed</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>state=1^EQ</value>
+        <variable display_value="">1cb38c8f0a0a0b266fb48e08de35f507</variable>
+    </sys_variable_value>
+    <wf_condition action="INSERT_OR_UPDATE">
+        <activity display_value="Set In Progess">296e63c4db39d300a7287bec0f9619ed</activity>
+        <condition>true</condition>
+        <condition_default/>
+        <condition_type>standard</condition_type>
+        <else_flag>false</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <is_positive>true</is_positive>
+        <name>Always</name>
+        <order>0</order>
+        <short_description/>
+        <skip_during_generate>false</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>e16e63c4db39d300a7287bec0f9619ee</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+    </wf_condition>
+    <wf_activity action="INSERT_OR_UPDATE">
+        <activity_definition display_value="Wait for condition">d93a02ae0a0a0aa30077abad3fdac035</activity_definition>
+        <activity_definition_updated>false</activity_definition_updated>
+        <databus_lookup_id>5</databus_lookup_id>
+        <height/>
+        <input>{}</input>
+        <is_parent>false</is_parent>
+        <name>Wait for Work in Progess</name>
+        <new_activity_definition/>
+        <notes/>
+        <out_of_date>false</out_of_date>
+        <parent/>
+        <pinned>false</pinned>
+        <pinned_version/>
+        <stage/>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>e96e63c4db39d300a7287bec0f9619f5</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 22:10:31</sys_updated_on>
+        <timeout>1970-01-01 00:00:00</timeout>
+        <vars/>
+        <width/>
+        <workflow_version display_value="CTX Application Provisioning">216e6b84db39d300a7287bec0f9619f8</workflow_version>
+        <x>146</x>
+        <y>77</y>
+    </wf_activity>
+    <sys_variable_value action="delete_multiple" query="document_key=e96e63c4db39d300a7287bec0f9619f5"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>e96e63c4db39d300a7287bec0f9619f5</document_key>
+        <order>1</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>a16e63c4db39d300a7287bec0f9619f6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>state=2^EQ</value>
+        <variable display_value="">c35dc4cd0a0a0ba96248a70990c1ac54</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>e96e63c4db39d300a7287bec0f9619f5</document_key>
+        <order>2</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>ed6e63c4db39d300a7287bec0f9619f5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>// Set the variable 'answer' to true or false to indicate if the condition has been met or not.&#13;
+answer = true;&#13;
+</value>
+        <variable display_value="">c35debce0a0a0ba96248a709440cf31a</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>e96e63c4db39d300a7287bec0f9619f5</document_key>
+        <order>1</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>a16e63c4db39d300a7287bec0f9619f6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>state=2^EQ</value>
+        <variable display_value="">c35dc4cd0a0a0ba96248a70990c1ac54</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>e96e63c4db39d300a7287bec0f9619f5</document_key>
+        <order>2</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>ed6e63c4db39d300a7287bec0f9619f5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <value>// Set the variable 'answer' to true or false to indicate if the condition has been met or not.&#13;
+answer = true;&#13;
+</value>
+        <variable display_value="">c35debce0a0a0ba96248a709440cf31a</variable>
+    </sys_variable_value>
+    <wf_condition action="INSERT_OR_UPDATE">
+        <activity display_value="Wait for Work in Progess">e96e63c4db39d300a7287bec0f9619f5</activity>
+        <condition>true</condition>
+        <condition_default/>
+        <condition_type>standard</condition_type>
+        <else_flag>false</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <is_positive>true</is_positive>
+        <name>Always</name>
+        <order>0</order>
+        <short_description/>
+        <skip_during_generate>false</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>696e63c4db39d300a7287bec0f9619f6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+    </wf_condition>
+    <wf_transition action="INSERT_OR_UPDATE">
+        <condition display_value="Complete">696e63c4db39d300a7287bec0f9619f0</condition>
+        <from display_value="Join">ed6e63c4db39d300a7287bec0f9619ef</from>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 00:53:58</sys_created_on>
+        <sys_id>0c0ea91cdb3dd300a7287bec0f9619df</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 00:53:58</sys_updated_on>
+        <to display_value="Set Complete">696e63c4db39d300a7287bec0f9619f2</to>
+    </wf_transition>
+    <wf_transition action="INSERT_OR_UPDATE">
+        <condition display_value="No">0dc0315cdb3dd300a7287bec0f96197d</condition>
+        <from display_value="Check If More Delivery Groups">0b30b19cdb3dd300a7287bec0f96195f</from>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 01:17:52</sys_created_on>
+        <sys_id>1273b510db7dd300a7287bec0f9619b6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:17:52</sys_updated_on>
+        <to display_value="Join">ed6e63c4db39d300a7287bec0f9619ef</to>
+    </wf_transition>
+    <wf_transition action="INSERT_OR_UPDATE">
+        <condition display_value="No Error">371f655cdb3dd300a7287bec0f961939</condition>
+        <from display_value="Check For Parse Error">3f1f655cdb3dd300a7287bec0f961937</from>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 01:00:12</sys_created_on>
+        <sys_id>1b6f215cdb3dd300a7287bec0f961978</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:00:12</sys_updated_on>
+        <to display_value="Check If More Users">256e63c4db39d300a7287bec0f9619e9</to>
+    </wf_transition>
+    <wf_transition action="INSERT_OR_UPDATE">
+        <condition display_value="Yes">85c0315cdb3dd300a7287bec0f96197d</condition>
+        <from display_value="Check If More Delivery Groups">0b30b19cdb3dd300a7287bec0f96195f</from>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 01:18:02</sys_created_on>
+        <sys_id>20837510db7dd300a7287bec0f96199e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:18:02</sys_updated_on>
+        <to display_value="Add User to Delivery Group">e423f110db7dd300a7287bec0f961993</to>
+    </wf_transition>
+    <wf_transition action="INSERT_OR_UPDATE">
+        <condition display_value="Error">bb1f655cdb3dd300a7287bec0f961939</condition>
+        <from display_value="Check For Parse Error">3f1f655cdb3dd300a7287bec0f961937</from>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 01:01:52</sys_created_on>
+        <sys_id>33cf619cdb3dd300a7287bec0f96191d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:01:52</sys_updated_on>
+        <to display_value="Join">ed6e63c4db39d300a7287bec0f9619ef</to>
+    </wf_transition>
+    <wf_transition action="INSERT_OR_UPDATE">
+        <condition display_value="No Error">696e63c4db39d300a7287bec0f9619ef</condition>
+        <from display_value="Check For Parse Error">a96e63c4db39d300a7287bec0f9619ee</from>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 01:17:55</sys_created_on>
+        <sys_id>3673f110db7dd300a7287bec0f96193e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:17:55</sys_updated_on>
+        <to display_value="Check If More Delivery Groups">0b30b19cdb3dd300a7287bec0f96195f</to>
+    </wf_transition>
+    <wf_transition action="INSERT_OR_UPDATE">
+        <condition display_value="Error">e56e63c4db39d300a7287bec0f9619ef</condition>
+        <from display_value="Check For Parse Error">a96e63c4db39d300a7287bec0f9619ee</from>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 01:02:19</sys_created_on>
+        <sys_id>5eef2d5cdb3dd300a7287bec0f96196c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:02:19</sys_updated_on>
+        <to display_value="Join">ed6e63c4db39d300a7287bec0f9619ef</to>
+    </wf_transition>
+    <wf_transition action="INSERT_OR_UPDATE">
+        <condition display_value="Always">a16e63c4db39d300a7287bec0f9619f2</condition>
+        <from display_value="Branch">a96e63c4db39d300a7287bec0f9619f1</from>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>656e63c4db39d300a7287bec0f9619fa</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <to display_value="Has Delivery Groups">656e63c4db39d300a7287bec0f9619f4</to>
+    </wf_transition>
+    <wf_transition action="INSERT_OR_UPDATE">
+        <condition display_value="Yes">296e63c4db39d300a7287bec0f9619e7</condition>
+        <from display_value="Has AD Group">ed6e63c4db39d300a7287bec0f9619e5</from>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>696e63c4db39d300a7287bec0f9619fb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <to display_value="Get User LDAP Information">a96e63c4db39d300a7287bec0f9619ec</to>
+    </wf_transition>
+    <wf_transition action="INSERT_OR_UPDATE">
+        <condition display_value="No">e16e63c4db39d300a7287bec0f9619ea</condition>
+        <from display_value="Check If More Users">256e63c4db39d300a7287bec0f9619e9</from>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>6d6e63c4db39d300a7287bec0f9619fa</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <to display_value="Join">ed6e63c4db39d300a7287bec0f9619ef</to>
+    </wf_transition>
+    <wf_transition action="INSERT_OR_UPDATE">
+        <condition display_value="Failure">6d6e63c4db39d300a7287bec0f9619e8</condition>
+        <from display_value="Add User to Group">616e63c4db39d300a7287bec0f9619e8</from>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>6d6e63c4db39d300a7287bec0f9619fb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <to display_value="Check If More Users">256e63c4db39d300a7287bec0f9619e9</to>
+    </wf_transition>
+    <wf_transition action="INSERT_OR_UPDATE">
+        <condition display_value="Always">216e63c4db39d300a7287bec0f9619f3</condition>
+        <from display_value="Set Complete">696e63c4db39d300a7287bec0f9619f2</from>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 01:01:26</sys_created_on>
+        <sys_id>6dbfe95cdb3dd300a7287bec0f961935</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:01:26</sys_updated_on>
+        <to display_value="End">ed6e63c4db39d300a7287bec0f9619f0</to>
+    </wf_transition>
+    <wf_transition action="INSERT_OR_UPDATE">
+        <condition display_value="Always">616e63c4db39d300a7287bec0f9619ed</condition>
+        <from display_value="Get User LDAP Information">a96e63c4db39d300a7287bec0f9619ec</from>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 01:00:10</sys_created_on>
+        <sys_id>7a6f215cdb3dd300a7287bec0f96196c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:00:10</sys_updated_on>
+        <to display_value="Check For Parse Error">3f1f655cdb3dd300a7287bec0f961937</to>
+    </wf_transition>
+    <wf_transition action="INSERT_OR_UPDATE">
+        <condition display_value="Success">a4333510db7dd300a7287bec0f9619b9</condition>
+        <from display_value="Add User to Delivery Group">e423f110db7dd300a7287bec0f961993</from>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 01:17:59</sys_created_on>
+        <sys_id>7f73b510db7dd300a7287bec0f96195c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:17:59</sys_updated_on>
+        <to display_value="Check If More Delivery Groups">0b30b19cdb3dd300a7287bec0f96195f</to>
+    </wf_transition>
+    <wf_transition action="INSERT_OR_UPDATE">
+        <condition display_value="No">a16e63c4db39d300a7287bec0f9619f5</condition>
+        <from display_value="Has Delivery Groups">656e63c4db39d300a7287bec0f9619f4</from>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 00:53:39</sys_created_on>
+        <sys_id>93eda91cdb3dd300a7287bec0f9619df</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 00:53:39</sys_updated_on>
+        <to display_value="Join">ed6e63c4db39d300a7287bec0f9619ef</to>
+    </wf_transition>
+    <wf_transition action="INSERT_OR_UPDATE">
+        <condition display_value="Incomplete">e56e63c4db39d300a7287bec0f9619f0</condition>
+        <from display_value="Join">ed6e63c4db39d300a7287bec0f9619ef</from>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 00:53:59</sys_created_on>
+        <sys_id>940ee91cdb3dd300a7287bec0f961904</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 00:53:59</sys_updated_on>
+        <to display_value="Set Complete">696e63c4db39d300a7287bec0f9619f2</to>
+    </wf_transition>
+    <wf_transition action="INSERT_OR_UPDATE">
+        <condition display_value="Always">e16e63c4db39d300a7287bec0f9619ee</condition>
+        <from display_value="Set In Progess">296e63c4db39d300a7287bec0f9619ed</from>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>a56e63c4db39d300a7287bec0f9619f8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <to display_value="Wait for Work in Progess">e96e63c4db39d300a7287bec0f9619f5</to>
+    </wf_transition>
+    <wf_transition action="INSERT_OR_UPDATE">
+        <condition display_value="Always">e16e63c4db39d300a7287bec0f9619ec</condition>
+        <from display_value="Begin">e96e63c4db39d300a7287bec0f9619eb</from>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>a96e63c4db39d300a7287bec0f9619f8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <to display_value="Set In Progess">296e63c4db39d300a7287bec0f9619ed</to>
+    </wf_transition>
+    <wf_transition action="INSERT_OR_UPDATE">
+        <condition display_value="Failure">24333510db7dd300a7287bec0f9619b9</condition>
+        <from display_value="Add User to Delivery Group">e423f110db7dd300a7287bec0f961993</from>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-27 01:18:18</sys_created_on>
+        <sys_id>ac93fd9cdb3dd300a7287bec0f961931</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-27 01:18:18</sys_updated_on>
+        <to display_value="Check If More Delivery Groups">0b30b19cdb3dd300a7287bec0f96195f</to>
+    </wf_transition>
+    <wf_transition action="INSERT_OR_UPDATE">
+        <condition display_value="Always">656e63c4db39d300a7287bec0f9619eb</condition>
+        <from display_value="Gather Delivery Group Updates">a96e63c4db39d300a7287bec0f9619ea</from>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>ad6e63c4db39d300a7287bec0f9619f8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <to display_value="Check For Parse Error">a96e63c4db39d300a7287bec0f9619ee</to>
+    </wf_transition>
+    <wf_transition action="INSERT_OR_UPDATE">
+        <condition display_value="Yes">256e63c4db39d300a7287bec0f9619f5</condition>
+        <from display_value="Has Delivery Groups">656e63c4db39d300a7287bec0f9619f4</from>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>e16e63c4db39d300a7287bec0f9619f9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <to display_value="Gather Delivery Group Updates">a96e63c4db39d300a7287bec0f9619ea</to>
+    </wf_transition>
+    <wf_transition action="INSERT_OR_UPDATE">
+        <condition display_value="Always">a16e63c4db39d300a7287bec0f9619f2</condition>
+        <from display_value="Branch">a96e63c4db39d300a7287bec0f9619f1</from>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>e16e63c4db39d300a7287bec0f9619fa</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <to display_value="Has AD Group">ed6e63c4db39d300a7287bec0f9619e5</to>
+    </wf_transition>
+    <wf_transition action="INSERT_OR_UPDATE">
+        <condition display_value="Always">696e63c4db39d300a7287bec0f9619f6</condition>
+        <from display_value="Wait for Work in Progess">e96e63c4db39d300a7287bec0f9619f5</from>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>e16e63c4db39d300a7287bec0f9619fb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <to display_value="Branch">a96e63c4db39d300a7287bec0f9619f1</to>
+    </wf_transition>
+    <wf_transition action="INSERT_OR_UPDATE">
+        <condition display_value="No">a56e63c4db39d300a7287bec0f9619e7</condition>
+        <from display_value="Has AD Group">ed6e63c4db39d300a7287bec0f9619e5</from>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>e56e63c4db39d300a7287bec0f9619fb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <to display_value="Join">ed6e63c4db39d300a7287bec0f9619ef</to>
+    </wf_transition>
+    <wf_transition action="INSERT_OR_UPDATE">
+        <condition display_value="Yes">616e63c4db39d300a7287bec0f9619ea</condition>
+        <from display_value="Check If More Users">256e63c4db39d300a7287bec0f9619e9</from>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>ed6e63c4db39d300a7287bec0f9619fa</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <to display_value="Add User to Group">616e63c4db39d300a7287bec0f9619e8</to>
+    </wf_transition>
+    <wf_transition action="INSERT_OR_UPDATE">
+        <condition display_value="Success">e96e63c4db39d300a7287bec0f9619e8</condition>
+        <from display_value="Add User to Group">616e63c4db39d300a7287bec0f9619e8</from>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>ed6e63c4db39d300a7287bec0f9619fb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <to display_value="Check If More Users">256e63c4db39d300a7287bec0f9619e9</to>
+    </wf_transition>
+    <wf_estimated_runtime_config action="INSERT_OR_UPDATE">
+        <estimated_run_time/>
+        <no_of_data_points>1</no_of_data_points>
+        <percentage_threshold_ert>20</percentage_threshold_ert>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-26 15:36:28</sys_created_on>
+        <sys_id>e16e6b84db39d300a7287bec0f9619f8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-04-26 15:36:28</sys_updated_on>
+        <workflow_version display_value="CTX Application Provisioning">216e6b84db39d300a7287bec0f9619f8</workflow_version>
+    </wf_estimated_runtime_config>
+    <wf_workflow_version action="update_multiple" query="workflow=bdc2bee7dba917006d3c72fc0f961961^sys_id!=216e6b84db39d300a7287bec0f9619f8">
+        <published>false</published>
+    </wf_workflow_version>
+</record_update>
