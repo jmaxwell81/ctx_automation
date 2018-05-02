@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_wcs_ctrx_auto_sv.CTXRequestUtil</api_name>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>CTXRequestUtil</name>
+        <script><![CDATA[var CTXRequestUtil = Class.create();
+CTXRequestUtil.prototype = {
+    initialize: function() {
+    },
+	
+	_getVariables:function(ritm_sys_id){
+		var logger = new Logger();
+		var userTool = new CTXUserTools();
+		
+		var variable = new GlideRecord('sc_item_option_mtom');
+		variable.addQuery('request_item',ritm_sys_id);
+		variable.query();
+		
+		var variables = {};
+		var varObj;
+		var name;
+		var value;
+		var sys_id;
+		while(variable.next()){
+			name = variable.sc_item_option.item_option_new.name.toString();
+			value = variable.sc_item_option.value.toString();
+			sys_id = variable.getValue('sc_item_option');
+			
+			if(name == 'users'){
+				value = userTool.getUsersWithAttributes(value,["sys_id","name"]);
+			}
+			varObj = {
+				value:value,
+				sys_id:sys_id
+			};
+			
+			variables[name] = varObj;			
+			
+		}
+		
+		return variables;
+	},
+	
+	getRITMAndVariables:function(ritm_sys_id){
+		var logger = new Logger();
+				
+		var sc_req_item = new GlideRecord('sc_req_item');
+		sc_req_item.get(ritm_sys_id);
+		var ritm = {};
+	
+		if(!gs.nil(sc_req_item)){
+			ritm.sys_id = sc_req_item.getValue('sys_id');
+			ritm.number = sc_req_item.getValue('number');
+			ritm.due_date = sc_req_item.getValue('due_date');
+			ritm.state = {
+				displayValue: sc_req_item.getElement('state').getDisplayValue(),
+				value: sc_req_item.getValue('state')
+			};
+			ritm.variables = this._getVariables(ritm.sys_id);
+			logger.log("Getting RITM",JSON.stringify(ritm));
+			return ritm;
+		}
+		logger.logError("NO REQUEST",ritm_sys_id);
+		return "";
+	},
+
+	updateRITMVariable:function(variableSysId, value){
+		
+		var variableItem = new GlideRecord('sc_item_option');
+		variableItem.get(variableSysId);
+		
+		if(!gs.nil(variableItem)){
+			variableItem.setValue('value',value);
+			variableItem.update();
+		}
+	},
+	
+    type: 'CTXRequestUtil'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-04-30 17:36:10</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>269a98a1db799700a7287bec0f96198c</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>CTXRequestUtil</sys_name>
+        <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
+        <sys_update_name>sys_script_include_269a98a1db799700a7287bec0f96198c</sys_update_name>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-01 13:51:07</sys_updated_on>
+    </sys_script_include>
+</record_update>

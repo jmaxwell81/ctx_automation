@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_macro">
+    <sys_ui_macro action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>general</category>
+        <description/>
+        <media_type/>
+        <name>session_loader</name>
+        <scoped_name>x_wcs_ctrx_auto_sv_session_loader</scoped_name>
+        <sys_class_name>sys_ui_macro</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 14:26:19</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>0cb41ac6dbb51b00a7287bec0f961982</sys_id>
+        <sys_mod_count>80</sys_mod_count>
+        <sys_name>session_loader</sys_name>
+        <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
+        <sys_update_name>sys_ui_macro_0cb41ac6dbb51b00a7287bec0f961982</sys_update_name>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 17:49:42</sys_updated_on>
+        <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<script>
+		jQuery(document).ready(function() {
+		
+			/**
+			Add session html element to screen
+			**/
+			var addSessionElement = function(sessionElement){
+				jQuery('.session-list').append(sessionElement);
+			};
+		
+			var createApplicationLink = function(apps){
+				return apps.length + " application(s)";
+			};
+			
+			/**
+			Create html element for given session
+			**/
+			var createSessionElement = function(session,sessionIndex){
+				console.log(session);
+				var uniqueId = session.SessionKey;
+				var status = session.SessionState;
+				var type = session.SessionType;
+				var apps = session.ApplicationsInUse;
+		
+				var html = jQuery('#session_template').html();		
+				var template = jQuery.parseHTML(html);
+				jQuery(template).find('.radio-input').attr('id',uniqueId);
+				jQuery(template).find('.session-index').attr('for',uniqueId);
+				jQuery(template).find('.session-index').prepend('Session ' + sessionIndex + '$[SP]');
+		
+				if(status == 'Disconnected'){
+					jQuery(template).find('.session-status-dot').addClass('session-disconnected');
+					jQuery(template).find('.session-status').text(status);
+		
+				}else if(status == 'Active'){
+					jQuery(template).find('.session-status-dot').addClass('session-connected');
+					jQuery(template).find('.session-status').text(status);
+				}
+				
+				if(type == "Desktop"){					
+					jQuery(template).find('.app-session').hide();
+				}else if(type == 'Application'){
+					jQuery(template).find('.desktop-session').hide();
+					
+					var appLink = createApplicationLink(apps);
+					jQuery(template).find('.app-session').text(appLink);
+		
+				}
+		
+				return template;
+			};
+
+			/**
+			Process Ajax reponse for get session API call
+			**/
+			var processSessions = function(response){
+				var answer = response.responseXML.documentElement.getAttribute('answer');		
+
+				try{
+					var sessionArr = JSON.parse(answer);
+					jQuery('#loading_message').hide();
+					var sessionElement;
+					for(var i = 0; i &lt; sessionArr.length; i++){
+						sessionElement = createSessionElement(sessionArr[i],i+1);
+						addSessionElement(sessionElement);
+					}
+				}catch(error){
+					g_form.addErrorMessage('Unable to load sessions');
+					console.log(error);
+				}
+			};
+
+				
+			(function loadSessions(){
+				console.log('LOADING Sessions');
+				var userName = g_user.userName;
+				var fullName = g_user.getFullName();
+				jQuery('#user_full_name').text(fullName);
+				userName = "user1";
+				var sessionAjax = new GlideAjax('CTXClientRequest');
+				sessionAjax.addParam('sysparm_name','getUserSessions');	
+				sessionAjax.addParam('sysparm_username',userName);
+				sessionAjax.getXML(processSessions);
+			})();
+		});
+	</script>
+	<style>
+		.header-bar{
+			padding-left:0;
+		}
+		#user_full_name{
+			font-weight:bold;
+		}
+		
+		.session{
+			margin-bottom:20px;
+		}
+		
+		.session-info-text{
+			font-size:11px;
+			padding:0;
+			margin:0;
+		}
+		
+		.session-index{
+			font-weight:bold;
+		}
+		.session-info{
+			padding-left:32px;
+		}
+		
+		.session-connected{
+			background-color:#50e568;
+		}
+		.session-disconnected{
+			background-color:#ffee37;
+		}
+		.session-status-dot{
+			height: 13px;
+			width: 13px;
+			border-radius: 50%;
+			display: inline-block;	
+			vertical-align:middle;
+		}
+		
+		.session-launched-via{
+			color:#bdbfc1;
+		}
+		
+		.session-launcher{
+			color:black;
+			font-weight:bold;
+		}
+		
+	</style>
+	
+	<script id="session_template" type="text/html">
+		<div class="col-xs-12 session">
+				
+			<span class="input-group-radio">									
+				<input id="" type="radio" class="radio radio-input"></input>
+				<label for="" style="" class="radio-label session-index">
+					<span class="session-status-dot"></span>
+				</label>
+
+			</span>
+			<div class="col-xs-12 session-info">
+				<p class="session-status session-info-text"></p>
+				<p class="session-launched-via session-info-text">Launched via $[SP]<span class="session-launcher">KPL.citrix.com</span></p>
+				<a href="#" class="session-type session-info-text app-session"></a>
+				<p class="session-type session-info-text desktop-session">Desktop Session</p>
+			</div>
+		</div>
+	</script>
+	
+	<div>
+		<div class="col-xs-12 header-bar">
+			<p>All Sessions for $[SP]<span id="user_full_name"></span></p>
+		</div>
+		<div class="col-xs-12 session-list">
+			<p id="loading_message">Loading Sessions...</p>
+		</div>
+	</div>
+	
+	
+	<!--
+	<span class="input-group-checkbox">
+		<input type="checkbox" title="Mark record for List Action" id="check_rm_story_9c4c34f5db34df403bffeda5ca9619e2" name="check_rm_story" class="checkbox " data-type="list2_checkbox" data-list_id="rm_story" data-original-title="Mark record for List Action">
+			<label for="check_rm_story_9c4c34f5db34df403bffeda5ca9619e2" style="" class="checkbox-label">
+				<span class="sr-only">Select record for action</span>
+			</label>
+	</span>
+	-->
+	
+</j:jelly>]]></xml>
+    </sys_ui_macro>
+</record_update>

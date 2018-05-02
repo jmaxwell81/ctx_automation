@@ -2,7 +2,7 @@
 <record_update table="sys_scope_privilege">
     <sys_scope_privilege action="INSERT_OR_UPDATE">
         <operation>read</operation>
-        <source_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</source_scope>
+        <source_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</source_scope>
         <status>allowed</status>
         <sys_class_name>sys_scope_privilege</sys_class_name>
         <sys_created_by>sebastiang</sys_created_by>
@@ -11,10 +11,10 @@
         <sys_id>8753f0c1db219b00a7287bec0f9619a8</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>sys_user</sys_name>
-        <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
+        <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
-        <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
+        <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_scope_privilege_8753f0c1db219b00a7287bec0f9619a8</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
         <sys_updated_on>2018-04-16 18:17:30</sys_updated_on>

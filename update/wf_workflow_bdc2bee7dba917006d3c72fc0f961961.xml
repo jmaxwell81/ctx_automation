@@ -55,10 +55,10 @@
         <sys_mod_count>0</sys_mod_count>
         <sys_name>CTX Application Provisioning</sys_name>
         <sys_overrides/>
-        <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
+        <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
-        <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
+        <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>wf_workflow_bdc2bee7dba917006d3c72fc0f961961</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
         <sys_updated_on>2018-04-24 21:59:00</sys_updated_on>

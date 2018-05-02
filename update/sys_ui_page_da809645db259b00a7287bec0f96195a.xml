@@ -6,6 +6,7 @@
 app.controller('ctxReqsCtrl',function($scope,$http,htmlLoader,ajaxCall,$q){
 	
 	$scope.record = {};
+	$scope.canEdit = true;
 	$scope.deliveryGroups = [];
 	$scope.adGroups = {};
 	$scope.chosenAppsNames = "";
@@ -21,6 +22,7 @@ app.controller('ctxReqsCtrl',function($scope,$http,htmlLoader,ajaxCall,$q){
 		}
 		
 	};	
+
 	
 	$scope.selectTab = function($event){
 		var tab = $event.currentTarget;
@@ -55,6 +57,15 @@ app.controller('ctxReqsCtrl',function($scope,$http,htmlLoader,ajaxCall,$q){
 		return delGrp;
 	};
 	
+	/*******************************
+	When application loads and there
+	already are chosen users.
+	Function will load users chosen
+	for the given delivery group
+	********************************/
+	var getDeliveryGroupChosenUsers = function(delGrpName){
+		
+	};
 	var getChosenGroups = function(chosenAppsNames,all_apps){
 	
 		var deliveryGroups = {};		
@@ -90,14 +101,20 @@ app.controller('ctxReqsCtrl',function($scope,$http,htmlLoader,ajaxCall,$q){
 
 				if(chosenAppsNames.includes(all_apps[i].Name)){							
 					deliveryGroups[delGrpName].chosen = true;
-				}				
+				}	
+				
+				if(!$scope.canEdit){
+					//deliveryGroups[delGrpName].users = $scope.record.variables[];
+					
+					
+				}
 			}						
 		}
 		
 		for(var grp in deliveryGroups){
 			$scope.deliveryGroups.push(deliveryGroups[grp]);
 		}
-	
+		console.log($scope.deliveryGroups);
 	};	
 	
 	var requestApplicationHandler = function(answer){
@@ -120,6 +137,10 @@ app.controller('ctxReqsCtrl',function($scope,$http,htmlLoader,ajaxCall,$q){
 		var ritm;
 		try{			
 			$scope.record  = JSON.parse(answer);		
+			console.log($scope.record);
+			if($scope.record.state.value != 1){
+				$scope.canEdit = false;
+			}
 			$scope.chosenAppsNames = $scope.record.variables["chosen_apps"].value;
 			ajaxCall.run(getAllApplications).then(requestApplicationHandler);			
 		}catch(error){
@@ -134,16 +155,35 @@ app.controller('ctxReqsCtrl',function($scope,$http,htmlLoader,ajaxCall,$q){
 		appAjax.getXML(callback);				
 	};
 	
-	var createGroupObject = function(groupElement,groupType){
+	var createADGroupObject = function(groupElement){
+		var groupName = jQuery(groupElement).attr('group-name');		
+		var chosen_user_span = jQuery(groupElement).find('[id="'+groupElement.id+'_chosen_users"]');
+		var users = jQuery(chosen_user_span).attr('members');
+		var groupType = jQuery(groupElement).attr('group-type');		
 		
-		var groupElementId = groupElement.id;
-				
+		try{
+			users = JSON.parse(users);			
+		}catch(error){
+			users = null;
+		}
+		
+		if(users != null && users != ''){
+			return {
+				group:groupName,
+				group_type:groupType,
+				users: users
+			};			
+		}
+		return null;
+	};
+	var createDeliveryGroupObject = function(groupElement){
 		var groupName = jQuery(groupElement).attr('group-name');
 		var siteId = jQuery(groupElement).attr('site-id');		
-		var chosen_user_span = jQuery(groupElement).find('[id="'+groupElementId+'_chosen_users"]');
+		var chosen_user_span = jQuery(groupElement).find('[id="'+groupElement.id+'_chosen_users"]');
 		var users = jQuery(chosen_user_span).attr('members');
 		var applications = jQuery(groupElement).attr('applications');
-				
+		var groupType = jQuery(groupElement).attr('group-type');		
+		
 		try{
 			users = JSON.parse(users);
 			applications = JSON.parse(applications);
@@ -152,7 +192,7 @@ app.controller('ctxReqsCtrl',function($scope,$http,htmlLoader,ajaxCall,$q){
 			applications = null;
 		}
 		
-		if(users != null && users != '' && applications != '' && applications != null){
+		if(users != null && users != '' && applications != null && applications != ''){
 			return {
 				group:groupName,
 				group_type:groupType,
@@ -162,26 +202,59 @@ app.controller('ctxReqsCtrl',function($scope,$http,htmlLoader,ajaxCall,$q){
 			};			
 		}
 		return null;
+	};
+	
+	var createGroupObject = function(groupElement){
 		
+		var groupType = jQuery(groupElement).attr('group-type');		
+		var groupObj;
+		
+		if(groupType == 'Delivery Group'){
+			return createDeliveryGroupObject(groupElement);
+		}else if(groupType == 'AD Group'){
+			return createADGroupObject(groupElement);
+		}
+		
+		return null;		
 	};
 	
 	var getGroupUpdates = function(){
 		var groupsToSubmit = [];
 		var groupObj;
 		jQuery('group-object').each(function(){
-			
-			var groupType = jQuery(this).attr('type');			
-			
+										
 			jQuery(this).find('.group-id-container').each(function(){
-				groupObj = createGroupObject(this,groupType);
+				groupObj = createGroupObject(this);
+			
 				if(groupObj != null){
 					groupsToSubmit.push(groupObj);							
 				}						
 			});						
 			
 		});
+		
 		return groupsToSubmit;
 	};
+	
+	var sortGroups = function(groupsUpdate){
+		
+		var sortedGroups = {
+			deliveryGroups:[],
+			adGroups:[]
+		};
+		
+		for(var i = 0;i < groupsUpdate.length; i++){
+			if(groupsUpdate[i].group_type == 'Delivery Group'){
+				sortedGroups.deliveryGroups.push(groupsUpdate[i]);
+			}else if(groupsUpdate[i].group_type == 'AD Group'){
+				sortedGroups.adGroups.push(groupsUpdate[i]);
+			}
+		}
+	
+		return sortedGroups;
+	
+	};
+	
 	
 	$scope.submitUpdate = function(){
 		
@@ -192,19 +265,24 @@ app.controller('ctxReqsCtrl',function($scope,$http,htmlLoader,ajaxCall,$q){
 			var answer = response.responseXML.documentElement.getAttribute('answer');
 			console.log(answer);
 		};
+		groupsToSubmit = sortGroups(groupsToSubmit);
+		console.log(groupsToSubmit);
+		var deliveryGroups = groupsToSubmit.deliveryGroups;
+		var adGroups = groupsToSubmit.adGroups;
 		
-		console.log(JSON.stringify(groupsToSubmit));
-		console.log(JSON.stringify($scope.record));
+		var deliGrpsVariableSysId = $scope.record.variables['delivery_group_updates'].sys_id;
+		var adGrpsVariableSysId = $scope.record.variables['ad_group_updates'].sys_id;		
+		
+		var variableSysIds = {"delivery_group_updates":deliGrpsVariableSysId,"ad_group_updates":adGrpsVariableSysId};
+		var valueUpdates = {"delivery_group_updates":deliveryGroups,"ad_group_updates":adGroups};
 		
 		var appAjax = new GlideAjax('CTXClientRequest');
-		appAjax.addParam('sysparm_name','updateRITMVariables');
-		appAjax.addParam('sysparm_group_updates',JSON.stringify(groupsToSubmit));
-		appAjax.addParam('sysparm_record',JSON.stringify($scope.record));
+		appAjax.addParam('sysparm_name','appProvUpdateGrpVars');
+		appAjax.addParam('sysparm_variable_sys_ids',JSON.stringify(variableSysIds));
+		appAjax.addParam('sysparm_value_updates',JSON.stringify(valueUpdates));
 		appAjax.getXML(callback);
 		
-	};
-	
-	
+	};		
 	
 	(function loadRequest(){
 		var ctx_req_sys_id = getParameterValue('sys_id');
@@ -238,8 +316,7 @@ app.service('htmlLoader',function($http,$q){
 		});
 		
 		return deferred.promise;
-	};
-		
+	};		
 });
 
 app.service('ajaxCall',function($q){
@@ -287,6 +364,14 @@ app.service('summaryParser',function(){
 app.directive('groupObject',function(summaryParser,htmlLoader,$compile){
 	var xml;
 	
+	function isEmpty(obj) {
+		for(var key in obj) {
+			if(obj.hasOwnProperty(key))
+				return false;
+		}
+		return true;
+	}
+	
 	return {
 		template:"",
 		scope: {						
@@ -294,10 +379,15 @@ app.directive('groupObject',function(summaryParser,htmlLoader,$compile){
 		},
 		
 		link: function($scope, $element, $attr) {
+						
+			$scope.canEdit = ($attr.canedit == 'true');
 			$scope.group = JSON.parse($attr.group);
 			$scope.type = $attr.type;		
 			$scope.directiveXML = "";			
 		
+			var empty = {};
+			$scope.hasADGroup = !isEmpty($scope.group.ADGroups);
+			
 			htmlLoader.getHTML('group_template').then(function(html){						
 				$scope.directiveXML = html.xml;
 			});
@@ -327,13 +417,24 @@ app.directive('groupObject',function(summaryParser,htmlLoader,$compile){
 					console.log('Unable to parse input');				
 					return;
 				}
-				var modalDialog = new GlideModal("x_wcs_ctrx_auto_sv_group_user_select");
-				modalDialog.setTitle("User selection");
-				modalDialog.setPreference("group_type",$attr.type);
-				modalDialog.setPreference("group_name",group);
-				modalDialog.setPreference("users",users);
-				modalDialog.setSize(700, 800);
-				modalDialog.render();
+				var modalDialog;
+				if($scope.canEdit){
+					modalDialog = new GlideModal("x_wcs_ctrx_auto_sv_group_user_select");
+					modalDialog.setTitle("User selection");
+					modalDialog.setPreference("group_type",$attr.type);
+					modalDialog.setPreference("group_name",group);
+					modalDialog.setPreference("users",users);
+					modalDialog.setSize(700, 800);
+					modalDialog.render();
+				}else{
+					modalDialog = new GlideModal("x_wcs_ctrx_auto_sv_more_list_page");
+					modalDialog.setTitle($attr.title);
+					modalDialog.setPreference("list",users);
+					modalDialog.setPreference("title","Users");
+					modalDialog.setSize(500, 800);
+					modalDialog.render();
+				}
+				
 			};
 			
 			 
@@ -483,12 +584,10 @@ app.directive('summaryList',function(htmlLoader,summaryParser,$compile){
 				<p>{{record.number}}</p>
 			</div>
 			<div class="navbar-right col-xs-6">
-				<button class='form_update form_action_button header action_context btn btn-default' ng-click="submitUpdate()">Update</button>
+				<button class='form_update form_action_button header action_context btn btn-default' ng-click="submitUpdate()" ng-show="canEdit">Update</button>
 			</div>
 		</nav>
-		
-		
-		
+						
 		<div id="form_body" class='col-sm-12'>
 			<div id="fields_container" class='col-sm-12'>
 
@@ -525,7 +624,7 @@ app.directive('summaryList',function(htmlLoader,summaryParser,$compile){
 								<span class="label-text">State</span>
 							</label>
 							<div class="col-xs-10 col-sm-9 col-md-6 col-lg-5 form-field input_controls">
-								<input value="{{record.state}}" class="form-control" readonly=""/>
+								<input value="{{record.state.displayValue}}" class="form-control" readonly=""/>
 							</div>
 							<div class="col-xs-2 col-sm-3 col-lg-2 form-field-addons"></div>
 						</div>
@@ -564,18 +663,18 @@ app.directive('summaryList',function(htmlLoader,summaryParser,$compile){
 				<div class="tab-content">
 					<div id="tab1" class="tab-pane active col-sm-12">						
 						
-						<group-object type="Delivery Group" group="{{dgrp}}" users="{{record.variables.users.value}}" allapps="{{all_apps}}" ng-repeat="dgrp in deliveryGroups" ng-if="dgrp.chosen == true"></group-object>
+						<group-object type="Delivery Group" group="{{dgrp}}" users="{{record.variables.users.value}}" allapps="{{all_apps}}" ng-repeat="dgrp in deliveryGroups" ng-if="dgrp.chosen == true" canedit="{{canEdit}}"></group-object>
 											
 					</div>
 					<div id="tab2" class="tab-pane col-sm-12">			
-						<group-object type="AD Group" group="{{dgrp}}" users="{{record.variables.users.value}}" allapps="{{all_apps}}" ng-repeat="dgrp in deliveryGroups" ng-if="dgrp.chosen == true"></group-object>
+						<group-object type="AD Group" group="{{dgrp}}" canedit="{{canEdit}}" users="{{record.variables.users.value}}" allapps="{{all_apps}}" ng-repeat="dgrp in deliveryGroups" ng-if="dgrp.chosen == true"></group-object>
 					</div>
 				</div>
 
 			</div>				
 			
 			<div class="col-xs-12 footer">
-				<button class="form_action_button action_context btn btn-default" ng-click="submitUpdate()">Update</button>
+				<button class="form_action_button action_context btn btn-default" ng-click="submitUpdate()" ng-show="canEdit">Update</button>
 			</div>
 			
 		</div>		
@@ -590,14 +689,14 @@ app.directive('summaryList',function(htmlLoader,summaryParser,$compile){
         <sys_created_on>2018-04-17 01:14:52</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>da809645db259b00a7287bec0f96195a</sys_id>
-        <sys_mod_count>376</sys_mod_count>
+        <sys_mod_count>432</sys_mod_count>
         <sys_name>citrix_requests</sys_name>
-        <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
+        <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
-        <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
+        <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_ui_page_da809645db259b00a7287bec0f96195a</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-04-27 14:39:10</sys_updated_on>
+        <sys_updated_on>2018-05-01 20:15:25</sys_updated_on>
     </sys_ui_page>
 </record_update>

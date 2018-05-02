@@ -17,77 +17,12 @@ CTXClientRequest.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
 		
 	},
 	
-	_getUserObjects:function(sys_ids){
-		var users = new GlideRecord('sys_user');
-		users.addQuery('sys_id','IN',sys_ids);
-		users.query();
-		
-		var userArr = [];
-		var userObj;
-		while(users.next()){
-			userObj = {
-				sys_id: users.getValue('sys_id'),
-				name: users.getValue('name')
-			};
-			userArr.push(userObj);
-		}
-		return userArr;
-	},
-		
-	_getVariables:function(ritm_sys_id){
-		var logger = new Logger();
-		
-		var variable = new GlideRecord('sc_item_option_mtom');
-		variable.addQuery('request_item',ritm_sys_id);
-		variable.query();
-		
-		var variables = {};
-		var varObj;
-		var name;
-		var value;
-		var sys_id;
-		while(variable.next()){
-			name = variable.sc_item_option.item_option_new.name.toString();
-			value = variable.sc_item_option.value.toString();
-			sys_id = variable.getValue('sc_item_option');
-			
-			if(name == 'users'){
-				value = this._getUserObjects(value);
-			}
-			varObj = {
-				value:value,
-				sys_id:sys_id
-			};
-			
-			variables[name] = varObj;			
-			
-		}
-		
-		return variables;
-	},
-	
 	getRITMAndVariables:function(){
 		var ritm_sys_id = this.getParameter('sysparm_ritm_sys_id');
-		return this._getRITMAndVariables(ritm_sys_id);
-	},
-	
-	_getRITMAndVariables:function(ritm_sys_id){
-		var logger = new Logger();
-				
-		var sc_req_item = new GlideRecord('sc_req_item');
-		sc_req_item.get(ritm_sys_id);
-		var ritm = {};
 		
-		if(!gs.nil(sc_req_item)){
-			ritm.sys_id = sc_req_item.getValue('sys_id');
-			ritm.number = sc_req_item.getValue('number');
-			ritm.due_date = sc_req_item.getValue('due_date');
-			ritm.state = sc_req_item.getElement('state').getDisplayValue();
-			ritm.variables = this._getVariables(ritm.sys_id);
-			return JSON.stringify(ritm);
-		}
-		logger.logError("NO REQUEST",ctx_request_sys_id);
-		return "";
+		var ctxRitm = new CTXRequestUtil();
+		var ritm = ctxRitm.getRITMAndVariables(ritm_sys_id);
+		return JSON.stringify(ritm);
 	},
 	
 	getCitrixRequest:function(){
@@ -98,78 +33,60 @@ CTXClientRequest.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
 		ctx_request.get(ctx_request_sys_id);
 		
 		if(!gs.nil(ctx_request)){
-			return this._getRITMAndVariables(ctx_request.getValue('requested_item'));
+			var ritmSysId = ctx_request.getValue('requested_item');
+			
+			var ctxRitm = new CTXRequestUtil();
+			var ritm = ctxRitm.getRITMAndVariables(ritmSysId);
+			
+			return JSON.stringify(ritm);
 		}
 		
 		logger.logError("NO REQUEST",ctx_request_sys_id);
 		return null;
 	},
 	
-	_sortDeliveryAndADGroup:function(groupsUpdate){
-		var logger = new Logger();
-		var sortedGroups = {
-			deliveryGroups:[],
-			adGroups:[]
-		};
-		
-		for(var i = 0;i < groupsUpdate.length; i++){
-			if(groupsUpdate[i].group_type == 'Delivery Group'){
-				sortedGroups.deliveryGroups.push(groupsUpdate[i]);
-			}else if(groupsUpdate[i].group_type == 'AD Group'){
-				sortedGroups.adGroups.push(groupsUpdate[i]);
-			}
-		}
-		logger.log('sorted',JSON.stringify(sortedGroups));
-		return sortedGroups;
-	},
 	
-	_updateVariable:function(record,variableName,value){
-		
-		var varRecordSysId = record.variables[variableName].sys_id;
-		
-		var variableItem = new GlideRecord('sc_item_option');
-		variableItem.get(varRecordSysId);
-		
-		if(!gs.nil(variableItem)){
-			variableItem.setValue('value',value);
-			variableItem.update();
-		}
-		
-	},
-	updateRITMVariables:function(){
+	appProvUpdateGrpVars:function(){
 		var logger = new Logger();
-		
-		var groupsUpdateString = this.getParameter('sysparm_group_updates');
-		var recordString = this.getParameter('sysparm_record');
+		var ritmUtil = new CTXRequestUtil();
+		var variableSysIdsString = this.getParameter('sysparm_variable_sys_ids');
+		var valueUpdatesString = this.getParameter('sysparm_value_updates');
 		
 		try{
-			var groupsUpdate = JSON.parse(groupsUpdateString);
-			var sortedGroups = this._sortDeliveryAndADGroup(groupsUpdate);
-			
-			var deliveryGroups = sortedGroups.deliveryGroups;
-			var adGroups = sortedGroups.adGroups;
-			
-			var record = JSON.parse(recordString);
-			
-			logger.log("delivery groups", deliveryGroups);
-			logger.log("ad groups", adGroups);
-			
-			if(deliveryGroups.length > 0){
-				this._updateVariable(record,'delivery_group_updates',JSON.stringify(deliveryGroups));
+			var variableSysIds = JSON.parse(variableSysIdsString);
+			var valueUpdates = JSON.parse(valueUpdatesString);
+			var varSysId;
+			var varValue;
+			for(var var_name in variableSysIds){
+				logger.log("Updating",var_name);
+				if(valueUpdates[var_name]){
+					varSysId = variableSysIds[var_name];
+					varValue = JSON.stringify(valueUpdates[var_name]);
+					ritmUtil.updateRITMVariable(varSysId,varValue);
+				}				
 			}
-			if(adGroups.length > 0){
-				this._updateVariable(record,'ad_group_updates',JSON.stringify(adGroups));
-			}
-			
-			
 			return 'success';
 		}catch(error){
 			logger.log('Unable to update RITM variables',error);
 			return 'failure';
 		}
-				
-		
 	},
+	
+	getUserSessions:function(){
+		var username = this.getParameter('sysparm_username');
+		var ctxUserSession = new CTXUserSession();
+		var sessions = ctxUserSession.getUserSessions(username);
+		return JSON.stringify(sessions);
+	},
+	
+	logOffUserSession:function(){
+		var site_id = this.getParameter('sysparm_site_id');
+		var session_id = this.getParameter('sysparm_session_id');
+		var ctxUserSession = new CTXUserSession();
+		var logoffResponse = ctxUserSession.logOffUserSession(site_id,session_id);
+		return logoffResponse;
+	},
+	
 	
     type: 'CTXClientRequest'
 });]]></script>
@@ -178,14 +95,14 @@ CTXClientRequest.prototype = Object.extendsObject(global.AbstractAjaxProcessor, 
         <sys_created_on>2018-04-11 02:39:35</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>aa9cefc7dbdd5700a7287bec0f961944</sys_id>
-        <sys_mod_count>41</sys_mod_count>
+        <sys_mod_count>58</sys_mod_count>
         <sys_name>CTXClientRequest</sys_name>
-        <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
+        <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy>read</sys_policy>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
-        <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
+        <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_script_include_aa9cefc7dbdd5700a7287bec0f961944</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-04-26 14:53:19</sys_updated_on>
+        <sys_updated_on>2018-04-30 22:19:56</sys_updated_on>
     </sys_script_include>
 </record_update>

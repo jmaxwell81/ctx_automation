@@ -8,10 +8,10 @@
         <sys_id>a7c50156db855b84a7287bec0f961907</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>x_wcs_ctrx_auto_sv_security_token.x_wcs_ctrx_auto_sv.security_token_user</sys_name>
-        <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
+        <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
-        <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
+        <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_security_acl display_value="x_wcs_ctrx_auto_sv_security_token">a7c50156db855b84a7287bec0f961903</sys_security_acl>
         <sys_update_name>sys_security_acl_role_a7c50156db855b84a7287bec0f961907</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>

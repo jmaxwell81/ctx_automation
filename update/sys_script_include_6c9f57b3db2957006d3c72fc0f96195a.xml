@@ -22,10 +22,8 @@ CTXUserTools.prototype = {
 		return user.getValue('user_name');
 	},
 	getUserDomain:function(){
-		//MAY BE ABLE TO PARSE OUT INFO
-		//FROM ldap_server FIELD ON USER RECORD
-		
-		return "KKPFG";
+		var domain = gs.getProperty('x_wcs_ctrx_auto_sv.user_domain');
+		return domain;
 	},
 	
 	getUserLDAPServer:function(user_sys_id){
@@ -41,6 +39,29 @@ CTXUserTools.prototype = {
 		return ldapServerUrl;
 	},
 	
+	/**********************************************
+	Gets lists of users with given sys_ids in 
+	paratemeters. User elements returned are defined
+	in attrs array parameter. 
+	**********************************************/
+	getUsersWithAttributes:function(sys_ids,attrs){
+		var users = new GlideRecord('sys_user');
+		users.addQuery('sys_id','IN',sys_ids);
+		users.query();
+		
+		var userArr = [];
+		var userObj;
+		while(users.next()){
+			userObj = {};
+			for(var i = 0; i < attrs.length; i++){
+				userObj[attrs[i]] = users.getValue(attrs[i]);
+			}
+			
+			userArr.push(userObj);
+		}
+		return userArr;
+	},
+	
 	isValidUser:function(user_sys_id){
 		var user = this.getUserRecord(user_sys_id);
 		return !gs.nil(user);
@@ -52,14 +73,14 @@ CTXUserTools.prototype = {
         <sys_created_on>2018-04-25 20:10:58</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>6c9f57b3db2957006d3c72fc0f96195a</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>CTXUserTools</sys_name>
-        <sys_package display_value="Citrix Automation Services" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
+        <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy>read</sys_policy>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
-        <sys_scope display_value="Citrix Automation Services">790cd3e8db8513406d3c72fc0f961915</sys_scope>
+        <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_script_include_6c9f57b3db2957006d3c72fc0f96195a</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-04-25 20:10:58</sys_updated_on>
+        <sys_updated_on>2018-04-30 21:08:28</sys_updated_on>
     </sys_script_include>
 </record_update>
