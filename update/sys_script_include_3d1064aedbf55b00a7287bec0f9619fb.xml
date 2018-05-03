@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_wcs_ctrx_auto_sv.CTXDesktopProvision</api_name>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>CTXDesktopProvision</name>
+        <script><![CDATA[var CTXDesktopProvision = Class.create();
+CTXDesktopProvision.prototype = {
+      initialize: function() {
+		
+		this.API_URL = gs.getProperty('x_wcs_ctrx_auto_sv.api_url');		
+		this.GET_OS_ENDPOINT = this.API_URL+"GetAvaliableOS";				
+		
+    },	
+	API_URL:'',
+	GET_OS_ENDPOINT:'',
+	
+	
+	GET_OS_HEADERS: {
+		"Content-Type":"application/json",
+		"customerid":"",
+		"Authorization":"CWSAuth bearer="
+	},	
+	
+	_generateDefaultHeaders:function(){
+		var logger = new Logger();
+		var customer_id = gs.getProperty('x_wcs_ctrx_auto_sv.customer_id');
+	
+		var headers = this.GET_OS_HEADERS;
+		
+		var auth = new AuthToken();
+		var token = auth.getToken();
+		var authString = headers["Authorization"];
+		authString += token;
+						
+		headers["customerid"] = customer_id;
+		headers["Authorization"] = authString;
+		
+		return headers;
+	},
+	
+	getAvailableConfigs: function(){
+		var logger = new Logger();
+		var headers = this._generateDefaultHeaders();		
+		var rest = new RESTRequest();
+		
+		var osResponse = rest.get(this.GET_OS_ENDPOINT,headers);
+	
+		logger.log(JSON.stringify(headers));
+		logger.log(JSON.stringify(osResponse));
+		
+		try{
+			
+			var configs = JSON.parse(osResponse);
+			return configs;
+		}catch(error){
+			
+			logger.logError("Unable to get available Desktop configs");
+			logger.logError(error);
+			return null;
+		}
+		
+	},
+	
+	
+    type: 'CTXDesktopProvision'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-03 19:04:02</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>3d1064aedbf55b00a7287bec0f9619fb</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>CTXDesktopProvision</sys_name>
+        <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
+        <sys_update_name>sys_script_include_3d1064aedbf55b00a7287bec0f9619fb</sys_update_name>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-03 19:12:18</sys_updated_on>
+    </sys_script_include>
+</record_update>

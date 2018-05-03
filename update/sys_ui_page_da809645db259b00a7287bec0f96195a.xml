@@ -2,8 +2,8 @@
 <record_update table="sys_ui_page">
     <sys_ui_page action="INSERT_OR_UPDATE">
         <category>general</category>
-        <client_script><![CDATA[var app = angular.module('ctxReqs',[]);
-app.controller('ctxReqsCtrl',function($scope,$http,htmlLoader,ajaxCall,$q){
+        <client_script><![CDATA[var app = angular.module('appProv',[]);
+app.controller('appProvCtrl',function($scope,$http,ajaxCall,$q){
 	
 	$scope.record = {};
 	$scope.canEdit = true;
@@ -57,13 +57,57 @@ app.controller('ctxReqsCtrl',function($scope,$http,htmlLoader,ajaxCall,$q){
 		return delGrp;
 	};
 	
+	var getDeliveryGroupUpdates = function(delGroupString,delGroupName){
+		
+		try{
+			var delGroups = JSON.parse(delGroupString);
+			for(var d = 0; d < delGroups.length; d++){
+				if(delGroups[d].group == delGroupName){
+					return delGroups[d].users;				
+				}
+			}
+		}catch(error){
+			return [];
+		}
+		
+	};
+	
+	var getADGroupUpdates = function(adGroupString,delGroupName){
+		var adGroupResults = {};
+		try{
+			var adGroups = JSON.parse(adGroupString);
+			for(var a = 0; a < adGroups.length; a++){
+				if(adGroups[a].del_grp_name == delGroupName){
+					adGroupResults[adGroups[a].group] = adGroups[a].users;
+				}
+			}
+			return adGroupResults;
+		}catch(error){
+			return {};
+		}
+		
+	};
+	
 	/*******************************
 	When application loads and there
 	already are chosen users.
 	Function will load users chosen
 	for the given delivery group
 	********************************/
-	var getDeliveryGroupChosenUsers = function(delGrpName){
+	var getChosenUsers = function(delGroupName){
+		
+		var delGroupString = $scope.record.variables['delivery_group_updates'].value;
+		var adGroupString = $scope.record.variables['ad_group_updates'].value;		
+					
+		var loadedUsers = {
+			del_grp_users :[],
+			ad_grps_users :{}
+		};
+		
+		loadedUsers.del_grp_users = (delGroupString != '')?getDeliveryGroupUpdates(delGroupString,delGroupName):[];
+		loadedUsers.ad_grps_users = (adGroupString != '')?getADGroupUpdates(adGroupString,delGroupName):{};
+						
+		return loadedUsers;
 		
 	};
 	var getChosenGroups = function(chosenAppsNames,all_apps){
@@ -103,14 +147,12 @@ app.controller('ctxReqsCtrl',function($scope,$http,htmlLoader,ajaxCall,$q){
 					deliveryGroups[delGrpName].chosen = true;
 				}	
 				
-				if(!$scope.canEdit){
-					//deliveryGroups[delGrpName].users = $scope.record.variables[];
-					
-					
-				}
+				
+				deliveryGroups[delGrpName].loaded_users = getChosenUsers(delGrpName);
+				
 			}						
 		}
-		
+		//deliveryGroups['RDSHosted_Desktop'].ADGroups = ["Group1","Group2"];
 		for(var grp in deliveryGroups){
 			$scope.deliveryGroups.push(deliveryGroups[grp]);
 		}
@@ -145,19 +187,24 @@ app.controller('ctxReqsCtrl',function($scope,$http,htmlLoader,ajaxCall,$q){
 			ajaxCall.run(getAllApplications).then(requestApplicationHandler);			
 		}catch(error){
 			console.log('Unable to load RITM',error);
+			window.location = "/sc_req_item.do?sys_id="+$scope.record.sys_id;
 		}
 	};
 	
-	var loadRITMAndVariables = function(ctx_req_sys_id,callback){				
+	var loadRITMAndVariables = function(ritm_sys_id,callback){				
 		var appAjax = new GlideAjax('CTXClientRequest');
-		appAjax.addParam('sysparm_name','getCitrixRequest');
-		appAjax.addParam('sysparm_ctx_request_sys_id',ctx_req_sys_id);
+		appAjax.addParam('sysparm_name','getRITMAndVariables');
+		appAjax.addParam('sysparm_ritm_sys_id',ritm_sys_id);
 		appAjax.getXML(callback);				
 	};
 	
 	var createADGroupObject = function(groupElement){
-		var groupName = jQuery(groupElement).attr('group-name');		
+		
+		var groupName = jQuery(groupElement).attr('group-name');
+		var delGrpName = jQuery(groupElement).attr('del-group-name');
+		
 		var chosen_user_span = jQuery(groupElement).find('[id="'+groupElement.id+'_chosen_users"]');
+		
 		var users = jQuery(chosen_user_span).attr('members');
 		var groupType = jQuery(groupElement).attr('group-type');		
 		
@@ -170,6 +217,7 @@ app.controller('ctxReqsCtrl',function($scope,$http,htmlLoader,ajaxCall,$q){
 		if(users != null && users != ''){
 			return {
 				group:groupName,
+				del_grp_name:delGrpName,
 				group_type:groupType,
 				users: users
 			};			
@@ -260,13 +308,24 @@ app.controller('ctxReqsCtrl',function($scope,$http,htmlLoader,ajaxCall,$q){
 		
 		var groupsToSubmit = getGroupUpdates();
 		
-		
 		var callback = function(response){
 			var answer = response.responseXML.documentElement.getAttribute('answer');
-			console.log(answer);
+			
+			var reloadForm = function(res){
+				window.location.reload();
+			};
+			
+			if(answer == 'success'){
+				var reqAjax = new GlideAjax('CTXClientRequest');
+				reqAjax.addParam('sysparm_name','updateRITMStateWorkInProgress');
+				reqAjax.addParam('sysparm_ritm_sys_id',$scope.record.sys_id);
+				reqAjax.getXML(reloadForm);
+			}
+			
 		};
+		
 		groupsToSubmit = sortGroups(groupsToSubmit);
-		console.log(groupsToSubmit);
+	
 		var deliveryGroups = groupsToSubmit.deliveryGroups;
 		var adGroups = groupsToSubmit.adGroups;
 		
@@ -285,38 +344,12 @@ app.controller('ctxReqsCtrl',function($scope,$http,htmlLoader,ajaxCall,$q){
 	};		
 	
 	(function loadRequest(){
-		var ctx_req_sys_id = getParameterValue('sys_id');
+		var ritm_sys_id = getParameterValue('sys_id');
 		
-		ajaxCall.run(loadRITMAndVariables,ctx_req_sys_id).then(addContentToPage);
+		ajaxCall.run(loadRITMAndVariables,ritm_sys_id).then(addContentToPage);
 	})();
 	
 	
-});
-
-app.service('htmlLoader',function($http,$q){
-	
-	this.getHTML = function(macro_name){
-		var deferred = $q.defer();
-		var query = "sysparm_query=name="+macro_name;
-		var fields = "&sysparm_fields=xml";
-		$http({
-		
-			method:"GET",
-			url:"api/now/table/sys_ui_macro?"+query+fields,
-			headers:{
-				"Accept":"application/json",
-				"X-UserToken":window.g_ck
-			}
-
-		}).then(function(response){
-			if(response.data && response.data.result && response.data.result.length > 0){
-				deferred.resolve(response.data.result[0]);				
-				
-			}
-		});
-		
-		return deferred.promise;
-	};		
 });
 
 app.service('ajaxCall',function($q){
@@ -361,7 +394,7 @@ app.service('summaryParser',function(){
 	};
 });
 
-app.directive('groupObject',function(summaryParser,htmlLoader,$compile){
+app.directive('groupObject',function(summaryParser,$compile){
 	var xml;
 	
 	function isEmpty(obj) {
@@ -373,13 +406,13 @@ app.directive('groupObject',function(summaryParser,htmlLoader,$compile){
 	}
 	
 	return {
-		template:"",
+		templateUrl:'x_wcs_ctrx_auto_sv_group_template.do',
 		scope: {						
 			allapps:'@'
 		},
 		
 		link: function($scope, $element, $attr) {
-						
+					
 			$scope.canEdit = ($attr.canedit == 'true');
 			$scope.group = JSON.parse($attr.group);
 			$scope.type = $attr.type;		
@@ -388,31 +421,76 @@ app.directive('groupObject',function(summaryParser,htmlLoader,$compile){
 			var empty = {};
 			$scope.hasADGroup = !isEmpty($scope.group.ADGroups);
 			
-			htmlLoader.getHTML('group_template').then(function(html){						
-				$scope.directiveXML = html.xml;
-			});
 			
-			var updateTemplate = function(value){
-				$element.html(value);
-				$compile($element.contents())($scope);			
-								
+			var createMoreLink = function(members){
+
+				var link = (members.length > 4)?("+" + (members.length-4)+" more"):'';
+				return link;
 			};
 			
-			$scope.$watch('directiveXML',updateTemplate);
+			var getMembersNames = function(members){
+				var names = "";
+				var max = (members.length > 4)? 4:members.length;
+
+				for(var i = 0; i < max;i++){
+					names += (i < (max-1))? members[i].name+", ":members[i].name;
+				}
+				
+				console.log();
+				return names;
+			};
+			
+			$scope.getMoreLink = function(members){
+				if(members == null){
+					return '';
+				}
+				var link = createMoreLink(members);
+				return link;
+			};
+			$scope.getMembersNames = function(members){	
+				if(members == null){
+					return '';
+				}
+				var names = getMembersNames(members);
+				$scope.members = JSON.stringify(members);
+				return names;
+			};
+		
+			
+			if($attr.loadedusers && $attr.loadedusers != ''){
+				$scope.loadedusers = JSON.parse($attr.loadedusers);			
+			}	
 			
 			$scope.openApplicationModal = function(group){
+				
+				var apps = [];
+				for(var app in group.Applications){
+					apps.push(app);
+				}
+				var description = "Following are the applications that are part of";
+				
 				var modalDialog = new GlideModal("x_wcs_ctrx_auto_sv_application_modal");
 				modalDialog.setTitle("Applications");				
-				modalDialog.setPreference('group',group);			
+				modalDialog.setPreference('apps',apps);	
+				modalDialog.setPreference('description',description);	
+				modalDialog.setPreference('group_name',group.Name);
 				modalDialog.setSize(700, 800);
 				modalDialog.render();
 			};
 			
-			$scope.openUserSelectModal = function(group){
+			$scope.openUserSelectModal = function(groupId,groupName){
 				
+				if(groupName == null){
+					groupName = groupId;
+				}
 				var users;
 				try{
-					users = JSON.parse($attr.users);
+					
+					if($scope.canEdit){
+						users = $attr.users;
+					}else{
+						users = $scope.members;
+					}
 				}catch(error){
 					console.log('Unable to parse input');				
 					return;
@@ -422,13 +500,14 @@ app.directive('groupObject',function(summaryParser,htmlLoader,$compile){
 					modalDialog = new GlideModal("x_wcs_ctrx_auto_sv_group_user_select");
 					modalDialog.setTitle("User selection");
 					modalDialog.setPreference("group_type",$attr.type);
-					modalDialog.setPreference("group_name",group);
+					modalDialog.setPreference("group_id",groupId);
+					modalDialog.setPreference("group_name",groupName);
 					modalDialog.setPreference("users",users);
 					modalDialog.setSize(700, 800);
 					modalDialog.render();
 				}else{
 					modalDialog = new GlideModal("x_wcs_ctrx_auto_sv_more_list_page");
-					modalDialog.setTitle($attr.title);
+					modalDialog.setTitle("Users");
 					modalDialog.setPreference("list",users);
 					modalDialog.setPreference("title","Users");
 					modalDialog.setSize(500, 800);
@@ -442,11 +521,11 @@ app.directive('groupObject',function(summaryParser,htmlLoader,$compile){
 	};
 });
 
-app.directive('summaryList',function(htmlLoader,summaryParser,$compile){
+app.directive('summaryList',function(summaryParser,$compile){
 	var xml;
 	
 	return {
-		template:"",
+		templateUrl:"x_wcs_ctrx_auto_sv_summary_list.do",
 		scope: {			
 			content:'@',
 			title:'@',
@@ -454,19 +533,6 @@ app.directive('summaryList',function(htmlLoader,summaryParser,$compile){
 		},
 		
 		link: function($scope, $element, $attr) {
-			$scope.directiveXML = "";
-			
-			htmlLoader.getHTML('summary_list').then(function(html){						
-				$scope.directiveXML = html.xml;
-			});
-			
-			var updateTemplate = function(value){
-				$element.html(value);
-				$compile($element.contents())($scope);			
-			};
-			
-			$scope.$watch('directiveXML',updateTemplate);
-			
 			
 			$scope.parsed_content = '';
 			$scope.showMore = false;
@@ -507,7 +573,7 @@ app.directive('summaryList',function(htmlLoader,summaryParser,$compile){
 		]]></client_script>
         <description/>
         <direct>false</direct>
-        <endpoint>x_wcs_ctrx_auto_sv_citrix_requests.do</endpoint>
+        <endpoint>x_wcs_ctrx_auto_sv_app_provision_view.do</endpoint>
         <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
 <j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
 
@@ -576,7 +642,7 @@ app.directive('summaryList',function(htmlLoader,summaryParser,$compile){
 		</style>
 	</head>
 	
-	<body ng-app="ctxReqs" ng-controller="ctxReqsCtrl" ng-cloak="">
+	<body ng-app="appProv" ng-controller="appProvCtrl" ng-cloak="">
 		
 		<nav id="title_bar" class="title_bar navbar navbar-default ">
 			<div class="navbar-header col-xs-6">
@@ -663,11 +729,11 @@ app.directive('summaryList',function(htmlLoader,summaryParser,$compile){
 				<div class="tab-content">
 					<div id="tab1" class="tab-pane active col-sm-12">						
 						
-						<group-object type="Delivery Group" group="{{dgrp}}" users="{{record.variables.users.value}}" allapps="{{all_apps}}" ng-repeat="dgrp in deliveryGroups" ng-if="dgrp.chosen == true" canedit="{{canEdit}}"></group-object>
+						<group-object type="Delivery Group" group="{{dgrp}}" users="{{record.variables.users.value}}" allapps="{{all_apps}}" ng-repeat="dgrp in deliveryGroups" ng-if="dgrp.chosen == true" canedit="{{canEdit}}" loadedusers="{{dgrp.loaded_users}}"></group-object>
 											
 					</div>
 					<div id="tab2" class="tab-pane col-sm-12">			
-						<group-object type="AD Group" group="{{dgrp}}" canedit="{{canEdit}}" users="{{record.variables.users.value}}" allapps="{{all_apps}}" ng-repeat="dgrp in deliveryGroups" ng-if="dgrp.chosen == true"></group-object>
+						<group-object type="AD Group" group="{{dgrp}}" canedit="{{canEdit}}" users="{{record.variables.users.value}}" allapps="{{all_apps}}" ng-repeat="dgrp in deliveryGroups" loadedusers="{{dgrp.loaded_users}}" ng-if="dgrp.chosen == true"></group-object>
 					</div>
 				</div>
 
@@ -682,21 +748,21 @@ app.directive('summaryList',function(htmlLoader,summaryParser,$compile){
 	</body>
 	
 </j:jelly>]]></html>
-        <name>citrix_requests</name>
+        <name>app_provision_view</name>
         <processing_script/>
         <sys_class_name>sys_ui_page</sys_class_name>
         <sys_created_by>sebastiang</sys_created_by>
         <sys_created_on>2018-04-17 01:14:52</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>da809645db259b00a7287bec0f96195a</sys_id>
-        <sys_mod_count>432</sys_mod_count>
-        <sys_name>citrix_requests</sys_name>
+        <sys_mod_count>510</sys_mod_count>
+        <sys_name>app_provision_view</sys_name>
         <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_ui_page_da809645db259b00a7287bec0f96195a</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-05-01 20:15:25</sys_updated_on>
+        <sys_updated_on>2018-05-03 20:09:26</sys_updated_on>
     </sys_ui_page>
 </record_update>

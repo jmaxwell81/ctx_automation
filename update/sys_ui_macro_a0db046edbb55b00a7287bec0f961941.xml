@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_macro">
+    <sys_ui_macro action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>general</category>
+        <description/>
+        <media_type/>
+        <name>desktop_config_loader</name>
+        <scoped_name>x_wcs_ctrx_auto_sv_desktop_config_loader</scoped_name>
+        <sys_class_name>sys_ui_macro</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-03 17:31:27</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>a0db046edbb55b00a7287bec0f961941</sys_id>
+        <sys_mod_count>24</sys_mod_count>
+        <sys_name>desktop_config_loader</sys_name>
+        <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
+        <sys_update_name>sys_ui_macro_a0db046edbb55b00a7287bec0f961941</sys_update_name>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-03 19:47:17</sys_updated_on>
+        <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<script>
+		jQuery(document).ready(function(){
+		
+		
+			jQuery('#os_list').change(function(){
+				var config = jQuery(this).val();
+				g_form.setValue('config_requested',config);
+			});
+		
+		
+		    var createOSOption = function(configObj){
+				var option = document.createElement('option');
+				jQuery(option).text(configObj.Name);
+				jQuery(option).val(JSON.stringify(configObj));
+				return option;
+			};
+		
+			var addOption = function(option){
+				jQuery('#os_list').append(option);
+			}
+		
+			var processConfigResponse = function(response){
+				var answer = response.responseXML.documentElement.getAttribute('answer');
+				console.log(answer);
+				try{
+					var configs = JSON.parse(answer);
+					var option;
+					for(var i = 0;i &lt; configs.length; i++){
+						option = createOSOption(configs[i]);
+						addOption(option);
+					}
+				}catch(error){
+					g_form.addErrorMessage('Unable to load available configurations');
+					console.log(error);
+				}
+			};
+		
+			var ctxAjax = new GlideAjax('CTXClientRequest');
+			ctxAjax.addParam('sysparm_name','getAvailableConfigs');
+			ctxAjax.getXML(processConfigResponse);
+		});
+	</script>
+	<style>
+		
+		.placeholder{
+			color:#bdbfc1;
+		}
+		.align-left{
+		    text-align:left;
+		}
+		
+		.form-group{
+			margin-top:10px;
+			margin-bottom:10px;
+		}
+	</style>
+	<form class="form-horizontal">
+		<div class="form-group col-xs-12">
+			<label class="col-xs-12">
+				Configuration
+			</label>
+		</div>
+		<div class="form-group col-xs-12 col-md-6">
+			<label class="col-xs-12 col-md-3 control-label">
+				<span class="label-text">Operating System</span>
+			</label>
+			<div class="col-xs-12 col-md-9 form-field input_controls">
+				<select id="os_list" class="form-control">
+					 <option class="placeholder" value="" disabled="" selected="">Select operating system</option>
+				</select>
+			</div>
+		</div>
+	</form>
+</j:jelly>]]></xml>
+    </sys_ui_macro>
+</record_update>

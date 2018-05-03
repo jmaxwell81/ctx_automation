@@ -79,6 +79,17 @@ CTXRequestUtil.prototype = {
 		}
 	},
 	
+	updateRITMState:function(ritm_sys_id,newState){
+		var logger = new Logger();
+				
+		var sc_req_item = new GlideRecord('sc_req_item');
+		sc_req_item.get(ritm_sys_id);
+		
+		if(!gs.nil(sc_req_item)){
+			sc_req_item.setValue('state',newState);
+			sc_req_item.update();
+		}
+	},
     type: 'CTXRequestUtil'
 };]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
@@ -86,7 +97,7 @@ CTXRequestUtil.prototype = {
         <sys_created_on>2018-04-30 17:36:10</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>269a98a1db799700a7287bec0f96198c</sys_id>
-        <sys_mod_count>9</sys_mod_count>
+        <sys_mod_count>10</sys_mod_count>
         <sys_name>CTXRequestUtil</sys_name>
         <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy>read</sys_policy>
@@ -94,6 +105,6 @@ CTXRequestUtil.prototype = {
         <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_script_include_269a98a1db799700a7287bec0f96198c</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-05-01 13:51:07</sys_updated_on>
+        <sys_updated_on>2018-05-03 15:04:47</sys_updated_on>
     </sys_script_include>
 </record_update>

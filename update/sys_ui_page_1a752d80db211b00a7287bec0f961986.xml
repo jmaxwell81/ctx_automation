@@ -14,6 +14,7 @@
 	
 	var groupType = GlideModal.get().getPreference('group_type');
 	var groupName = GlideModal.get().getPreference('group_name');
+	var groupId = GlideModal.get().getPreference('group_id');
 	var groupTitle = groupType + ": " + groupName;
 	jQuery("#group_title").text(groupTitle);
 	
@@ -21,7 +22,7 @@
 	var curr_members = [];
 	
 	//Load current members
-	var chosenUsersId = groupName+"_chosen_users";
+	var chosenUsersId = groupId+"_chosen_users";
 	var chosenUsers = jQuery("[id='"+chosenUsersId+"']");
 	
 	var membersStr = chosenUsers.attr('members');
@@ -41,7 +42,8 @@
 		return false;
 	};
 					
-	var users = GlideModal.get().getPreference('users');							
+	var usersStr = GlideModal.get().getPreference('users');							
+	var users = JSON.parse(usersStr);
 	var leftBucket = gel('slush_left');
 	var rightBucket = gel('slush_right');
 	var option;
@@ -101,8 +103,8 @@
 		var membersNames = getMemberNames(members);
 		var moreLink = createMoreLink(members);
 		
-		var chosenUsersId = groupName+"_chosen_users";
-		var moreUsersId = groupName+"_more_users";
+		var chosenUsersId = groupId+"_chosen_users";
+		var moreUsersId = groupId+"_more_users";
 		var chosenUsers = jQuery("[id='"+chosenUsersId+"']");
 		var moreUsers = jQuery("[id='"+moreUsersId+"']");
 		
@@ -140,8 +142,6 @@
 		</style>
 	
 	<div class="col-xs-12">
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt,quis nostrud exercitation
-	ullamco laboris nisi ut aliquip ex </p>
 
 		<p id="group_title"></p>
 	</div>
@@ -158,7 +158,7 @@
         <sys_created_on>2018-04-13 19:22:54</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>1a752d80db211b00a7287bec0f961986</sys_id>
-        <sys_mod_count>79</sys_mod_count>
+        <sys_mod_count>84</sys_mod_count>
         <sys_name>group_user_select</sys_name>
         <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
@@ -166,6 +166,6 @@
         <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_ui_page_1a752d80db211b00a7287bec0f961986</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-04-26 15:43:15</sys_updated_on>
+        <sys_updated_on>2018-05-03 16:26:28</sys_updated_on>
     </sys_ui_page>
 </record_update>

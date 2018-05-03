@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script><![CDATA[var app = angular.module('ctxReqs',[]);
+app.controller('ctxReqsCtrl',function($scope,$http){
+	
+	var getParameterValue = function(name) {
+		
+		var url = document.URL.parseQuery();
+		
+		if (url[name]) {			
+			return decodeURI(url[name]);			
+		}else{			
+			return;			
+		}
+		
+	};	
+	
+	var ctx_req_sys_id = getParameterValue('sys_id');
+	var query = "sysparm_query=sys_id="+ctx_req_sys_id;
+	var fields = "&sysparm_fields=requested_item.cat_item.name,requested_item";
+	
+	var url = "/api/now/table/x_wcs_ctrx_auto_sv_citrix_requests?"+query+fields;
+	
+	$http({		
+		method:"GET",
+		url:url,
+		headers:{
+			"Accept":"application/json",
+			"X-UserToken":window.g_ck
+		}
+	}).then(function(response){
+		
+		console.log(response);
+		var data = response.data;
+		var result = data.result;
+		
+		if(result.length > 0){
+			var name = result[0]['requested_item.cat_item.name'];
+			var ritm_sys_id = result[0].requested_item.value;
+			if(name == "Application Provisioning"){
+				window.location = "/x_wcs_ctrx_auto_sv_app_provision_view.do?sys_id="+ritm_sys_id;
+			}else if(name == "Request a Desktop"){
+				window.location = "/x_wcs_ctrx_auto_sv_dektop_config_view.do?sys_id="+ritm_sys_id;
+			}else{
+				window.location = "/sc_req_item.do?sys_id="+ritm_sys_id;
+			}
+		}
+	});
+	
+});]]></client_script>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_wcs_ctrx_auto_sv_citrix_requests.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	</head>
+	<body ng-app="ctxReqs" ng-controller="ctxReqsCtrl" ng-cloak="">
+	</body>
+</j:jelly>]]></html>
+        <name>citrix_requests</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-03 20:00:01</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>ae4ba866db395b00a7287bec0f9619d0</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>citrix_requests</sys_name>
+        <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
+        <sys_update_name>sys_ui_page_ae4ba866db395b00a7287bec0f9619d0</sys_update_name>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-03 20:15:54</sys_updated_on>
+    </sys_ui_page>
+</record_update>

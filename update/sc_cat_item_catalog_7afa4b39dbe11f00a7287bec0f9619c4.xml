@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <record_update table="sc_cat_item_catalog">
     <sc_cat_item_catalog action="INSERT_OR_UPDATE">
-        <sc_cat_item display_value="Request a dektop">84ca87f5dbe11f00a7287bec0f96194a</sc_cat_item>
+        <sc_cat_item display_value="Request a Desktop">84ca87f5dbe11f00a7287bec0f96194a</sc_cat_item>
         <sc_catalog display_value="Citrix Automation Catalog">c36d1f6cdb8513406d3c72fc0f9619c6</sc_catalog>
         <sys_class_name>sc_cat_item_catalog</sys_class_name>
         <sys_created_by>sebastiang</sys_created_by>

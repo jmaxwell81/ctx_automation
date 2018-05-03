@@ -4,14 +4,22 @@
         <category>general</category>
         <client_script><![CDATA[(function(){
 	
-	var group = GlideModal.get().getPreference('group');
+	var apps = GlideModal.get().getPreference('apps');
+	var description = GlideModal.get().getPreference('description');
+	jQuery("#description").prepend(description);
 	
-	jQuery("#group_name").text(group.Name);
+	var groupName = GlideModal.get().getPreference('group_name');
+	
+	if(groupName != null && groupName != ''){
+		console.log("GROUP NAME",groupName);
+		jQuery("#group_name").text(groupName);
+	}
+	
 	
 	var tr;
 	var td;		
 	
-	for(var app in group.Applications){
+	for(var i = 0; i < apps.length; i++){
 		
 		tr = document.createElement('tr');
 		jQuery(tr).addClass('data_row');
@@ -19,7 +27,7 @@
 		td = document.createElement('td');
 		jQuery(td).addClass('vt');
 		jQuery(td).addClass('grid-field');
-		jQuery(td).html(app);
+		jQuery(td).html(apps[i]);
 
 		jQuery("#apps_table").append(tr);
 		jQuery(tr).append(td);
@@ -33,7 +41,7 @@
         <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
 <j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
 	
-	<p>Following are the applications that are part of$[SP]<span><b id="group_name"></b></span></p>
+	<p id="description"><span>$[SP]<b id="group_name"></b></span></p>
 	<table class="table table-hover original-table list-grid table-striped" style="cursor: default; user-select: text;">
 		<thead class="table-body-headers">
 			<tr class="table-header">
@@ -56,7 +64,7 @@
         <sys_created_on>2018-04-19 20:41:15</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>262f604edbe51f00a7287bec0f961916</sys_id>
-        <sys_mod_count>23</sys_mod_count>
+        <sys_mod_count>29</sys_mod_count>
         <sys_name>application_modal</sys_name>
         <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
@@ -64,6 +72,6 @@
         <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_ui_page_262f604edbe51f00a7287bec0f961916</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-04-26 23:15:45</sys_updated_on>
+        <sys_updated_on>2018-05-02 23:27:39</sys_updated_on>
     </sys_ui_page>
 </record_update>

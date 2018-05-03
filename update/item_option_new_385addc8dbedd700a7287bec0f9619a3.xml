@@ -41,7 +41,7 @@
         <order>15</order>
         <price_if_checked>0</price_if_checked>
         <pricing_implications>false</pricing_implications>
-        <question_text>Select Applications</question_text>
+        <question_text>Choose all application you want to assign</question_text>
         <read_roles/>
         <rec_lookup_price/>
         <rec_price_if_checked>0</rec_price_if_checked>
@@ -61,15 +61,15 @@
         <sys_created_on>2018-04-13 18:34:50</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>385addc8dbedd700a7287bec0f9619a3</sys_id>
-        <sys_mod_count>5</sys_mod_count>
-        <sys_name>Select Applications</sys_name>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>Choose all application you want to assign</sys_name>
         <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>item_option_new_385addc8dbedd700a7287bec0f9619a3</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-04-16 23:40:31</sys_updated_on>
+        <sys_updated_on>2018-05-03 16:23:18</sys_updated_on>
         <table/>
         <tooltip/>
         <type>21</type>

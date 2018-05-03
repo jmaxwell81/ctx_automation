@@ -1,0 +1,744 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="wf_workflow_version">
+    <wf_workflow_version action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <activity_stages>{"ends":["f044bf42dbf91b00a7287bec0f96193f"],"activities":{"70447f42dbf91b00a7287bec0f9619e7":"3c447f42dbf91b00a7287bec0f9619e3"},"subflows":[],"stages":{"3c447f42dbf91b00a7287bec0f9619e3":{"order":1100,"duration":"","stageId":"3c447f42dbf91b00a7287bec0f9619e3","name":"Completed","value":"complete"}}}</activity_stages>
+        <after_business_rules>false</after_business_rules>
+        <checked_out/>
+        <checked_out_by/>
+        <column_renderer display_value="Workflow-driven">a56213111b030100adca1e094f0713ac</column_renderer>
+        <condition/>
+        <condition_type/>
+        <description>Reset a Xen App or Xen Desktop Session</description>
+        <expected_sequences>b444bf42dbf91b00a7287bec0f961942,7444bf42dbf91b00a7287bec0f961941,bc447f42dbf91b00a7287bec0f9619e4,f044bf42dbf91b00a7287bec0f96193f</expected_sequences>
+        <expected_time>1970-01-01 14:00:00</expected_time>
+        <expected_time_type/>
+        <full_sequences>b444bf42dbf91b00a7287bec0f961942,7444bf42dbf91b00a7287bec0f961941,bc447f42dbf91b00a7287bec0f9619e4,f044bf42dbf91b00a7287bec0f96193f,bc44bf42dbf91b00a7287bec0f96193f,70447f42dbf91b00a7287bec0f9619e7</full_sequences>
+        <journal/>
+        <max_activity_count>100</max_activity_count>
+        <name>CTX Session Reset</name>
+        <not_cacheable>false</not_cacheable>
+        <on_cancel><![CDATA[// This script executes if the workflow is cancelled.// The global variable context_sys_id contains the sys_id of the cancelled workflow context.]]></on_cancel>
+        <order>100</order>
+        <pin_type>set_by_activity</pin_type>
+        <published>true</published>
+        <relative_duration/>
+        <requires_ert>true</requires_ert>
+        <run_multiple>false</run_multiple>
+        <schedule/>
+        <stage_field>stage</stage_field>
+        <stage_order>computed</stage_order>
+        <start display_value="Begin">b444bf42dbf91b00a7287bec0f961942</start>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>34447f42dbf91b00a7287bec0f9619e2</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:17:30</sys_updated_on>
+        <table>sc_req_item</table>
+        <timezone/>
+        <validated>true</validated>
+        <workflow display_value="CTX Session Reset">cc5d630edbb91b00a7287bec0f96190a</workflow>
+    </wf_workflow_version>
+    <wf_workflow action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <description>Reset a Xen App or Xen Desktop Session</description>
+        <name>CTX Session Reset</name>
+        <preview/>
+        <sys_class_name>wf_workflow</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 20:39:34</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>cc5d630edbb91b00a7287bec0f96190a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>CTX Session Reset</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
+        <sys_update_name>wf_workflow_cc5d630edbb91b00a7287bec0f96190a</sys_update_name>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 20:39:34</sys_updated_on>
+        <table>sc_req_item</table>
+        <template>false</template>
+        <vars/>
+    </wf_workflow>
+    <wf_stage action="INSERT_OR_UPDATE">
+        <name>Completed</name>
+        <ola>1970-01-01 00:00:00</ola>
+        <order>1100</order>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>3c447f42dbf91b00a7287bec0f9619e3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:09:55</sys_updated_on>
+        <value>complete</value>
+        <workflow_version display_value="CTX Session Reset">34447f42dbf91b00a7287bec0f9619e2</workflow_version>
+    </wf_stage>
+    <wf_stage action="INSERT_OR_UPDATE">
+        <name>Delivery</name>
+        <ola>1970-01-03 00:00:00</ola>
+        <order>140</order>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>b0447f42dbf91b00a7287bec0f9619e4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:09:55</sys_updated_on>
+        <value>delivery</value>
+        <workflow_version display_value="CTX Session Reset">34447f42dbf91b00a7287bec0f9619e2</workflow_version>
+    </wf_stage>
+    <wf_stage action="INSERT_OR_UPDATE">
+        <name>Fulfillment</name>
+        <ola>1970-01-02 00:00:00</ola>
+        <order>120</order>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>b4447f42dbf91b00a7287bec0f9619e4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:09:55</sys_updated_on>
+        <value>fulfillment</value>
+        <workflow_version display_value="CTX Session Reset">34447f42dbf91b00a7287bec0f9619e2</workflow_version>
+    </wf_stage>
+    <wf_stage action="INSERT_OR_UPDATE">
+        <name>Request Cancelled</name>
+        <ola>1970-01-01 00:00:00</ola>
+        <order>1000</order>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>30447f42dbf91b00a7287bec0f9619e4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:09:55</sys_updated_on>
+        <value>Request Cancelled</value>
+        <workflow_version display_value="CTX Session Reset">34447f42dbf91b00a7287bec0f9619e2</workflow_version>
+    </wf_stage>
+    <wf_stage action="INSERT_OR_UPDATE">
+        <name>Request Approved</name>
+        <ola>1970-01-01 00:00:00</ola>
+        <order>90</order>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>34447f42dbf91b00a7287bec0f9619e4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:09:55</sys_updated_on>
+        <value>request_approved</value>
+        <workflow_version display_value="CTX Session Reset">34447f42dbf91b00a7287bec0f9619e2</workflow_version>
+    </wf_stage>
+    <wf_stage action="INSERT_OR_UPDATE">
+        <name>Waiting for Approval</name>
+        <ola>1970-01-02 00:00:00</ola>
+        <order>100</order>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>bc447f42dbf91b00a7287bec0f9619e3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:09:55</sys_updated_on>
+        <value>waiting_for_approval</value>
+        <workflow_version display_value="CTX Session Reset">34447f42dbf91b00a7287bec0f9619e2</workflow_version>
+    </wf_stage>
+    <wf_activity action="INSERT_OR_UPDATE">
+        <activity_definition display_value="Begin">c7a5e32c0a0a0b3a002377c24ed8ea76</activity_definition>
+        <activity_definition_updated>false</activity_definition_updated>
+        <databus_lookup_id>1</databus_lookup_id>
+        <height/>
+        <input/>
+        <is_parent>false</is_parent>
+        <name>Begin</name>
+        <new_activity_definition/>
+        <notes/>
+        <out_of_date>false</out_of_date>
+        <parent/>
+        <pinned>false</pinned>
+        <pinned_version/>
+        <stage/>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>b444bf42dbf91b00a7287bec0f961942</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:09:55</sys_updated_on>
+        <timeout>1970-01-01 00:00:00</timeout>
+        <vars/>
+        <width>80</width>
+        <workflow_version display_value="CTX Session Reset">34447f42dbf91b00a7287bec0f9619e2</workflow_version>
+        <x>20</x>
+        <y>20</y>
+    </wf_activity>
+    <sys_variable_value action="delete_multiple" query="document_key=b444bf42dbf91b00a7287bec0f961942"/>
+    <wf_condition action="INSERT_OR_UPDATE">
+        <activity display_value="Begin">b444bf42dbf91b00a7287bec0f961942</activity>
+        <condition>true</condition>
+        <condition_default/>
+        <condition_type>standard</condition_type>
+        <else_flag>false</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <is_positive>true</is_positive>
+        <name>Always</name>
+        <order>0</order>
+        <short_description/>
+        <skip_during_generate>false</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>bc44bf42dbf91b00a7287bec0f961942</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:09:55</sys_updated_on>
+    </wf_condition>
+    <wf_activity action="INSERT_OR_UPDATE">
+        <activity_definition display_value="If">98f621ca0a0a0b5900f7c291f5e45a0e</activity_definition>
+        <activity_definition_updated>false</activity_definition_updated>
+        <databus_lookup_id>6</databus_lookup_id>
+        <height/>
+        <input>{}</input>
+        <is_parent>false</is_parent>
+        <name>Check if Error</name>
+        <new_activity_definition/>
+        <notes/>
+        <out_of_date>false</out_of_date>
+        <parent/>
+        <pinned>false</pinned>
+        <pinned_version/>
+        <stage/>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>bc447f42dbf91b00a7287bec0f9619e4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:09:55</sys_updated_on>
+        <timeout>1970-01-01 00:00:00</timeout>
+        <vars/>
+        <width/>
+        <workflow_version display_value="CTX Session Reset">34447f42dbf91b00a7287bec0f9619e2</workflow_version>
+        <x>281</x>
+        <y>161</y>
+    </wf_activity>
+    <sys_variable_value action="delete_multiple" query="document_key=bc447f42dbf91b00a7287bec0f9619e4"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>bc447f42dbf91b00a7287bec0f9619e4</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>34447f42dbf91b00a7287bec0f9619e5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:09:55</sys_updated_on>
+        <value/>
+        <variable display_value="">493cba6a0a6a803f07df24b118473551</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>bc447f42dbf91b00a7287bec0f9619e4</document_key>
+        <order>300</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>bc447f42dbf91b00a7287bec0f9619e5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:09:55</sys_updated_on>
+        <value>answer = ifScript();&#13;
+&#13;
+function ifScript() {&#13;
+	if (workflow.scratchpad.sessionError == '') {&#13;
+		return 'no';&#13;
+	}&#13;
+	return 'yes';&#13;
+}&#13;
+</value>
+        <variable display_value="">c35e50810a0a0ba96248a709b450fc32</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>bc447f42dbf91b00a7287bec0f9619e4</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>f8447f42dbf91b00a7287bec0f9619e5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:09:55</sys_updated_on>
+        <value>1</value>
+        <variable display_value="">493d2c1d0a6a803f3217a75738ea3289</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>bc447f42dbf91b00a7287bec0f9619e4</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>34447f42dbf91b00a7287bec0f9619e5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:09:55</sys_updated_on>
+        <value/>
+        <variable display_value="">493cba6a0a6a803f07df24b118473551</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>bc447f42dbf91b00a7287bec0f9619e4</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>f8447f42dbf91b00a7287bec0f9619e5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:09:55</sys_updated_on>
+        <value>1</value>
+        <variable display_value="">493d2c1d0a6a803f3217a75738ea3289</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>bc447f42dbf91b00a7287bec0f9619e4</document_key>
+        <order>300</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>bc447f42dbf91b00a7287bec0f9619e5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:09:55</sys_updated_on>
+        <value>answer = ifScript();&#13;
+&#13;
+function ifScript() {&#13;
+	if (workflow.scratchpad.sessionError == '') {&#13;
+		return 'no';&#13;
+	}&#13;
+	return 'yes';&#13;
+}&#13;
+</value>
+        <variable display_value="">c35e50810a0a0ba96248a709b450fc32</variable>
+    </sys_variable_value>
+    <wf_condition action="INSERT_OR_UPDATE">
+        <activity display_value="Check if Error">bc447f42dbf91b00a7287bec0f9619e4</activity>
+        <condition>activity.result == 'no'</condition>
+        <condition_default display_value="No">c1eff6430a0a0b59000f955abe842c94</condition_default>
+        <condition_type>standard</condition_type>
+        <else_flag>false</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <is_positive>false</is_positive>
+        <name>No</name>
+        <order>200</order>
+        <short_description/>
+        <skip_during_generate>true</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>f4447f42dbf91b00a7287bec0f9619e6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:09:55</sys_updated_on>
+    </wf_condition>
+    <wf_condition action="INSERT_OR_UPDATE">
+        <activity display_value="Check if Error">bc447f42dbf91b00a7287bec0f9619e4</activity>
+        <condition>activity.result == 'yes'</condition>
+        <condition_default display_value="Yes">c1ef63200a0a0b59005ef89bae78feb7</condition_default>
+        <condition_type>standard</condition_type>
+        <else_flag>false</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <is_positive>true</is_positive>
+        <name>Yes</name>
+        <order>100</order>
+        <short_description/>
+        <skip_during_generate>false</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>74447f42dbf91b00a7287bec0f9619e6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:09:55</sys_updated_on>
+    </wf_condition>
+    <wf_activity action="INSERT_OR_UPDATE">
+        <activity_definition display_value="End">c7a66f7d0a0a0b3a004544a6d2f14076</activity_definition>
+        <activity_definition_updated>false</activity_definition_updated>
+        <databus_lookup_id>2</databus_lookup_id>
+        <height/>
+        <input/>
+        <is_parent>false</is_parent>
+        <name>End</name>
+        <new_activity_definition/>
+        <notes/>
+        <out_of_date>false</out_of_date>
+        <parent/>
+        <pinned>false</pinned>
+        <pinned_version/>
+        <stage/>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>f044bf42dbf91b00a7287bec0f96193f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:09:55</sys_updated_on>
+        <timeout>1970-01-01 00:00:00</timeout>
+        <vars/>
+        <width>80</width>
+        <workflow_version display_value="CTX Session Reset">34447f42dbf91b00a7287bec0f9619e2</workflow_version>
+        <x>786</x>
+        <y>384</y>
+    </wf_activity>
+    <sys_variable_value action="delete_multiple" query="document_key=f044bf42dbf91b00a7287bec0f96193f"/>
+    <wf_activity action="INSERT_OR_UPDATE">
+        <activity_definition display_value="Run Script">db8c65aec0a8016501d00259bc7203a4</activity_definition>
+        <activity_definition_updated>false</activity_definition_updated>
+        <databus_lookup_id>4</databus_lookup_id>
+        <height/>
+        <input>{}</input>
+        <is_parent>false</is_parent>
+        <name>Get Session Details</name>
+        <new_activity_definition/>
+        <notes/>
+        <out_of_date>false</out_of_date>
+        <parent/>
+        <pinned>false</pinned>
+        <pinned_version/>
+        <stage/>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>7444bf42dbf91b00a7287bec0f961941</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:16:51</sys_updated_on>
+        <timeout>1970-01-01 00:00:00</timeout>
+        <vars/>
+        <width/>
+        <workflow_version display_value="CTX Session Reset">34447f42dbf91b00a7287bec0f9619e2</workflow_version>
+        <x>177</x>
+        <y>15</y>
+    </wf_activity>
+    <sys_variable_value action="delete_multiple" query="document_key=7444bf42dbf91b00a7287bec0f961941"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>7444bf42dbf91b00a7287bec0f961941</document_key>
+        <order>1</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>7844bf42dbf91b00a7287bec0f961941</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:16:51</sys_updated_on>
+        <value>(function(){&#13;
+	&#13;
+	workflow.scratchpad.sessionError = '';&#13;
+	&#13;
+	var sessionStr = current.variables.chosen_session;&#13;
+	&#13;
+	try{&#13;
+		var session = JSON.parse(sessionStr);&#13;
+		workflow.scratchpad.site_id = session.SiteId;&#13;
+		workflow.scratchpad.session_id = session.SessionKey;&#13;
+	}catch(error){&#13;
+		workflow.scratchpad.sessionError = error;&#13;
+	}&#13;
+	&#13;
+})();</value>
+        <variable display_value="">c35ddef20a0a0ba96248a7090eccd518</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>7444bf42dbf91b00a7287bec0f961941</document_key>
+        <order>1</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>7844bf42dbf91b00a7287bec0f961941</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:16:51</sys_updated_on>
+        <value>(function(){&#13;
+	&#13;
+	workflow.scratchpad.sessionError = '';&#13;
+	&#13;
+	var sessionStr = current.variables.chosen_session;&#13;
+	&#13;
+	try{&#13;
+		var session = JSON.parse(sessionStr);&#13;
+		workflow.scratchpad.site_id = session.SiteId;&#13;
+		workflow.scratchpad.session_id = session.SessionKey;&#13;
+	}catch(error){&#13;
+		workflow.scratchpad.sessionError = error;&#13;
+	}&#13;
+	&#13;
+})();</value>
+        <variable display_value="">c35ddef20a0a0ba96248a7090eccd518</variable>
+    </sys_variable_value>
+    <wf_condition action="INSERT_OR_UPDATE">
+        <activity display_value="Get Session Details">7444bf42dbf91b00a7287bec0f961941</activity>
+        <condition>true</condition>
+        <condition_default/>
+        <condition_type>standard</condition_type>
+        <else_flag>false</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <is_positive>true</is_positive>
+        <name>Always</name>
+        <order>0</order>
+        <short_description/>
+        <skip_during_generate>false</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>3044bf42dbf91b00a7287bec0f961942</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:09:55</sys_updated_on>
+    </wf_condition>
+    <wf_activity action="INSERT_OR_UPDATE">
+        <activity_definition display_value="Reset User Session">1f54ff42dbf91b00a7287bec0f96192d</activity_definition>
+        <activity_definition_updated>false</activity_definition_updated>
+        <databus_lookup_id>3</databus_lookup_id>
+        <height/>
+        <input>{"site_id":"${workflow.scratchpad.site_id}","session_id":"${workflow.scratchpad.session_id}"}</input>
+        <is_parent>false</is_parent>
+        <name>session reset</name>
+        <new_activity_definition/>
+        <notes/>
+        <out_of_date>false</out_of_date>
+        <parent/>
+        <pinned>false</pinned>
+        <pinned_version/>
+        <stage/>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>bc44bf42dbf91b00a7287bec0f96193f</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:10:22</sys_updated_on>
+        <timeout>1970-01-01 00:00:00</timeout>
+        <vars/>
+        <width/>
+        <workflow_version display_value="CTX Session Reset">34447f42dbf91b00a7287bec0f9619e2</workflow_version>
+        <x>553</x>
+        <y>96</y>
+    </wf_activity>
+    <sys_variable_value action="delete_multiple" query="document_key=bc44bf42dbf91b00a7287bec0f96193f"/>
+    <wf_condition action="INSERT_OR_UPDATE">
+        <activity display_value="session reset">bc44bf42dbf91b00a7287bec0f96193f</activity>
+        <condition>activityOutput.result == 'failure'</condition>
+        <condition_default display_value="Failure">5e9f674edbb91b00a7287bec0f96191b</condition_default>
+        <condition_type>standard</condition_type>
+        <else_flag>false</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <is_positive>false</is_positive>
+        <name>Failure</name>
+        <order>10</order>
+        <short_description/>
+        <skip_during_generate>false</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>3c44bf42dbf91b00a7287bec0f961940</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:09:55</sys_updated_on>
+    </wf_condition>
+    <wf_condition action="INSERT_OR_UPDATE">
+        <activity display_value="session reset">bc44bf42dbf91b00a7287bec0f96193f</activity>
+        <condition>activityOutput.result == 'success'</condition>
+        <condition_default display_value="Success">409f274edbb91b00a7287bec0f96196d</condition_default>
+        <condition_type>standard</condition_type>
+        <else_flag>false</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <is_positive>false</is_positive>
+        <name>Success</name>
+        <order>0</order>
+        <short_description/>
+        <skip_during_generate>false</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>bc44bf42dbf91b00a7287bec0f961940</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:09:55</sys_updated_on>
+    </wf_condition>
+    <wf_activity action="INSERT_OR_UPDATE">
+        <activity_definition display_value="Set Values">1ca8d7cf0a0a0b265e9a000c2c08248c</activity_definition>
+        <activity_definition_updated>false</activity_definition_updated>
+        <databus_lookup_id>5</databus_lookup_id>
+        <height/>
+        <input>{}</input>
+        <is_parent>false</is_parent>
+        <name>Set Complete</name>
+        <new_activity_definition/>
+        <notes/>
+        <out_of_date>false</out_of_date>
+        <parent/>
+        <pinned>false</pinned>
+        <pinned_version/>
+        <stage display_value="Completed">3c447f42dbf91b00a7287bec0f9619e3</stage>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>70447f42dbf91b00a7287bec0f9619e7</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:10:11</sys_updated_on>
+        <timeout>1970-01-01 00:00:00</timeout>
+        <vars/>
+        <width/>
+        <workflow_version display_value="CTX Session Reset">34447f42dbf91b00a7287bec0f9619e2</workflow_version>
+        <x>856</x>
+        <y>80</y>
+    </wf_activity>
+    <sys_variable_value action="delete_multiple" query="document_key=70447f42dbf91b00a7287bec0f9619e7"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>70447f42dbf91b00a7287bec0f9619e7</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>74447f42dbf91b00a7287bec0f9619e7</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:10:11</sys_updated_on>
+        <value>state=3^EQ</value>
+        <variable display_value="">1cb38c8f0a0a0b266fb48e08de35f507</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>wf_activity</document>
+        <document_key>70447f42dbf91b00a7287bec0f9619e7</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>74447f42dbf91b00a7287bec0f9619e7</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:10:11</sys_updated_on>
+        <value>state=3^EQ</value>
+        <variable display_value="">1cb38c8f0a0a0b266fb48e08de35f507</variable>
+    </sys_variable_value>
+    <wf_condition action="INSERT_OR_UPDATE">
+        <activity display_value="Set Complete">70447f42dbf91b00a7287bec0f9619e7</activity>
+        <condition>true</condition>
+        <condition_default/>
+        <condition_type>standard</condition_type>
+        <else_flag>false</else_flag>
+        <error>false</error>
+        <event>false</event>
+        <event_name/>
+        <is_positive>true</is_positive>
+        <name>Always</name>
+        <order>0</order>
+        <short_description/>
+        <skip_during_generate>false</skip_during_generate>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>3c447f42dbf91b00a7287bec0f9619e7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:09:55</sys_updated_on>
+    </wf_condition>
+    <wf_transition action="INSERT_OR_UPDATE">
+        <condition display_value="Yes">74447f42dbf91b00a7287bec0f9619e6</condition>
+        <from display_value="Check if Error">bc447f42dbf91b00a7287bec0f9619e4</from>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>7044bf42dbf91b00a7287bec0f961944</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:09:55</sys_updated_on>
+        <to display_value="End">f044bf42dbf91b00a7287bec0f96193f</to>
+    </wf_transition>
+    <wf_transition action="INSERT_OR_UPDATE">
+        <condition display_value="Failure">3c44bf42dbf91b00a7287bec0f961940</condition>
+        <from display_value="session reset">bc44bf42dbf91b00a7287bec0f96193f</from>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>7844bf42dbf91b00a7287bec0f961944</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:09:55</sys_updated_on>
+        <to display_value="End">f044bf42dbf91b00a7287bec0f96193f</to>
+    </wf_transition>
+    <wf_transition action="INSERT_OR_UPDATE">
+        <condition display_value="Always">3c447f42dbf91b00a7287bec0f9619e7</condition>
+        <from display_value="Set Complete">70447f42dbf91b00a7287bec0f9619e7</from>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>b044bf42dbf91b00a7287bec0f961945</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:09:55</sys_updated_on>
+        <to display_value="End">f044bf42dbf91b00a7287bec0f96193f</to>
+    </wf_transition>
+    <wf_transition action="INSERT_OR_UPDATE">
+        <condition display_value="Always">3044bf42dbf91b00a7287bec0f961942</condition>
+        <from display_value="Get Session Details">7444bf42dbf91b00a7287bec0f961941</from>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>b444bf42dbf91b00a7287bec0f961945</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:09:55</sys_updated_on>
+        <to display_value="Check if Error">bc447f42dbf91b00a7287bec0f9619e4</to>
+    </wf_transition>
+    <wf_transition action="INSERT_OR_UPDATE">
+        <condition display_value="Always">bc44bf42dbf91b00a7287bec0f961942</condition>
+        <from display_value="Begin">b444bf42dbf91b00a7287bec0f961942</from>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>bc44bf42dbf91b00a7287bec0f961944</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:09:55</sys_updated_on>
+        <to display_value="Get Session Details">7444bf42dbf91b00a7287bec0f961941</to>
+    </wf_transition>
+    <wf_transition action="INSERT_OR_UPDATE">
+        <condition display_value="No">f4447f42dbf91b00a7287bec0f9619e6</condition>
+        <from display_value="Check if Error">bc447f42dbf91b00a7287bec0f9619e4</from>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>f044bf42dbf91b00a7287bec0f961944</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:09:55</sys_updated_on>
+        <to display_value="session reset">bc44bf42dbf91b00a7287bec0f96193f</to>
+    </wf_transition>
+    <wf_transition action="INSERT_OR_UPDATE">
+        <condition display_value="Success">bc44bf42dbf91b00a7287bec0f961940</condition>
+        <from display_value="session reset">bc44bf42dbf91b00a7287bec0f96193f</from>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>f444bf42dbf91b00a7287bec0f961944</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:09:55</sys_updated_on>
+        <to display_value="Set Complete">70447f42dbf91b00a7287bec0f9619e7</to>
+    </wf_transition>
+    <wf_estimated_runtime_config action="INSERT_OR_UPDATE">
+        <estimated_run_time/>
+        <no_of_data_points>1</no_of_data_points>
+        <percentage_threshold_ert>20</percentage_threshold_ert>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-02 21:09:55</sys_created_on>
+        <sys_id>f4447f42dbf91b00a7287bec0f9619e2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-02 21:09:55</sys_updated_on>
+        <workflow_version display_value="CTX Session Reset">34447f42dbf91b00a7287bec0f9619e2</workflow_version>
+    </wf_estimated_runtime_config>
+    <wf_workflow_version action="update_multiple" query="workflow=cc5d630edbb91b00a7287bec0f96190a^sys_id!=34447f42dbf91b00a7287bec0f9619e2">
+        <published>false</published>
+    </wf_workflow_version>
+</record_update>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script/>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_wcs_ctrx_auto_sv_group_template.do</endpoint>
+        <html><![CDATA[<style>
+	html[data-doctype="true"] body[data-formname="ui_page_render"] {
+		padding:0;				
+	}
+	html[data-doctype="true"] body[data-formname="ui_page_render"] .navbar {
+		margin:0;
+	}
+	.del-group-pane{
+		margin-bottom:30px;
+	}
+	
+	.grp-title{
+		font-weight:bold;
+	}
+	.chosen_users{		
+		font-size:11px;
+	}
+	.no-pad-left{
+		padding-left:0;
+	}
+	.icon-info{
+		margin-right:5px;
+	}
+	
+</style>
+<div class="del-group-pane no-pad-left col-sm-12">
+	<!-- DELIVERY GROUPS -->
+	<div class="no-pad-left col-xs-12" ng-if="type == 'Delivery Group'">
+		<div class="no-pad-left col-xs-12">	
+			<p class="grp-title"><a href="#" class="icon-info" ng-click="openApplicationModal(group)"></a>{{group.Name}}, {{group.SiteName}}</p>
+			<div id="{{group.Name}}" group-name="{{group.Name}}" group-type="{{type}}" site-id="{{group.SiteId}}" applications="{{group.Applications}}" class="group-id-container col-xs-12">
+				<button id="{{group.Name}}_lock" href="#" class="btn btn-default btn-ref" ng-click="openUserSelectModal(group.Name)" ng-disabled="{{!canEdit}}">
+					<span class="icon icon-locked" aria-hidden='true'></span>
+				</button>
+				<div class="no-pad-left col-xs-12">
+					<p class="chosen_users">
+						<span id="{{group.Name}}_chosen_users" type="text" members="{{members}}">{{getMembersNames(loadedusers.del_grp_users)}}</span>
+						<a id="{{group.Name}}_more_users" href='#' ng-click='openUserSelectModal(group.Name)'>{{getMoreLink(loadedusers.del_grp_users)}}</a>
+					</p>
+				</div>
+			</div>			
+		</div>
+		
+	</div>
+	
+	<!-- AD GROUPS -->
+	<div class="no-pad-left col-xs-12" ng-if="type == 'AD Group' &amp;&amp; hasADGroup" >
+		<div class="no-pad-left col-xs-12">	
+			<p class="grp-title"><a href="#" class="icon-info" ng-click="openApplicationModal(group)"></a>{{group.Name}}, {{group.SiteName}}</p>
+			<div id="{{id}}" group-name="{{adGrp}}" del-group-name="{{group.Name}}" group-type="{{type}}" class="group-id-container col-xs-12" ng-repeat="adGrp in group.ADGroups" ng-init="id = group.Name+'_'+adGrp">				
+				<div class="col-xs-12">
+				
+					<p class="grp-title" >{{adGrp}}</p>
+					<button id="{{id}}_lock" href="#" class="btn btn-default btn-ref" ng-click="openUserSelectModal(id,adGrp)" ng-disabled="{{!canEdit}}">
+						<span class="icon icon-locked" aria-hidden='true'></span>
+					</button>
+				</div>
+				<div class="col-xs-12">
+					<p class="chosen_users">
+						<span id="{{id}}_chosen_users" type="text" members="{{members}}">{{getMembersNames(loadedusers.ad_grps_users[adGrp])}}</span>
+						<a id="{{id}}_more_users" href='#' ng-click='openUserSelectModal(id,adGrp)'>{{getMoreLink(loadedusers.ad_grps_users[adGrp])}}</a>
+					</p>
+				</div>
+			</div>
+		</div>		
+	</div>
+</div>]]></html>
+        <name>group_template</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>sebastiang</sys_created_by>
+        <sys_created_on>2018-05-03 18:36:19</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>f0f954a6dbf55b00a7287bec0f961933</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>group_template</sys_name>
+        <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
+        <sys_update_name>sys_ui_page_f0f954a6dbf55b00a7287bec0f961933</sys_update_name>
+        <sys_updated_by>sebastiang</sys_updated_by>
+        <sys_updated_on>2018-05-03 18:45:41</sys_updated_on>
+    </sys_ui_page>
+</record_update>

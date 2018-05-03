@@ -12,7 +12,7 @@
         <sys_created_on>2018-05-02 14:26:19</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>0cb41ac6dbb51b00a7287bec0f961982</sys_id>
-        <sys_mod_count>80</sys_mod_count>
+        <sys_mod_count>104</sys_mod_count>
         <sys_name>session_loader</sys_name>
         <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
@@ -20,19 +20,25 @@
         <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_ui_macro_0cb41ac6dbb51b00a7287bec0f961982</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-05-02 17:49:42</sys_updated_on>
+        <sys_updated_on>2018-05-03 15:56:41</sys_updated_on>
         <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
 <j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
 	<script>
 		jQuery(document).ready(function() {
 		
+			var sessions = {};
+			
 			/**
 			Add session html element to screen
 			**/
 			var addSessionElement = function(sessionElement){
 				jQuery('.session-list').append(sessionElement);
+				
 			};
 		
+			/**
+			Create link for applications in session
+			**/
 			var createApplicationLink = function(apps){
 				return apps.length + " application(s)";
 			};
@@ -69,7 +75,7 @@
 					
 					var appLink = createApplicationLink(apps);
 					jQuery(template).find('.app-session').text(appLink);
-		
+					jQuery(template).find('.app-session').attr('apps',JSON.stringify(apps));
 				}
 		
 				return template;
@@ -84,20 +90,53 @@
 				try{
 					var sessionArr = JSON.parse(answer);
 					jQuery('#loading_message').hide();
+		
+					if(sessionArr.length &lt;= 0){
+						jQuery('#loading_message').show();
+						jQuery('#loading_message').text('No sessions found for user');
+					}
 					var sessionElement;
 					for(var i = 0; i &lt; sessionArr.length; i++){
 						sessionElement = createSessionElement(sessionArr[i],i+1);
 						addSessionElement(sessionElement);
+						sessions[sessionArr[i].SessionKey] = sessionArr[i];
 					}
+		
+					jQuery(".radio-label").on("click", function() {
+						var sessionId = jQuery(this).attr('for');
+						var sessionObj = sessions[sessionId];
+						g_form.setValue('chosen_session',JSON.stringify(sessionObj));
+					});
+		
+					jQuery('.app-session').on('click',function(){
+		
+						var apps = JSON.parse(jQuery(this).attr('apps'));
+						
+						var description = apps.length + " applications are running on this session";
+
+						var modalDialog = new GlideModal("x_wcs_ctrx_auto_sv_application_modal");
+						modalDialog.setTitle("Runnign applications");				
+						modalDialog.setPreference('apps',apps);	
+						modalDialog.setPreference('description',description);							
+						modalDialog.setSize(700, 800);
+						modalDialog.render();
+					});
 				}catch(error){
 					g_form.addErrorMessage('Unable to load sessions');
 					console.log(error);
 				}
 			};
-
+			//Check if in Requested Item			
+			var checkInRequestedItem = function(){				
+				return g_form.getTableName() == 'sc_req_item';
+			};
+		
+			/**
+			Loads user's sessiosn by makign call to 
+			session API
+			**/
+			var loadSessions = function (){
 				
-			(function loadSessions(){
-				console.log('LOADING Sessions');
 				var userName = g_user.userName;
 				var fullName = g_user.getFullName();
 				jQuery('#user_full_name').text(fullName);
@@ -106,7 +145,12 @@
 				sessionAjax.addParam('sysparm_name','getUserSessions');	
 				sessionAjax.addParam('sysparm_username',userName);
 				sessionAjax.getXML(processSessions);
-			})();
+			};
+		
+			if(!checkInRequestedItem()){
+				loadSessions();
+			}	
+			
 		});
 	</script>
 	<style>
@@ -163,7 +207,7 @@
 		<div class="col-xs-12 session">
 				
 			<span class="input-group-radio">									
-				<input id="" type="radio" class="radio radio-input"></input>
+				<input id="" type="radio" class="radio radio-input" name="radio-input"></input>
 				<label for="" style="" class="radio-label session-index">
 					<span class="session-status-dot"></span>
 				</label>
@@ -178,7 +222,7 @@
 		</div>
 	</script>
 	
-	<div>
+	<div id="content">
 		<div class="col-xs-12 header-bar">
 			<p>All Sessions for $[SP]<span id="user_full_name"></span></p>
 		</div>
@@ -187,15 +231,6 @@
 		</div>
 	</div>
 	
-	
-	<!--
-	<span class="input-group-checkbox">
-		<input type="checkbox" title="Mark record for List Action" id="check_rm_story_9c4c34f5db34df403bffeda5ca9619e2" name="check_rm_story" class="checkbox " data-type="list2_checkbox" data-list_id="rm_story" data-original-title="Mark record for List Action">
-			<label for="check_rm_story_9c4c34f5db34df403bffeda5ca9619e2" style="" class="checkbox-label">
-				<span class="sr-only">Select record for action</span>
-			</label>
-	</span>
-	-->
 	
 </j:jelly>]]></xml>
     </sys_ui_macro>

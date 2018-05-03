@@ -3,7 +3,7 @@
     <item_option_new action="INSERT_OR_UPDATE">
         <active>true</active>
         <attributes/>
-        <cat_item display_value="Reset a session">b98bc379dbe11f00a7287bec0f961968</cat_item>
+        <cat_item display_value="Request a Desktop">84ca87f5dbe11f00a7287bec0f96194a</cat_item>
         <category/>
         <choice_direction>down</choice_direction>
         <choice_field/>
@@ -32,16 +32,16 @@
         <lookup_table/>
         <lookup_unique>false</lookup_unique>
         <lookup_value/>
-        <macro display_value="session_loader">0cb41ac6dbb51b00a7287bec0f961982</macro>
+        <macro display_value="desktop_config_loader">a0db046edbb55b00a7287bec0f961941</macro>
         <mandatory>false</mandatory>
         <map_to_field>false</map_to_field>
         <mask_use_confirmation>false</mask_use_confirmation>
         <mask_use_encryption>false</mask_use_encryption>
-        <name>session_loader</name>
-        <order>10</order>
+        <name>desktop_config_loader</name>
+        <order>0</order>
         <price_if_checked>0</price_if_checked>
         <pricing_implications>false</pricing_implications>
-        <question_text>session_loader</question_text>
+        <question_text>desktop_config_loader</question_text>
         <read_roles/>
         <rec_lookup_price/>
         <rec_price_if_checked>0</rec_price_if_checked>
@@ -58,18 +58,18 @@
         <summary_macro/>
         <sys_class_name>item_option_new</sys_class_name>
         <sys_created_by>sebastiang</sys_created_by>
-        <sys_created_on>2018-05-02 14:12:11</sys_created_on>
+        <sys_created_on>2018-05-03 17:31:15</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
-        <sys_id>f62492c6dbb51b00a7287bec0f961916</sys_id>
+        <sys_id>665bcc2edbb55b00a7287bec0f961990</sys_id>
         <sys_mod_count>2</sys_mod_count>
-        <sys_name>session_loader</sys_name>
+        <sys_name>desktop_config_loader</sys_name>
         <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
-        <sys_update_name>item_option_new_f62492c6dbb51b00a7287bec0f961916</sys_update_name>
+        <sys_update_name>item_option_new_665bcc2edbb55b00a7287bec0f961990</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-05-02 20:23:25</sys_updated_on>
+        <sys_updated_on>2018-05-03 19:44:23</sys_updated_on>
         <table/>
         <tooltip/>
         <type>14</type>
@@ -86,22 +86,22 @@
         <visible_summary>true</visible_summary>
         <write_roles/>
     </item_option_new>
-    <sys_translated_text action="delete_multiple" query="documentkey=f62492c6dbb51b00a7287bec0f961916"/>
-    <fx_price action="delete_multiple" query="id=f62492c6dbb51b00a7287bec0f961916"/>
+    <sys_translated_text action="delete_multiple" query="documentkey=665bcc2edbb55b00a7287bec0f961990"/>
+    <fx_price action="delete_multiple" query="id=665bcc2edbb55b00a7287bec0f961990"/>
     <fx_price action="INSERT_OR_UPDATE">
         <amount>0</amount>
         <currency display_value="USD">USD</currency>
         <field>price_if_checked</field>
-        <id>f62492c6dbb51b00a7287bec0f961916</id>
+        <id>665bcc2edbb55b00a7287bec0f961990</id>
         <parent/>
         <reference_amount>0</reference_amount>
         <reference_currency display_value="USD">USD</reference_currency>
         <sys_created_by>sebastiang</sys_created_by>
-        <sys_created_on>2018-05-02 14:12:11</sys_created_on>
-        <sys_id>6da496c6dbb51b00a7287bec0f9619f4</sys_id>
+        <sys_created_on>2018-05-03 17:31:15</sys_created_on>
+        <sys_id>17cbcc2edbb55b00a7287bec0f9619b8</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-05-02 14:12:11</sys_updated_on>
+        <sys_updated_on>2018-05-03 17:31:15</sys_updated_on>
         <table>item_option_new</table>
         <type>calculated</type>
     </fx_price>
@@ -109,16 +109,16 @@
         <amount>0</amount>
         <currency display_value="USD">USD</currency>
         <field>rec_price_if_checked</field>
-        <id>f62492c6dbb51b00a7287bec0f961916</id>
+        <id>665bcc2edbb55b00a7287bec0f961990</id>
         <parent/>
         <reference_amount>0</reference_amount>
         <reference_currency display_value="USD">USD</reference_currency>
         <sys_created_by>sebastiang</sys_created_by>
-        <sys_created_on>2018-05-02 14:12:11</sys_created_on>
-        <sys_id>a9a496c6dbb51b00a7287bec0f9619f3</sys_id>
+        <sys_created_on>2018-05-03 17:31:15</sys_created_on>
+        <sys_id>dfcbcc2edbb55b00a7287bec0f9619b6</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-05-02 14:12:11</sys_updated_on>
+        <sys_updated_on>2018-05-03 17:31:15</sys_updated_on>
         <table>item_option_new</table>
         <type>calculated</type>
     </fx_price>

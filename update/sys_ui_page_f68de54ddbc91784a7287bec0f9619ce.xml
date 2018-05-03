@@ -435,7 +435,7 @@ app.service('interceptor',function($http){
 						<p><strong>Authenticate</strong></p>
 						
 						<a id="auth_link" href="#" ng-click="openAuthModal()">
-							Authenticate to the Citrix Cloud
+							Authenticate to Citrix Cloud
 						</a>$[SP] by providing your client ID and secret.
 						
 					</div>								
@@ -449,8 +449,8 @@ app.service('interceptor',function($http){
 					</div>
 					<div class="box-content">
 						<p><strong>Configure</strong></p>
-						Configure the IT Service Management Connector and
-						provide the link to this instance.
+						Go to the IT Service Management Connector service in Citrix Cloud. 
+						Download and configure the Citrix Cloud Connector. 
 					</div>
 				</div>
 				<div class="col-md-1 col-sm-12 arrow">
@@ -462,9 +462,7 @@ app.service('interceptor',function($http){
 					</div>
 					<div class="box-content">
 						<p><strong>Verify</strong></p>
-						Verify that connection is
-						established from ServiceNow.
-						You can then start using it.
+						Verify connection from ServiceNow and start using the connector
 					</div>
 				</div>
 
@@ -486,7 +484,7 @@ app.service('interceptor',function($http){
 						<div class="modal-body">
 							<div class="row">
 								<div class="col-sm-12">
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed.</p>
+									<p>Enter your Secure Client Id and secret</p>
 								</div>
 							</div>
 							<div class="row">
@@ -554,7 +552,7 @@ app.service('interceptor',function($http){
 						<div class="modal-body" style="display:none;">
 							<div class="row">
 								<div class="col-sm-12">
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed.</p>
+									<p>Select the Customer ID to associate with this ServiceNow instance</p>
 								</div>
 							</div>
 							<div class="row">
@@ -597,7 +595,7 @@ app.service('interceptor',function($http){
         <sys_created_on>2018-03-23 02:00:18</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>f68de54ddbc91784a7287bec0f9619ce</sys_id>
-        <sys_mod_count>352</sys_mod_count>
+        <sys_mod_count>354</sys_mod_count>
         <sys_name>getting_started</sys_name>
         <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
@@ -605,6 +603,6 @@ app.service('interceptor',function($http){
         <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_ui_page_f68de54ddbc91784a7287bec0f9619ce</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-04-11 02:22:08</sys_updated_on>
+        <sys_updated_on>2018-05-03 16:18:33</sys_updated_on>
     </sys_ui_page>
 </record_update>
