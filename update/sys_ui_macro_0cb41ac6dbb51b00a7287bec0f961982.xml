@@ -12,7 +12,7 @@
         <sys_created_on>2018-05-02 14:26:19</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>0cb41ac6dbb51b00a7287bec0f961982</sys_id>
-        <sys_mod_count>104</sys_mod_count>
+        <sys_mod_count>107</sys_mod_count>
         <sys_name>session_loader</sys_name>
         <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
@@ -20,7 +20,7 @@
         <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_ui_macro_0cb41ac6dbb51b00a7287bec0f961982</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-05-03 15:56:41</sys_updated_on>
+        <sys_updated_on>2018-05-04 15:02:22</sys_updated_on>
         <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
 <j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
 	<script>
@@ -139,7 +139,7 @@
 				
 				var userName = g_user.userName;
 				var fullName = g_user.getFullName();
-				jQuery('#user_full_name').text(fullName);
+				//jQuery('#user_full_name').text(fullName);
 				userName = "user1";
 				var sessionAjax = new GlideAjax('CTXClientRequest');
 				sessionAjax.addParam('sysparm_name','getUserSessions');	
@@ -215,7 +215,7 @@
 			</span>
 			<div class="col-xs-12 session-info">
 				<p class="session-status session-info-text"></p>
-				<p class="session-launched-via session-info-text">Launched via $[SP]<span class="session-launcher">KPL.citrix.com</span></p>
+				<p class="session-launched-via session-info-text">Launched via $[SP]<span class="session-launcher">KPL-DDC.xd.local</span></p>
 				<a href="#" class="session-type session-info-text app-session"></a>
 				<p class="session-type session-info-text desktop-session">Desktop Session</p>
 			</div>
@@ -224,7 +224,7 @@
 	
 	<div id="content">
 		<div class="col-xs-12 header-bar">
-			<p>All Sessions for $[SP]<span id="user_full_name"></span></p>
+			<p>All Sessions for $[SP]<span id="user_full_name">User 1</span></p>
 		</div>
 		<div class="col-xs-12 session-list">
 			<p id="loading_message">Loading Sessions...</p>

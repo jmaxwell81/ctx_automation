@@ -297,12 +297,9 @@ app.controller('appProvCtrl',function($scope,$http,ajaxCall,$q){
 			}else if(groupsUpdate[i].group_type == 'AD Group'){
 				sortedGroups.adGroups.push(groupsUpdate[i]);
 			}
-		}
-	
-		return sortedGroups;
-	
-	};
-	
+		}	
+		return sortedGroups;	
+	};	
 	
 	$scope.submitUpdate = function(){
 		
@@ -348,8 +345,7 @@ app.controller('appProvCtrl',function($scope,$http,ajaxCall,$q){
 		
 		ajaxCall.run(loadRITMAndVariables,ritm_sys_id).then(addContentToPage);
 	})();
-	
-	
+		
 });
 
 app.service('ajaxCall',function($q){
@@ -630,10 +626,18 @@ app.directive('summaryList',function(summaryParser,$compile){
 			
 			#summary_lists,#fields_container{
 				margin-bottom:30px;
+				padding-left: 5%;
+				padding-right: 10%;
+			}
+			#tabs-macro,#summary_lists{
+				padding-left: 5%;
+				padding-right: 10%;
 			}
 			
-			.footer{
+			#bottom-section{
 				padding-top:20px;
+				padding-left: 5%;
+				
 			}
 			#fields_container,#left_column,#right_column{
 				padding-left:0;
@@ -653,8 +657,8 @@ app.directive('summaryList',function(summaryParser,$compile){
 				<button class='form_update form_action_button header action_context btn btn-default' ng-click="submitUpdate()" ng-show="canEdit">Update</button>
 			</div>
 		</nav>
-						
-		<div id="form_body" class='col-sm-12'>
+		
+		<div id="form_body" class='col-xs-12'>
 			<div id="fields_container" class='col-sm-12'>
 
 				<div id="left_column" class='col-sm-6 column'>				
@@ -739,8 +743,8 @@ app.directive('summaryList',function(summaryParser,$compile){
 
 			</div>				
 			
-			<div class="col-xs-12 footer">
-				<button class="form_action_button action_context btn btn-default" ng-click="submitUpdate()" ng-show="canEdit">Update</button>
+			<div id="bottom-section" class="col-xs-12 ">
+				<button class="btn btn-default" ng-click="submitUpdate()" ng-show="canEdit">Update</button>
 			</div>
 			
 		</div>		
@@ -755,7 +759,7 @@ app.directive('summaryList',function(summaryParser,$compile){
         <sys_created_on>2018-04-17 01:14:52</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>da809645db259b00a7287bec0f96195a</sys_id>
-        <sys_mod_count>510</sys_mod_count>
+        <sys_mod_count>522</sys_mod_count>
         <sys_name>app_provision_view</sys_name>
         <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
@@ -763,6 +767,6 @@ app.directive('summaryList',function(summaryParser,$compile){
         <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_ui_page_da809645db259b00a7287bec0f96195a</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-05-03 20:09:26</sys_updated_on>
+        <sys_updated_on>2018-05-03 23:12:35</sys_updated_on>
     </sys_ui_page>
 </record_update>

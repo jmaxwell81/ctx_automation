@@ -12,7 +12,7 @@
         <sys_created_on>2018-05-03 17:31:27</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>a0db046edbb55b00a7287bec0f961941</sys_id>
-        <sys_mod_count>24</sys_mod_count>
+        <sys_mod_count>32</sys_mod_count>
         <sys_name>desktop_config_loader</sys_name>
         <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
@@ -20,7 +20,7 @@
         <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_ui_macro_a0db046edbb55b00a7287bec0f961941</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-05-03 19:47:17</sys_updated_on>
+        <sys_updated_on>2018-05-04 01:48:11</sys_updated_on>
         <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
 <j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
 	<script>
@@ -60,9 +60,45 @@
 				}
 			};
 		
+			var loadChosenConfig = function(response){
+			
+				var answer = response.responseXML.documentElement.getAttribute('answer');
+				
+				try{
+					var record  = JSON.parse(answer);
+					
+					var chosenConfigString = record.variables.config_requested.value;
+					var chosenConfig = JSON.parse(chosenConfigString);				
+					
+					var option = createOSOption(chosenConfig);
+					
+					jQuery('#os_list').html(option);
+					jQuery('#os_list').attr('readonly', true);
+					
+				}catch(error){
+					g_form.addErrorMessage('Failed to load desktop configuration');
+					g_form.addErrorMessage(error);
+				}
+			};
+		
+			//Check if in Requested Item			
+			var checkInRequestedItem = function(){				
+				return g_form.getTableName() == 'sc_req_item';
+			};
+			
 			var ctxAjax = new GlideAjax('CTXClientRequest');
-			ctxAjax.addParam('sysparm_name','getAvailableConfigs');
-			ctxAjax.getXML(processConfigResponse);
+			
+			if(checkInRequestedItem()){			
+				
+				ctxAjax.addParam('sysparm_name','getRITMAndVariables');
+				ctxAjax.addParam('sysparm_ritm_sys_id',g_form.getUniqueValue());
+				ctxAjax.getXML(loadChosenConfig);	
+				
+			}else{
+				ctxAjax.addParam('sysparm_name','getAvailableConfigs');
+				ctxAjax.getXML(processConfigResponse);
+			}
+			
 		});
 	</script>
 	<style>

@@ -2,13 +2,337 @@
 <record_update table="sys_ui_page">
     <sys_ui_page action="INSERT_OR_UPDATE">
         <category>general</category>
-        <client_script/>
+        <client_script><![CDATA[var app = angular.module('desktopProv',[]);
+app.controller('desktopProvCtrl',function($scope,$http,ajaxCall){
+
+	$scope.chosencConfig = '';
+	$scope.delgrp = '';
+	$scope.record = {};
+	$scope.deliveryGroups = [];
+	$scope.canEdit = true;
+	
+	var getParameterValue = function(name) {
+		
+		var url = document.URL.parseQuery();
+		
+		if (url[name]) {			
+			return decodeURI(url[name]);			
+		}else{			
+			return;			
+		}		
+	};	
+	var addContentToPage = function(answer){					
+		
+		var ritm;
+		try{			
+			$scope.record = JSON.parse(answer);		
+			console.log($scope.record);
+			if($scope.record.state.value != 1){
+				$scope.canEdit = false;
+			}
+			
+			var configStr = $scope.record.variables.config_requested.value;
+			$scope.config = JSON.parse(configStr);			
+
+		}catch(error){
+			console.log('Unable to load RITM',error);
+			window.location = "/sc_req_item.do?sys_id="+$scope.record.sys_id;
+		}
+	};
+	
+	var loadRITMAndVariables = function(ritm_sys_id,callback){				
+		var appAjax = new GlideAjax('CTXClientRequest');
+		appAjax.addParam('sysparm_name','getRITMAndVariables');
+		appAjax.addParam('sysparm_ritm_sys_id',ritm_sys_id);
+		appAjax.getXML(callback);				
+	};
+	
+	var addDeliveryGroups = function(deliveryGroup){
+		var delGrps = [deliveryGroup.Name];
+		$scope.deliveryGroups = delGrps;
+	};
+	
+	$scope.selectCatalog = function(config){
+		$scope.chosencConfig = config;
+		jQuery('[id="'+config.Name+'"]').addClass('catalog-container-chosen');
+		addDeliveryGroups(config.DesktopGroup);
+	};
+	
+	var getChosenConfig = function(){
+		console.log($scope.delgrp);
+		var chosenConfif = {
+			DesktopGroups:$scope.delgrp,
+			SiteId: $scope.chosencConfig.SiteId
+		};
+		
+		/*
+		"user":[{"UserName":"user2","domain":"KKPFG"}],
+		"DesktopGroups":["DG-TSVDA-1"],
+		"siteId":"09c0cd31-abd2-4591-94a7-1d1b441512df"
+		*/
+	};
+	
+	$scope.submitUpdate = function(){
+		getChosenConfig();
+				
+	};
+	
+	(function loadRequest(){
+		var ritm_sys_id = getParameterValue('sys_id');
+		ajaxCall.run(loadRITMAndVariables,ritm_sys_id).then(addContentToPage);
+	
+	})();
+});
+
+app.directive('machineCat',function(){
+	var html = jQuery("#catalog_template").html();
+	html = html.substring(2, html.length-2);
+	return {
+		template:html,
+		
+		link: function($scope,$attr) {
+			$scope.congif = $attr.congif;
+		}
+	};
+});
+
+app.service('ajaxCall',function($q){
+		
+	this.run = function(ajaxFunc,input){
+		var deferred = $q.defer();
+		var callback = function(response){
+			var answer = response.responseXML.documentElement.getAttribute('answer');
+			deferred.resolve(answer);
+		};
+		if(input){
+			ajaxFunc(input,callback);
+		}else{
+			ajaxFunc(callback);
+		}
+		
+		return deferred.promise;
+	};
+});]]></client_script>
         <description/>
         <direct>false</direct>
         <endpoint>x_wcs_ctrx_auto_sv_dektop_config_view.do</endpoint>
         <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
 <j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
-Request a desktop
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+		<style>
+			.column{
+				width:50%;
+			}
+			html[data-doctype="true"] body[data-formname="ui_page_render"] {
+				padding:0;				
+			}
+			html[data-doctype="true"] body[data-formname="ui_page_render"] .navbar {
+				margin:0;
+			}
+			.body{
+				padding:0px;
+			}
+			
+			.no-padding{
+				padding:0;
+			}
+			
+			#title_bar{
+				height: 46px;	
+				font-size:13px;
+				color: #343D47;
+				padding:5px;
+				margin:0;
+				margin-bottom:20px;
+			}
+			
+			#ritm_title_label {
+				margin-bottom:0;
+			}
+			
+			.form_update{
+				float:right;
+			}
+			
+			#form_body{
+				padding-left:50px;
+				padding-right:80px;
+			}
+			
+			#fields_container{
+				margin-bottom:30px;
+			}
+			#fields_container,#left_column,#right_column{
+				padding-left:0;
+			}
+			
+			.section{
+				border-bottom: 2px solid #efefef;
+				margin-bottom: 20px;
+				padding-top:20px;
+				padding-bottom:20px;
+			
+			};
+			
+			.info-text{
+				font-size:11px;
+			}
+			
+			.config-label{
+				font-size:16px;
+			}
+			
+			.catalog-container{
+				height:220px;
+				width:220px;
+				border:1px solid #efefef;
+				border-radius:10px;
+				padding: 25px 0 0 25px;
+			
+			}
+			
+			.catalog-container:hover{
+				border:1px solid black;
+			}
+			
+			.catalog-container-chosen{
+				border:2px solid #5b9aff;
+			}
+			.catalog-container-chosen:hover{
+				border:2px solid #146eff;
+			}
+			
+			.catalog-info-line{
+				margin-bottom:0;
+			}
+			.catalog-info-label{
+				font-size:11px;
+				color:#b7b7b7;
+			}
+			.catalog-info-value{
+				font-size:11px;
+				font-weight:bold;
+			}
+			
+			#delivery_group_container{
+				margin-top:40px;
+			}
+			
+			#del-grp-label{
+				padding-right:30px;
+				text-align:right;
+			}
+		</style>
+		
+		<script id="catalog_template" type="html">
+			<div class="catalog-container" ng-click="selectCatalog(config)" id="{{config.Name}}">
+				<p class="catalog-info-line config-label">{{config.DesktopGroup.Name}}, {{config.Name}}</p>
+				<p class="">6GB RAM, 2 CPUs</p>
+			
+				<p class="catalog-info-line"><span class='catalog-info-label'>Machine Type</span>$[SP]$[SP]<span class='catalog-info-value'>Server OS</span></p>
+				<p class="catalog-info-line"><span class='catalog-info-label'>Provision method</span>$[SP]$[SP]<span class='catalog-info-value'>{{config.Catalog.ProvisioningType}}</span></p>
+				<p class="catalog-info-line"><span class='catalog-info-label'>Allocation type</span>$[SP]$[SP]<span class='catalog-info-value'>Random</span></p>
+				<p class="catalog-info-line"><span class='catalog-info-label'>Set to VDA version </span>$[SP]$[SP]<span class='catalog-info-value'>7.5 (or newer)</span></p>
+				<p class="catalog-info-line"><span class='catalog-info-label'>Scope</span>$[SP]$[SP]<span class='catalog-info-value'>All</span></p>
+				<p class="catalog-info-line"><span class='catalog-info-label'>Zone</span>$[SP]$[SP]<span class='catalog-info-value'>Primary</span></p>
+				    
+			</div>
+		</script>
+	</head>
+	<body ng-app="desktopProv" ng-controller="desktopProvCtrl" ng-cloak="">
+		<nav id="title_bar" class="title_bar navbar navbar-default ">
+			<div class="navbar-header col-xs-6">
+				<p id="ritm_title_label"><b>Requested Item</b></p>
+				<p>{{record.number}}</p>
+			</div>
+			<div class="navbar-right col-xs-6">
+				<button class='form_update form_action_button header action_context btn btn-default' ng-click="submitUpdate()" ng-show="canEdit">Update</button>
+			</div>
+		</nav>
+		
+		<div id="form_body"  class='col-xs-11'>
+
+			<div id="fields_container" class='col-sm-12'>
+
+				<div id="left_column" class='col-sm-6 column'>				
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label class="col-xs-12 col-md-3 col-lg-4 control-label">
+								<span class="label-text">Number</span>
+							</label>
+							<div class="col-xs-10 col-sm-9 col-md-6 col-lg-5 form-field input_controls">
+								<input value="{{record.number}}" class="form-control" readonly=""/>
+							</div>
+
+							<div class="col-xs-2 col-sm-3 col-lg-2 form-field-addons"></div>
+						</div>
+
+
+						<div class="form-group">
+							<label class="col-xs-12 col-md-3 col-lg-4 control-label">
+								<span class="label-text">Due Date</span>
+							</label>
+							<div class="col-xs-10 col-sm-9 col-md-6 col-lg-5 form-field input_controls">
+								<input value="{{record.due_date}}" class="form-control" readonly=""/>
+							</div>
+						</div>
+						<div class="col-xs-2 col-sm-3 col-lg-2 form-field-addons"></div>
+					</form>			
+
+				</div>
+				<div id="right_column" class='col-sm-6 column'>				
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label class="col-xs-12 col-md-3 col-lg-4 control-label">
+								<span class="label-text">State</span>
+							</label>
+							<div class="col-xs-10 col-sm-9 col-md-6 col-lg-5 form-field input_controls">
+								<input value="{{record.state.displayValue}}" class="form-control" readonly=""/>
+							</div>
+							<div class="col-xs-2 col-sm-3 col-lg-2 form-field-addons"></div>
+						</div>
+
+					</form>		
+
+				</div>
+			</div>
+
+			
+			<!-- CONTENT -->
+
+			<div class="col-xs-12 section">
+				<p class='info-text'><b>Request a desktop</b></p>
+				<p class='info-text'>Select the machine catalog corresponding to the configuration.</p>
+			</div>
+			<div class="col-xs-12 section">
+				<p class='info-text'>Configuration requested</p>
+				<p class="config-label catalog-info-line">{{config.Name}}</p>
+				<p>6GB RAM, 2 CPUs</p>
+			</div>
+			<div class="col-xs-12 section">
+				<p class='info-text'>Machine catalog(s)</p>
+				
+				<machine-cat config="{{config}}"></machine-cat>
+				
+				<div id="delivery_group_container" class="form-group col-xs-12">
+					<label id="del-grp-label" class="col-xs-12 col-sm-3 col-md-2 control-label no-padding">
+						<span class="label-text">Delivery group to be added to</span>
+					</label>
+					<div class="col-xs-12 col-sm-4 col-md-3 form-field input_controls no-padding">
+						<select id="delivery_group_list" class="form-control" ng-model="delgrp">
+							<option class="placeholder" value="" disabled="" selected="">Select delivery group</option>
+							<option ng-repeat="delGrp in deliveryGroups">{{delGrp}}</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			
+			<div id="bottom-section" class="col-xs-12 ">
+				<button class="btn btn-default" ng-click="submitUpdate()" ng-show="canEdit">Update</button>
+			</div>
+		</div>		
+	</body>
 </j:jelly>]]></html>
         <name>dektop_config_view</name>
         <processing_script/>
@@ -17,7 +341,7 @@ Request a desktop
         <sys_created_on>2018-05-03 20:16:50</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>4f0a6c26db395b00a7287bec0f961913</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>93</sys_mod_count>
         <sys_name>dektop_config_view</sys_name>
         <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
@@ -25,6 +349,6 @@ Request a desktop
         <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_ui_page_4f0a6c26db395b00a7287bec0f961913</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-05-03 20:16:58</sys_updated_on>
+        <sys_updated_on>2018-05-04 13:03:35</sys_updated_on>
     </sys_ui_page>
 </record_update>
