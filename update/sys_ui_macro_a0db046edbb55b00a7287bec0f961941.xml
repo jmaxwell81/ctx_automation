@@ -12,7 +12,7 @@
         <sys_created_on>2018-05-03 17:31:27</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>a0db046edbb55b00a7287bec0f961941</sys_id>
-        <sys_mod_count>32</sys_mod_count>
+        <sys_mod_count>38</sys_mod_count>
         <sys_name>desktop_config_loader</sys_name>
         <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
@@ -20,7 +20,7 @@
         <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_ui_macro_a0db046edbb55b00a7287bec0f961941</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-05-04 01:48:11</sys_updated_on>
+        <sys_updated_on>2018-05-04 21:30:37</sys_updated_on>
         <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
 <j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
 	<script>
@@ -33,27 +33,44 @@
 			});
 		
 		
-		    var createOSOption = function(configObj){
+		    var createOSOption = function(text,value){
 				var option = document.createElement('option');
-				jQuery(option).text(configObj.Name);
-				jQuery(option).val(JSON.stringify(configObj));
+				jQuery(option).text(text);
+				jQuery(option).val(value);
 				return option;
 			};
 		
 			var addOption = function(option){
 				jQuery('#os_list').append(option);
-			}
+			};
+			var consolidateConfigs = function(configs){
 		
+				var consolidatedConfigs = {};
+				for(var i = 0;i &lt; configs.length; i++){
+					if(consolidatedConfigs[configs[i].Name] == null){
+						consolidatedConfigs[configs[i].Name] = [configs[i]];
+					}else{
+						consolidatedConfigs[configs[i].Name].push(configs[i]);
+					}
+				}
+		
+				return consolidatedConfigs;
+			};
 			var processConfigResponse = function(response){
 				var answer = response.responseXML.documentElement.getAttribute('answer');
 				console.log(answer);
 				try{
 					var configs = JSON.parse(answer);
+					configs = consolidateConfigs(configs);
 					var option;
-					for(var i = 0;i &lt; configs.length; i++){
-						option = createOSOption(configs[i]);
+		
+					for(var confName in configs){
+						option = createOSOption(confName,JSON.stringify(configs[confName]));
 						addOption(option);
 					}
+					jQuery('#loading_message').hide();
+					jQuery('#os_container').show();
+		
 				}catch(error){
 					g_form.addErrorMessage('Unable to load available configurations');
 					console.log(error);
@@ -70,7 +87,7 @@
 					var chosenConfigString = record.variables.config_requested.value;
 					var chosenConfig = JSON.parse(chosenConfigString);				
 					
-					var option = createOSOption(chosenConfig);
+					var option = createOSOption(chosenConfig[0].Name);
 					
 					jQuery('#os_list').html(option);
 					jQuery('#os_list').attr('readonly', true);
@@ -89,12 +106,13 @@
 			var ctxAjax = new GlideAjax('CTXClientRequest');
 			
 			if(checkInRequestedItem()){			
-				
+				jQuery('#loading_message').hide();
 				ctxAjax.addParam('sysparm_name','getRITMAndVariables');
 				ctxAjax.addParam('sysparm_ritm_sys_id',g_form.getUniqueValue());
 				ctxAjax.getXML(loadChosenConfig);	
 				
 			}else{
+				jQuery('#os_container').hide();
 				ctxAjax.addParam('sysparm_name','getAvailableConfigs');
 				ctxAjax.getXML(processConfigResponse);
 			}
@@ -121,11 +139,14 @@
 				Configuration
 			</label>
 		</div>
-		<div class="form-group col-xs-12 col-md-6">
+		
+		<p id="loading_message">Loading available configurations...</p>
+		<div id='os_container' class="form-group col-xs-12 col-md-6">
 			<label class="col-xs-12 col-md-3 control-label">
 				<span class="label-text">Operating System</span>
 			</label>
-			<div class="col-xs-12 col-md-9 form-field input_controls">
+			
+			<div  class="col-xs-12 col-md-9 form-field input_controls">
 				<select id="os_list" class="form-control">
 					 <option class="placeholder" value="" disabled="" selected="">Select operating system</option>
 				</select>

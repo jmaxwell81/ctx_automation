@@ -9,30 +9,27 @@
 };
 
 (function(){
-	jQuery("#slush_right").html('');
-	jQuery("#slush_right").attr('ng-model','chosen_users');
+	document.getElementById("slush_right").innerHTML = '';
+	document.getElementById("slush_right").setAttribute('ng-model','chosen_users');	
 	
 	var groupType = GlideModal.get().getPreference('group_type');
 	var groupName = GlideModal.get().getPreference('group_name');
 	var groupId = GlideModal.get().getPreference('group_id');
 	var groupTitle = groupType + ": " + groupName;
-	jQuery("#group_title").text(groupTitle);
-	
+	document.getElementById('group_title').innerHTML = groupTitle;	
 	
 	var curr_members = [];
 	
 	//Load current members
 	var chosenUsersId = groupId+"_chosen_users";
-	var chosenUsers = jQuery("[id='"+chosenUsersId+"']");
+	var chosenUsers = document.getElementById(chosenUsersId);	
 	
-	var membersStr = chosenUsers.attr('members');
+	var membersStr = chosenUsers.getAttribute('members');
 	
 	if(membersStr != '' && membersStr != null){
 		curr_members = JSON.parse(membersStr);
 	}
-	
-	
-	
+			
 	var isChosen = function(user_sys_id){
 		for(var i = 0; i < curr_members.length; i++){
 			if(curr_members[i].sys_id == user_sys_id){
@@ -44,25 +41,25 @@
 					
 	var usersStr = GlideModal.get().getPreference('users');							
 	var users = JSON.parse(usersStr);
-	var leftBucket = gel('slush_left');
-	var rightBucket = gel('slush_right');
+	var leftBucket = document.getElementById('slush_left');
+	var rightBucket = document.getElementById('slush_right');
 	var option;
 	
 	for(var j = 0; j < users.length; j++){
 		option = document.createElement('option');
-		jQuery(option).text(users[j].name);
-		jQuery(option).attr('value',users[j].sys_id);
+		option.innerHTML = users[j].name;		
+		option.setAttribute('value',users[j].sys_id);		
 		
 		if(isChosen(users[j].sys_id)){
-			jQuery('#slush_right').append(option);
+			rightBucket.appendChild(option);			
 		}else{
-			jQuery('#slush_left').append(option);
+			leftBucket.appendChild(option);			
 		}
 		
 	}		
 	
 	var getChosenMembers = function(){
-		var rightBucket = gel('slush_right');
+		var rightBucket = document.getElementById('slush_right');
 		var chosenUsers = rightBucket.options;
 		
 		var user;
@@ -98,26 +95,27 @@
 		GlideModal.get().destroy();
 	};
 	
-	jQuery("#save_apps").on('click',function(){				
+	document.getElementById("save_apps").addEventListener("click", function(){
 		var members = getChosenMembers();
 		var membersNames = getMemberNames(members);
 		var moreLink = createMoreLink(members);
 		
 		var chosenUsersId = groupId+"_chosen_users";
 		var moreUsersId = groupId+"_more_users";
-		var chosenUsers = jQuery("[id='"+chosenUsersId+"']");
-		var moreUsers = jQuery("[id='"+moreUsersId+"']");
+		var chosenUsers = document.getElementById(chosenUsersId);		
+		var moreUsers = document.getElementById(moreUsersId);		
 		
-		chosenUsers.attr('members',JSON.stringify(members));
-		chosenUsers.html(membersNames);
-		moreUsers.html(moreLink);
+		chosenUsers.setAttribute('members',JSON.stringify(members));
+		chosenUsers.innerHTML = membersNames;
+		moreUsers.innerHTML = moreLink;
 		
 		closeModal();
 	});
-
-	jQuery("#cancel_apps").on('click',function(){
+		
+	document.getElementById('cancel_apps').addEventListener('click',function(){
 		closeModal();
 	});
+	
 	
 })();]]></client_script>
         <description/>
@@ -158,7 +156,7 @@
         <sys_created_on>2018-04-13 19:22:54</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>1a752d80db211b00a7287bec0f961986</sys_id>
-        <sys_mod_count>84</sys_mod_count>
+        <sys_mod_count>86</sys_mod_count>
         <sys_name>group_user_select</sys_name>
         <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
@@ -166,6 +164,6 @@
         <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_ui_page_1a752d80db211b00a7287bec0f961986</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-05-03 16:26:28</sys_updated_on>
+        <sys_updated_on>2018-05-17 15:19:45</sys_updated_on>
     </sys_ui_page>
 </record_update>

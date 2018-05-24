@@ -6,13 +6,12 @@
 	
 	var apps = GlideModal.get().getPreference('apps');
 	var description = GlideModal.get().getPreference('description');
-	jQuery("#description").prepend(description);
+	document.getElementById("description").prepend(description);
 	
 	var groupName = GlideModal.get().getPreference('group_name');
 	
 	if(groupName != null && groupName != ''){
-		console.log("GROUP NAME",groupName);
-		jQuery("#group_name").text(groupName);
+		document.getElementById('group_name').innerHTML = groupName;
 	}
 	
 	
@@ -22,15 +21,17 @@
 	for(var i = 0; i < apps.length; i++){
 		
 		tr = document.createElement('tr');
-		jQuery(tr).addClass('data_row');
-
+		tr.classList.add('data_row');
+		
 		td = document.createElement('td');
-		jQuery(td).addClass('vt');
-		jQuery(td).addClass('grid-field');
-		jQuery(td).html(apps[i]);
-
-		jQuery("#apps_table").append(tr);
-		jQuery(tr).append(td);
+		td.classList.add('vt');
+		td.classList.add('grid-field');
+		td.innerHTML = apps[i];	
+		
+		document.getElementById('apps_table').appendChild(tr);
+		
+		tr.appendChild(td);
+	
 		
 	}
 			
@@ -64,7 +65,7 @@
         <sys_created_on>2018-04-19 20:41:15</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>262f604edbe51f00a7287bec0f961916</sys_id>
-        <sys_mod_count>29</sys_mod_count>
+        <sys_mod_count>37</sys_mod_count>
         <sys_name>application_modal</sys_name>
         <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
@@ -72,6 +73,6 @@
         <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_ui_page_262f604edbe51f00a7287bec0f961916</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-05-02 23:27:39</sys_updated_on>
+        <sys_updated_on>2018-05-17 14:18:27</sys_updated_on>
     </sys_ui_page>
 </record_update>

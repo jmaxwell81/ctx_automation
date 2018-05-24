@@ -10,7 +10,7 @@ app.controller('desktopProvCtrl',function($scope,$http,ajaxCall){
 	$scope.record = {};
 	$scope.deliveryGroups = [];
 	$scope.canEdit = true;
-	
+	$scope.state = 'active-container';
 	var getParameterValue = function(name) {
 		
 		var url = document.URL.parseQuery();
@@ -21,18 +21,32 @@ app.controller('desktopProvCtrl',function($scope,$http,ajaxCall){
 			return;			
 		}		
 	};	
+	
+	var disableContent = function(){
+		jQuery('.active-container').each(function(){
+			jQuery(this).removeClass('active-container');
+			jQuery(this).addClass('disabled-catalog');
+		});
+		
+	};
 	var addContentToPage = function(answer){					
 		
 		var ritm;
 		try{			
 			$scope.record = JSON.parse(answer);		
 			console.log($scope.record);
+			var configStr = $scope.record.variables.config_requested.value;
+			$scope.configs = JSON.parse(configStr);			
+			
 			if($scope.record.state.value != 1){
 				$scope.canEdit = false;
-			}
+				$scope.state = 'disabled-catalog';
+				var chosenConfig = JSON.parse($scope.record.variables.chosen_catalog.value);
+				var option = document.createElement('option');
+				jQuery(option).text(chosenConfig.DesktopGroup.Name);
+				jQuery('#delivery_group_list').html(option);
 			
-			var configStr = $scope.record.variables.config_requested.value;
-			$scope.config = JSON.parse(configStr);			
+			}			
 
 		}catch(error){
 			console.log('Unable to load RITM',error);
@@ -48,33 +62,52 @@ app.controller('desktopProvCtrl',function($scope,$http,ajaxCall){
 	};
 	
 	var addDeliveryGroups = function(deliveryGroup){
-		var delGrps = [deliveryGroup.Name];
-		$scope.deliveryGroups = delGrps;
+		var option = document.createElement('option');
+		jQuery(option).text(deliveryGroup);
+		jQuery(option).val(deliveryGroup);
+		jQuery('#delivery_group_list').html(option);
 	};
 	
 	$scope.selectCatalog = function(config){
+		if($scope.canEdit == false){
+			return;
+		}
 		$scope.chosencConfig = config;
-		jQuery('[id="'+config.Name+'"]').addClass('catalog-container-chosen');
-		addDeliveryGroups(config.DesktopGroup);
+		
+		jQuery('.active-container').each(function(){
+			jQuery(this).removeClass('active-container-chosen');
+		});
+		
+		jQuery('[id="'+config.DesktopGroup.Name+'_'+config.Name+'"]').addClass('active-container-chosen');
+		
+		addDeliveryGroups(config.DesktopGroup.Name);
 	};
 	
-	var getChosenConfig = function(){
-		console.log($scope.delgrp);
-		var chosenConfif = {
-			DesktopGroups:$scope.delgrp,
-			SiteId: $scope.chosencConfig.SiteId
-		};
-		
-		/*
-		"user":[{"UserName":"user2","domain":"KKPFG"}],
-		"DesktopGroups":["DG-TSVDA-1"],
-		"siteId":"09c0cd31-abd2-4591-94a7-1d1b441512df"
-		*/
-	};
 	
 	$scope.submitUpdate = function(){
-		getChosenConfig();
-				
+		
+		
+		var callback = function(response){
+			var answer = response.responseXML.documentElement.getAttribute('answer');
+			
+			var reloadForm = function(res){
+				window.location.reload();
+			};
+			
+			if(answer == 'success'){
+				var reqAjax = new GlideAjax('CTXClientRequest');
+				reqAjax.addParam('sysparm_name','updateRITMStateWorkInProgress');
+				reqAjax.addParam('sysparm_ritm_sys_id',$scope.record.sys_id);
+				reqAjax.getXML(reloadForm);
+			}
+			
+		};
+			
+		var desktopAjax = new GlideAjax('CTXClientRequest');
+		desktopAjax.addParam('sysparm_name','desktopProvUpdateConfigVar');  
+		desktopAjax.addParam('sysparm_variable_sys_id',$scope.record.variables.chosen_catalog.sys_id);
+		desktopAjax.addParam('sysparm_chosen_config',JSON.stringify($scope.chosencConfig));
+		desktopAjax.getXML(callback);
 	};
 	
 	(function loadRequest(){
@@ -182,24 +215,27 @@ app.service('ajaxCall',function($q){
 			.config-label{
 				font-size:16px;
 			}
+			.active-container{
 			
+			}
 			.catalog-container{
-				height:220px;
+				min-height:220px;
 				width:220px;
 				border:1px solid #efefef;
 				border-radius:10px;
 				padding: 25px 0 0 25px;
-			
+				float:left;
+				margin-right:10px;
 			}
 			
-			.catalog-container:hover{
+			.active-container:hover{
 				border:1px solid black;
 			}
 			
-			.catalog-container-chosen{
+			.active-container-chosen{
 				border:2px solid #5b9aff;
 			}
-			.catalog-container-chosen:hover{
+			.active-container-chosen:hover{
 				border:2px solid #146eff;
 			}
 			
@@ -223,10 +259,16 @@ app.service('ajaxCall',function($q){
 				padding-right:30px;
 				text-align:right;
 			}
+			
+			.disabled-catalog{
+				background-color: #e6e8ea;
+				border-color: #bdc0c4;
+				color: #485563;
+			}
 		</style>
 		
 		<script id="catalog_template" type="html">
-			<div class="catalog-container" ng-click="selectCatalog(config)" id="{{config.Name}}">
+			<div class="catalog-container" ng-class="state" ng-click="selectCatalog(config)" id="{{config.DesktopGroup.Name+'_'+config.Name}}">
 				<p class="catalog-info-line config-label">{{config.DesktopGroup.Name}}, {{config.Name}}</p>
 				<p class="">6GB RAM, 2 CPUs</p>
 			
@@ -307,22 +349,21 @@ app.service('ajaxCall',function($q){
 			</div>
 			<div class="col-xs-12 section">
 				<p class='info-text'>Configuration requested</p>
-				<p class="config-label catalog-info-line">{{config.Name}}</p>
+				<p class="config-label catalog-info-line">{{configs[0].Name}}</p>
 				<p>6GB RAM, 2 CPUs</p>
 			</div>
 			<div class="col-xs-12 section">
 				<p class='info-text'>Machine catalog(s)</p>
 				
-				<machine-cat config="{{config}}"></machine-cat>
+				<machine-cat config="{{config}}" ng-repeat="config in configs"></machine-cat>
 				
 				<div id="delivery_group_container" class="form-group col-xs-12">
 					<label id="del-grp-label" class="col-xs-12 col-sm-3 col-md-2 control-label no-padding">
 						<span class="label-text">Delivery group to be added to</span>
 					</label>
 					<div class="col-xs-12 col-sm-4 col-md-3 form-field input_controls no-padding">
-						<select id="delivery_group_list" class="form-control" ng-model="delgrp">
-							<option class="placeholder" value="" disabled="" selected="">Select delivery group</option>
-							<option ng-repeat="delGrp in deliveryGroups">{{delGrp}}</option>
+						<select id="delivery_group_list" class="form-control" ng-model="delgrp"  ng-readonly="!canEdit">
+							
 						</select>
 					</div>
 				</div>
@@ -341,7 +382,7 @@ app.service('ajaxCall',function($q){
         <sys_created_on>2018-05-03 20:16:50</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>4f0a6c26db395b00a7287bec0f961913</sys_id>
-        <sys_mod_count>93</sys_mod_count>
+        <sys_mod_count>121</sys_mod_count>
         <sys_name>dektop_config_view</sys_name>
         <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
@@ -349,6 +390,6 @@ app.service('ajaxCall',function($q){
         <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_ui_page_4f0a6c26db395b00a7287bec0f961913</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-05-04 13:03:35</sys_updated_on>
+        <sys_updated_on>2018-05-04 21:52:21</sys_updated_on>
     </sys_ui_page>
 </record_update>

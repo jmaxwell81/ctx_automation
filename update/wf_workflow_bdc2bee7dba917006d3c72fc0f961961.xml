@@ -317,15 +317,15 @@
         <sys_updated_on>2018-05-04 01:13:32</sys_updated_on>
     </wf_condition>
     <wf_activity action="INSERT_OR_UPDATE">
-        <activity_definition display_value="Add Users to Delivery Group">e89d670edbb91b00a7287bec0f961954</activity_definition>
-        <activity_definition_updated>false</activity_definition_updated>
+        <activity_definition display_value="Add Users to Delivery Group">0764ce32db799b00a7287bec0f9619e2</activity_definition>
+        <activity_definition_updated>true</activity_definition_updated>
         <databus_lookup_id>18</databus_lookup_id>
         <height/>
         <input>{"users":"${workflow.scratchpad.currentDeliveryGroup.users}","delivery_group":"${workflow.scratchpad.currentDeliveryGroup.name}","site_id":"${workflow.scratchpad.currentDeliveryGroup.site_id}","application":"${workflow.scratchpad.currentDeliveryGroup.application}"}</input>
         <is_parent>false</is_parent>
         <name>Add User to Delivery Group</name>
         <new_activity_definition/>
-        <notes/>
+        <notes>This activity was updated to a newer version since the workflow was published.</notes>
         <out_of_date>false</out_of_date>
         <parent/>
         <pinned>false</pinned>
@@ -334,9 +334,9 @@
         <sys_created_by>sebastiang</sys_created_by>
         <sys_created_on>2018-05-04 01:13:32</sys_created_on>
         <sys_id>8395f166dbf95b00a7287bec0f961979</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-05-04 01:13:32</sys_updated_on>
+        <sys_updated_on>2018-05-04 20:57:35</sys_updated_on>
         <timeout>1970-01-01 00:00:00</timeout>
         <vars/>
         <width/>
