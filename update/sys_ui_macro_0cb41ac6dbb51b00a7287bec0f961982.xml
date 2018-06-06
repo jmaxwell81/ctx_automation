@@ -12,7 +12,7 @@
         <sys_created_on>2018-05-02 14:26:19</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>0cb41ac6dbb51b00a7287bec0f961982</sys_id>
-        <sys_mod_count>107</sys_mod_count>
+        <sys_mod_count>129</sys_mod_count>
         <sys_name>session_loader</sys_name>
         <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
@@ -20,20 +20,19 @@
         <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_ui_macro_0cb41ac6dbb51b00a7287bec0f961982</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-05-04 15:02:22</sys_updated_on>
+        <sys_updated_on>2018-06-04 17:51:09</sys_updated_on>
         <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
 <j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
 	<script>
-		jQuery(document).ready(function() {
+		addLoadEvent(function() {
 		
 			var sessions = {};
 			
 			/**
 			Add session html element to screen
 			**/
-			var addSessionElement = function(sessionElement){
-				jQuery('.session-list').append(sessionElement);
-				
+			var addSessionElement = function(sessionElement){				
+				document.getElementById('sessionList').appendChild(sessionElement);
 			};
 		
 			/**
@@ -53,29 +52,41 @@
 				var type = session.SessionType;
 				var apps = session.ApplicationsInUse;
 		
-				var html = jQuery('#session_template').html();		
-				var template = jQuery.parseHTML(html);
-				jQuery(template).find('.radio-input').attr('id',uniqueId);
-				jQuery(template).find('.session-index').attr('for',uniqueId);
-				jQuery(template).find('.session-index').prepend('Session ' + sessionIndex + '$[SP]');
+				var template = document.createElement('html');
+				template.innerHTML = document.getElementById('session_template').innerHTML;
+				
+				template.querySelector('.radio-input').id = uniqueId;
+				template.querySelector('.session-index').setAttribute('for',uniqueId);
+		
+				var sessionMessage = document.createElement('span');
+				sessionMessage.innerHTML = 'Session ' + sessionIndex + '$[SP]';
+				
+				template.querySelector('.session-index').insertBefore(sessionMessage,template.querySelector('.session-index').childNodes[0]);
+				
 		
 				if(status == 'Disconnected'){
-					jQuery(template).find('.session-status-dot').addClass('session-disconnected');
-					jQuery(template).find('.session-status').text(status);
+					template.querySelector('.session-status-dot').className += " session-disconnected";
+					template.querySelector('.session-status').innerHTML = status;
+					
 		
 				}else if(status == 'Active'){
-					jQuery(template).find('.session-status-dot').addClass('session-connected');
-					jQuery(template).find('.session-status').text(status);
+					template.querySelector('.session-status-dot').className += " session-connected";
+					template.querySelector('.session-status').innerHTML = status;
+			
 				}
 				
 				if(type == "Desktop"){					
-					jQuery(template).find('.app-session').hide();
+					template.querySelector('.app-session').style.display = "none";
+			
 				}else if(type == 'Application'){
-					jQuery(template).find('.desktop-session').hide();
+					template.querySelector('.desktop-session').style.display = "none";
+					//jQuery(template).find('.desktop-session').hide();
 					
 					var appLink = createApplicationLink(apps);
-					jQuery(template).find('.app-session').text(appLink);
-					jQuery(template).find('.app-session').attr('apps',JSON.stringify(apps));
+					template.querySelector('.app-session').innerHTML = appLink;
+					template.querySelector('.app-session').setAttribute('apps',JSON.stringify(apps));
+					//jQuery(template).find('.app-session').text(appLink);
+					//jQuery(template).find('.app-session').attr('apps',JSON.stringify(apps));
 				}
 		
 				return template;
@@ -89,11 +100,13 @@
 
 				try{
 					var sessionArr = JSON.parse(answer);
-					jQuery('#loading_message').hide();
+					document.getElementById('loading_icon').style.display = 'none';
+				
 		
-					if(sessionArr.length &lt;= 0){
-						jQuery('#loading_message').show();
-						jQuery('#loading_message').text('No sessions found for user');
+					if(sessionArr == null || sessionArr.length &lt;= 0){
+						document.getElementById('loading_icon').style.display = 'none';
+						document.getElementById('unable-to-load').classList.remove('hide');
+						return;
 					}
 					var sessionElement;
 					for(var i = 0; i &lt; sessionArr.length; i++){
@@ -201,14 +214,24 @@
 			font-weight:bold;
 		}
 		
+		.no-pad-left{
+			padding-left:0 !important;
+		}
+		.no-padding{
+			padding:0 !important;
+		}
+		
+		.hide{
+			display:none;
+		}
 	</style>
 	
 	<script id="session_template" type="text/html">
-		<div class="col-xs-12 session">
+		<div class="col-xs-12 session no-pad-left">
 				
 			<span class="input-group-radio">									
 				<input id="" type="radio" class="radio radio-input" name="radio-input"></input>
-				<label for="" style="" class="radio-label session-index">
+				<label for="" style="" class="radio-label session-index no-padding">
 					<span class="session-status-dot"></span>
 				</label>
 
@@ -226,8 +249,9 @@
 		<div class="col-xs-12 header-bar">
 			<p>All Sessions for $[SP]<span id="user_full_name">User 1</span></p>
 		</div>
-		<div class="col-xs-12 session-list">
-			<p id="loading_message">Loading Sessions...</p>
+		<div id='sessionList' class="col-xs-12 session-list no-pad-left">
+			<img id="loading_icon" src="loading_status_icon.gif" width="26" height="26" class="status_icon"/>	
+			<p id="unable-to-load" class="hide">No sessions found for user</p>
 		</div>
 	</div>
 	

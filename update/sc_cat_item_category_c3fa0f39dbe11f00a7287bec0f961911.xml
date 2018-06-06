@@ -2,7 +2,7 @@
 <record_update table="sc_cat_item_category">
     <sc_cat_item_category action="INSERT_OR_UPDATE">
         <sc_cat_item display_value="Request a Desktop">84ca87f5dbe11f00a7287bec0f96194a</sc_cat_item>
-        <sc_category display_value="XenApp and Xen Desktop">7acd93acdb8513406d3c72fc0f961977</sc_category>
+        <sc_category display_value="XenApp and XenDesktop">7acd93acdb8513406d3c72fc0f961977</sc_category>
         <sys_class_name>sc_cat_item_category</sys_class_name>
         <sys_created_by>sebastiang</sys_created_by>
         <sys_created_on>2018-04-19 13:15:24</sys_created_on>

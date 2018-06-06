@@ -14,10 +14,10 @@
 		var url;
 		
 		var catalog = new GlideRecord('sc_catalog');
-		catalog.addQuery('title','Citrix Automation Catalog');
+		catalog.addQuery('title','Citrix IT Service Management Connector Services');
 		catalog.query();
 		if(catalog.next()){
-			post += catalog.sys_id+"$[AMP]sysparm_catalog_view=catalog_citrix_automation_catalog";
+			post += catalog.sys_id;//+"$[AMP]sysparm_catalog_view=catalog_citrix_it_service_management_connector_services";
 			url = pre+post;		
 		}else{
 			url = null;
@@ -34,7 +34,7 @@
         <sys_created_on>2018-03-21 20:50:08</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>1decd36cdb8513406d3c72fc0f961962</sys_id>
-        <sys_mod_count>18</sys_mod_count>
+        <sys_mod_count>21</sys_mod_count>
         <sys_name>redirect_to_catalog</sys_name>
         <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
@@ -42,6 +42,6 @@
         <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_ui_page_1decd36cdb8513406d3c72fc0f961962</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-05-07 13:41:54</sys_updated_on>
+        <sys_updated_on>2018-06-01 14:29:11</sys_updated_on>
     </sys_ui_page>
 </record_update>

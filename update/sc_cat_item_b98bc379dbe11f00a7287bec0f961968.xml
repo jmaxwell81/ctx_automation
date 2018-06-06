@@ -4,13 +4,13 @@
         <active>true</active>
         <availability>on_desktop</availability>
         <billable>false</billable>
-        <category display_value="XenApp and Xen Desktop">7acd93acdb8513406d3c72fc0f961977</category>
+        <category display_value="XenApp and XenDesktop">7acd93acdb8513406d3c72fc0f961977</category>
         <cost>0</cost>
         <custom_cart/>
         <delivery_plan/>
         <delivery_plan_script/>
         <delivery_time>1970-01-03 00:00:00</delivery_time>
-        <description><![CDATA[<div>Select the session to be reset.</div>]]></description>
+        <description/>
         <entitlement_script/>
         <group/>
         <icon/>
@@ -42,7 +42,7 @@
         <sc_catalogs>c36d1f6cdb8513406d3c72fc0f9619c6</sc_catalogs>
         <sc_ic_item_staging/>
         <sc_ic_version/>
-        <short_description>Reset a session</short_description>
+        <short_description>Log off a selected session of the current user. </short_description>
         <show_variable_help_on_load>false</show_variable_help_on_load>
         <start_closed>false</start_closed>
         <sys_class_name>sc_cat_item</sys_class_name>
@@ -50,7 +50,7 @@
         <sys_created_on>2018-04-19 13:18:30</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>b98bc379dbe11f00a7287bec0f961968</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>Reset a session</sys_name>
         <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
@@ -58,7 +58,7 @@
         <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sc_cat_item_b98bc379dbe11f00a7287bec0f961968</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-05-02 21:41:47</sys_updated_on>
+        <sys_updated_on>2018-05-31 13:43:23</sys_updated_on>
         <template/>
         <type>item</type>
         <u_business_service/>
@@ -113,16 +113,16 @@
         <compressed>true</compressed>
         <content_type>image/png</content_type>
         <file_name>icon</file_name>
-        <image_height>47</image_height>
-        <image_width>43</image_width>
-        <size_bytes>691</size_bytes>
-        <size_compressed>714</size_compressed>
+        <image_height>37</image_height>
+        <image_width>36</image_width>
+        <size_bytes>1002</size_bytes>
+        <size_compressed>1025</size_compressed>
         <sys_created_by>sebastiang</sys_created_by>
-        <sys_created_on>2018-05-23 03:29:41</sys_created_on>
-        <sys_id>a2fa4cf0db1697406d3c72fc0f9619ce</sys_id>
+        <sys_created_on>2018-06-04 13:08:35</sys_created_on>
+        <sys_id>3782487cdbee9f806d3c72fc0f9619d3</sys_id>
         <sys_mod_count>2</sys_mod_count>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-05-23 03:29:41</sys_updated_on>
+        <sys_updated_on>2018-06-04 13:08:35</sys_updated_on>
         <table_name>ZZ_YYsc_cat_item</table_name>
         <table_sys_id>b98bc379dbe11f00a7287bec0f961968</table_sys_id>
     </sys_attachment>
@@ -130,18 +130,18 @@
         <data>H4sIAAAAAAAAAA==</data>
         <length>16</length>
         <position>0</position>
-        <sys_attachment display_value="icon" sys_id="a2fa4cf0db1697406d3c72fc0f9619ce">a2fa4cf0db1697406d3c72fc0f9619ce</sys_attachment>
+        <sys_attachment display_value="icon" sys_id="3782487cdbee9f806d3c72fc0f9619d3">3782487cdbee9f806d3c72fc0f9619d3</sys_attachment>
         <sys_created_by>sebastiang</sys_created_by>
-        <sys_created_on>2018-05-23 03:29:41</sys_created_on>
-        <sys_id>e2fa4cf0db1697406d3c72fc0f9619ce</sys_id>
+        <sys_created_on>2018-06-04 13:08:35</sys_created_on>
+        <sys_id>7782487cdbee9f806d3c72fc0f9619d3</sys_id>
     </sys_attachment_doc>
     <sys_attachment_doc action="INSERT_OR_UPDATE">
-        <data>AbMCTP2JUE5HDQoaCgAAAA1JSERSAAAAKwAAAC8IBgAAAHrMM9YAAAABc1JHQgCuzhzpAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwwAADsMBx2+oZAAAAkhJREFUaEPtmLFrFEEUh/3z0lrbhZRW11okpRAsDVge2CVgFYJNIFhYaJEigo2CjdolXewmfMc9+N3szNuZ2R0xuB88ctnszn775s3suzwJj4hFtheLbC8W2V78n7L393/Ct+8/NvHz1+/t0Xlplr29vQtXHz6Gl69Owt7Tg2Q8Xx2G9dvTcPPl6/aqaVTLkjlPMBeIf/p8vR1lFz3Po1iWaT57d74zMPFsfxVev1mHi/eXm0yTRT5z7ouj48H5HIvLRP/uUSSLaHxjslsyvZQL8jyUXq9Z1uMeo7LcjCm0wfhMKdTCAzMDKmbCeszDlY0zymeOTQFBlWN29HcPV1YzwbTPhQrH5eGRlWWqbYA5MhpDHaukhUdWVuu01yaf2gI9krKaVTb1Xuh9LDySsgjaxewGLahATXgkZa3oqdVWYonS8BjIkkm7kEXQigrUhMdAVutoSgOiAjXhMZDVTbrlTdWTgazuf/+8rJbBo5KdUrM9GMjyWjVZetLe2O7DNplrzo2BLNirlp+9oWG35IzNZFJWvxH0rltrQXkRjZGUpXEx2TlbwxhdHyU9SFIWtCPqsdBYG9rZlfQgWVnNLlPU2tDk0GapdCFnZUFfEHM24LqoyG7puK4saDkgPLUR14wyYzXjjcry1LZi7QYt3RiLKR6n9sFHZQHh+Gs008d0jtUyizO+tkUUimQN5LiR3pggY/ZfGYIFk/p+RXBea+1XyQI3Qigl7QXyU18w1bIKU5zLomW7pFRKmST7t1lke7HI9mKR7UMID6jUQL1g0XReAAAAAElFTkSuQmCCkCF0xbMCAAA=</data>
-        <length>940</length>
+        <data>AeoDFfyJUE5HDQoaCgAAAA1JSERSAAAAJAAAACUIBgAAACpcSz0AAAABc1JHQgCuzhzpAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOxAAADsQBlSsOGwAAA39JREFUWEfNl1tIVFEUhle96PRQmlBpGWmlZJbkdFMUzMgmtGAMkaQmELuZIEEFXSRCRUJLIp+0DKQQNfPBJBMM0yFNUjHULLxgF62HUoMae7L+PfucOWfuR2eY+UD2Ohtn85+19j77X0vm/0NexFI+eg1eJ2hRJZub+0uTU99ZrFL5UOCa1SxeDIoEzczM0ruB99TZ3Udt+l4+K2dTyFraFR1J6h3baGtEOJ91HqcEjY1/orqGJpsibAFxJzO0tFMdxWdMHEo9xSOi508reORAEErS1NxK96sa+IyRAP/lFLsnikI3BNOyZSoKWOlPn79M0u8/BurrH6Ke/g/8P42oo8Lp/JkTspIqFgQxBbfuyRZPiIumFE2iw1KgtF3dvfSo5hn9mP7FZ4nyr+WI2VIkCAvm5ZfSyPhX9ozUX8jJpNCQ9ezZWfBSlVU11NjcwWdMomwJsjj2WKTkboUoBukuLryiWAzw9fWh7NM6JkIgr7CMBofkJZViIQhvJJQJJSq4cZEtvBiQEamootvlPLJEJginSUgvMpObncliVwBRuWczWCzdV+bIBJWWVfKI2KlYbGbM0STtY1m3hygI2RH2zbGjB13y1bVGmjaZR9YRT1nV4ydUXf+CTVZXlpCf3woWK0F6cpRg9ZS1vOxkI/bOQsS4CiYI3x1ho8XFqNnoKZign9Oz7AEErwvikYfAHhoYHJ7XaLPY3+jYBKY8BssQLkZvgQkK27yRPXgD4ikTMBgMPPIMTFBQoOkjOPxxlEfuA6ca36zrN0vobU8/nzXCBOGKgMUAbR3dbHQnsMEAl7hK5ctiAbFkCfG72YjrA9eIO2lp1bMRztPc7ImCYveaPojwz+4CLyvYm6TEGDZKEQXhMhVuYph5eyZqocD8SR3FkeQDPDIhCgK6jFQeGU0UNp8rqa1vFB1Flk5r9c6UCUKWpCYKVhZv5Qra9V2im8ABStbsZ7E5MkFAaqJQa3QeU9+M3elCgbUpuvOAxdjIVy+ds2n+rHYd5i0QFjmensLEKgEbuLKqVrZOceFlu+bPbl9m3sIg1WlaDW2P3GLXM+FAvNK/kf3WGTHApiAB1L78YZ2FMYeRCwpcxbpXgK51ZGzCart9WBNPmbp0pzy6Q0EA2Wprf23RiToCexEeWklP55QgKSgH7jtr2RCyFhkR5rCstlAsyN1YHHvPQvQP7pQXmOwSAj8AAAAASUVORK5CYIL5Shis6gMAAA==</data>
+        <length>1356</length>
         <position>1</position>
-        <sys_attachment display_value="icon" sys_id="a2fa4cf0db1697406d3c72fc0f9619ce">a2fa4cf0db1697406d3c72fc0f9619ce</sys_attachment>
+        <sys_attachment display_value="icon" sys_id="3782487cdbee9f806d3c72fc0f9619d3">3782487cdbee9f806d3c72fc0f9619d3</sys_attachment>
         <sys_created_by>sebastiang</sys_created_by>
-        <sys_created_on>2018-05-23 03:29:41</sys_created_on>
-        <sys_id>66fa4cf0db1697406d3c72fc0f9619ce</sys_id>
+        <sys_created_on>2018-06-04 13:08:35</sys_created_on>
+        <sys_id>f782487cdbee9f806d3c72fc0f9619d3</sys_id>
     </sys_attachment_doc>
 </record_update>

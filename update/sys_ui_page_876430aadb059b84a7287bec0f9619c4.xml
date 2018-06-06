@@ -94,6 +94,9 @@ app.service('status',function($q){
 			#title{
 				font-weight:bold;
 			}
+			#title_bar > .navbar-header{
+				padding-top:5px;
+			}
 			.header{
 				margin:10px 20px 40px 20px;
 			}
@@ -126,6 +129,8 @@ app.service('status',function($q){
 			}
 			.cloud_button{
 				margin-top:50px;
+				padding-left:10px;
+				padding-top:10px;
 			}
 			.goto-cloud-btn{
 				float:right;
@@ -142,6 +147,14 @@ app.service('status',function($q){
 		</style>
 	</head>
 	<body ng-app="connection" ng-controller='connectionCtrl'>
+		<nav id="title_bar" class="title_bar navbar navbar-default ">
+			<div class="navbar-header col-xs-6">
+				<p id="ritm_title_label"><b>Citrix IT Service Management Connector - Home</b></p>				
+			</div>
+			<div class="navbar-right col-xs-6">
+			
+			</div>
+		</nav>
 		<div class="col-sm-12 content">
 			<div class="col-sm-12 header">
 				<h2 id="title">Citrix IT Service Management Connector Connection Status</h2>
@@ -157,7 +170,7 @@ app.service('status',function($q){
 					</div>
 					<div class="col-sm-8 info">
 						<div class="col-sm-3 info-text">
-							<b>Name</b>
+							<b>Customer Name</b>
 							<p>{{cust.display_name}}</p>
 						</div>
 						<div class="col-sm-3 info-text">
@@ -186,7 +199,7 @@ app.service('status',function($q){
         <sys_created_on>2018-03-27 13:41:49</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>876430aadb059b84a7287bec0f9619c4</sys_id>
-        <sys_mod_count>85</sys_mod_count>
+        <sys_mod_count>91</sys_mod_count>
         <sys_name>connection_status</sys_name>
         <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
@@ -194,6 +207,6 @@ app.service('status',function($q){
         <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_ui_page_876430aadb059b84a7287bec0f9619c4</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-05-04 13:22:36</sys_updated_on>
+        <sys_updated_on>2018-06-01 14:32:47</sys_updated_on>
     </sys_ui_page>
 </record_update>

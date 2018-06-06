@@ -2,7 +2,7 @@
 <record_update table="sc_cat_item_catalog">
     <sc_cat_item_catalog action="INSERT_OR_UPDATE">
         <sc_cat_item display_value="Application Provisioning">a41be40ddb0d53406d3c72fc0f9619a5</sc_cat_item>
-        <sc_catalog display_value="Citrix Automation Catalog">c36d1f6cdb8513406d3c72fc0f9619c6</sc_catalog>
+        <sc_catalog display_value="Citrix IT Service Management Connector Services">c36d1f6cdb8513406d3c72fc0f9619c6</sc_catalog>
         <sys_class_name>sc_cat_item_catalog</sys_class_name>
         <sys_created_by>sebastiang</sys_created_by>
         <sys_created_on>2018-03-22 21:15:31</sys_created_on>

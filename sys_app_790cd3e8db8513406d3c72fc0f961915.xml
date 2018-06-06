@@ -16,21 +16,21 @@
         <scoped_administration>false</scoped_administration>
         <short_description/>
         <source>x_wcs_ctrx_auto_sv</source>
-        <store_correlation_id>REPOAPP0000060955</store_correlation_id>
+        <store_correlation_id>REPOAPP0000063068</store_correlation_id>
         <store_url/>
         <sys_class_name>sys_app</sys_class_name>
         <sys_code/>
         <sys_created_by>sebastiang</sys_created_by>
         <sys_created_on>2018-03-21 20:46:04</sys_created_on>
         <sys_id>790cd3e8db8513406d3c72fc0f961915</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-05-24 17:06:27</sys_updated_on>
+        <sys_updated_on>2018-06-06 14:03:50</sys_updated_on>
         <template/>
         <trackable>true</trackable>
         <user_role/>
         <vendor/>
         <vendor_prefix/>
-        <version>1.0.2</version>
+        <version>1.0.3</version>
     </sys_app>
 </record_update>

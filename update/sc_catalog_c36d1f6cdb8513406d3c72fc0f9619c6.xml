@@ -15,16 +15,16 @@
         <sys_created_on>2018-03-21 20:52:36</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>c36d1f6cdb8513406d3c72fc0f9619c6</sys_id>
-        <sys_mod_count>3</sys_mod_count>
-        <sys_name>Citrix Automation Catalog</sys_name>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>Citrix IT Service Management Connector Services</sys_name>
         <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sc_catalog_c36d1f6cdb8513406d3c72fc0f9619c6</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-05-03 17:00:20</sys_updated_on>
-        <title>Citrix Automation Catalog</title>
+        <sys_updated_on>2018-06-01 14:12:44</sys_updated_on>
+        <title>Citrix IT Service Management Connector Services</title>
     </sc_catalog>
     <sys_translated_text action="delete_multiple" query="documentkey=c36d1f6cdb8513406d3c72fc0f9619c6"/>
 </record_update>

@@ -2,7 +2,7 @@
 <record_update table="sc_catalog_view_mtom">
     <sc_catalog_view_mtom action="INSERT_OR_UPDATE">
         <default>true</default>
-        <sc_catalog display_value="Citrix Automation Catalog">c36d1f6cdb8513406d3c72fc0f9619c6</sc_catalog>
+        <sc_catalog display_value="Citrix IT Service Management Connector Services">c36d1f6cdb8513406d3c72fc0f9619c6</sc_catalog>
         <sys_class_name>sc_catalog_view_mtom</sys_class_name>
         <sys_created_by>sebastiang</sys_created_by>
         <sys_created_on>2018-03-21 20:52:36</sys_created_on>

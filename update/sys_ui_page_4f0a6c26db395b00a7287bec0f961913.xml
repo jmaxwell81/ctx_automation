@@ -148,7 +148,7 @@ app.service('ajaxCall',function($q){
 });]]></client_script>
         <description/>
         <direct>false</direct>
-        <endpoint>x_wcs_ctrx_auto_sv_dektop_config_view.do</endpoint>
+        <endpoint>x_wcs_ctrx_auto_sv_desktop_config_view.do</endpoint>
         <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
 <j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
 	<head>
@@ -253,11 +253,12 @@ app.service('ajaxCall',function($q){
 			
 			#delivery_group_container{
 				margin-top:40px;
+				padding-left:0;
 			}
 			
 			#del-grp-label{
 				padding-right:30px;
-				text-align:right;
+				text-align:left;
 			}
 			
 			.disabled-catalog{
@@ -358,10 +359,10 @@ app.service('ajaxCall',function($q){
 				<machine-cat config="{{config}}" ng-repeat="config in configs"></machine-cat>
 				
 				<div id="delivery_group_container" class="form-group col-xs-12">
-					<label id="del-grp-label" class="col-xs-12 col-sm-3 col-md-2 control-label no-padding">
+					<label id="del-grp-label" class="col-xs-12 control-label no-padding">
 						<span class="label-text">Delivery group to be added to</span>
 					</label>
-					<div class="col-xs-12 col-sm-4 col-md-3 form-field input_controls no-padding">
+					<div class="col-xs-4 form-field input_controls no-padding">
 						<select id="delivery_group_list" class="form-control" ng-model="delgrp"  ng-readonly="!canEdit">
 							
 						</select>
@@ -375,21 +376,21 @@ app.service('ajaxCall',function($q){
 		</div>		
 	</body>
 </j:jelly>]]></html>
-        <name>dektop_config_view</name>
+        <name>desktop_config_view</name>
         <processing_script/>
         <sys_class_name>sys_ui_page</sys_class_name>
         <sys_created_by>sebastiang</sys_created_by>
         <sys_created_on>2018-05-03 20:16:50</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>4f0a6c26db395b00a7287bec0f961913</sys_id>
-        <sys_mod_count>121</sys_mod_count>
-        <sys_name>dektop_config_view</sys_name>
+        <sys_mod_count>126</sys_mod_count>
+        <sys_name>desktop_config_view</sys_name>
         <sys_package display_value="Citrix IT Service Management Connector" source="x_wcs_ctrx_auto_sv">790cd3e8db8513406d3c72fc0f961915</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Citrix IT Service Management Connector">790cd3e8db8513406d3c72fc0f961915</sys_scope>
         <sys_update_name>sys_ui_page_4f0a6c26db395b00a7287bec0f961913</sys_update_name>
         <sys_updated_by>sebastiang</sys_updated_by>
-        <sys_updated_on>2018-05-04 21:52:21</sys_updated_on>
+        <sys_updated_on>2018-06-04 18:37:37</sys_updated_on>
     </sys_ui_page>
 </record_update>

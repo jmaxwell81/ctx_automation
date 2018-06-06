@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <record_update table="sys_properties_category_m2m">
     <sys_properties_category_m2m action="INSERT_OR_UPDATE">
-        <category display_value="Citrix Automation Properties">569e61cddbc91784a7287bec0f9619bf</category>
+        <category display_value="Citrix IT Service Management Connector">569e61cddbc91784a7287bec0f9619bf</category>
         <order>200</order>
         <property display_value="x_wcs_ctrx_auto_sv.client_secret" name="x_wcs_ctrx_auto_sv.client_secret">d54a709adb055b84a7287bec0f961997</property>
         <sys_class_name>sys_properties_category_m2m</sys_class_name>

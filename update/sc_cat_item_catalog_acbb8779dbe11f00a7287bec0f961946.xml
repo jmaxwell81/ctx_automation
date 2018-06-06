@@ -2,7 +2,7 @@
 <record_update table="sc_cat_item_catalog">
     <sc_cat_item_catalog action="INSERT_OR_UPDATE">
         <sc_cat_item display_value="Reset a session">b98bc379dbe11f00a7287bec0f961968</sc_cat_item>
-        <sc_catalog display_value="Citrix Automation Catalog">c36d1f6cdb8513406d3c72fc0f9619c6</sc_catalog>
+        <sc_catalog display_value="Citrix IT Service Management Connector Services">c36d1f6cdb8513406d3c72fc0f9619c6</sc_catalog>
         <sys_class_name>sc_cat_item_catalog</sys_class_name>
         <sys_created_by>sebastiang</sys_created_by>
         <sys_created_on>2018-04-19 13:18:31</sys_created_on>
